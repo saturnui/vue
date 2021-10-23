@@ -1,0 +1,30 @@
+{
+  "name": "uvisity-js-sdk",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN <LICENSE>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/uvisity.umd.js",
+  "module": "./dist/uvisity.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/uvisity.es.js",
+      "require": "./dist/uvisity.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.2.20",
+    "email-validator": "^2.0.4",
+    "vue": "^3.2.20"
+  }
+}

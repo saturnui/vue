@@ -1,12 +1,12 @@
-const COOKIE_PREFIX = 'novo_'
+const COOKIE_PREFIX = ''
 
-export const isIPAddress = val => {
+export const isIPAddress = (val: string) => {
   return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
-    val
+    val,
   )
 }
 
-export const parseHostname = url => {
+export const parseHostname = (url: string) => {
   let hostname
   //find & remove protocol (http, ftp, etc.) and get hostname
   if (url.indexOf('//') > -1) {
@@ -21,7 +21,7 @@ export const parseHostname = url => {
   return hostname
 }
 
-export const parseDomain = url => {
+export const parseDomain = (url: string) => {
   let hostname = parseHostname(url)
   if (hostname === 'localhost') {
     return hostname
@@ -37,7 +37,7 @@ export const parseDomain = url => {
  * @param val
  * @param expiresAt
  */
-export const setCookie = (key, val, expiresAt) => {
+export const setCookie = (key: string, val: string, expiresAt: number) => {
   let domain = location.hostname
   if (!isIPAddress(domain) && domain !== 'localhost') {
     domain = '.' + parseDomain(domain)
@@ -56,7 +56,7 @@ export const setCookie = (key, val, expiresAt) => {
  *
  * @param key
  */
-export const getCookie = key => {
+export const getCookie = (key: string) => {
   let name = COOKIE_PREFIX + key + '='
   let decodedCookie = decodeURIComponent(document.cookie)
   let ca = decodedCookie.split(';')

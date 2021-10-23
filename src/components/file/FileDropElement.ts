@@ -20,7 +20,7 @@ const getFileType = (filename = '') => {
   return fileExtMap[filename.split('.').pop()] || ''
 }
 
-const traverseFileTree = (fileDesc, path) => {
+const traverseFileTree = (fileDesc, path: string) => {
   return new Promise(resolve => {
     let files = []
     path = path || ''

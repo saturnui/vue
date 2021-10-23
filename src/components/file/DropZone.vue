@@ -4,19 +4,21 @@
   </file-drop>
 </template>
 
-<script>
+
+<script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import './FileDropElement.js'
+import './FileDropElement.ts'
+import { FileDropEvent } from './FileDropElement.js'
 
 export default defineComponent({
   emit: ['change'],
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const dropzone = ref()
     const files = ref([])
-    let _selectedFiles = []
+    let _selectedFiles: File[] = []
 
     onMounted(() => {
-      dropzone.value.addEventListener('filedrop', event => {
+      dropzone.value.addEventListener('filedrop', (event: FileDropEvent) => {
         files.value = []
         _selectedFiles.length = 0
         event.files.forEach(async item => {
