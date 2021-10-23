@@ -7,8 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import './FileDropElement.ts'
-import { FileDropEvent } from './FileDropElement.js'
+import './FileDropElement.js'
 
 export default defineComponent({
   emit: ['change'],
@@ -18,13 +17,13 @@ export default defineComponent({
     let _selectedFiles: File[] = []
 
     onMounted(() => {
-      dropzone.value.addEventListener('filedrop', (event: FileDropEvent) => {
+      dropzone.value.addEventListener('filedrop', (event: any) => {
         files.value = []
         _selectedFiles.length = 0
-        event.files.forEach(async item => {
+        event.files.forEach(async (item: any) => {
           if (!_selectedFiles.includes(item.name)) {
             _selectedFiles.push(item.name)
-            files.value.push(item)
+            files.value.push(item as never) // TODO: should not be never
           }
           emit('change', files.value)
         })

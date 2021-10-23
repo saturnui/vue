@@ -1,13 +1,15 @@
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-const { resolve } = require('path')
-const { defineConfig } = require('vite')
+import WindiCSS from 'vite-plugin-windicss'
 
-module.exports = defineConfig({
-  // envPrefix: 'APP_',
-  plugins: [vue()],
+// import { resolve } from 'path'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue(), WindiCSS()],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: 'src/index.ts',
       name: 'vuwi',
       fileName: format => `vuwi.${format}.js`,
     },
@@ -16,6 +18,7 @@ module.exports = defineConfig({
       // into your library
       external: ['vue', 'dayjs'],
       output: {
+        // manualChunks: undefined,
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
