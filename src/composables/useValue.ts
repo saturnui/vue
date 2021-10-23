@@ -1,6 +1,6 @@
 import { toRefs, computed } from 'vue'
 
-export default function useValue(props, context, dependencies) {
+export default function useValue(props: any, context: any) {
   const { value, modelValue, falseValue, trueValue, disabled } = toRefs(props)
 
   /* istanbul ignore next */
@@ -15,7 +15,7 @@ export default function useValue(props, context, dependencies) {
   // =============== METHODS ==============
 
   // no export
-  const update = val => {
+  const update = (val: any) => {
     context.emit('input', val)
     context.emit('update:modelValue', val)
     context.emit('change', val)
@@ -29,7 +29,7 @@ export default function useValue(props, context, dependencies) {
     update(falseValue.value)
   }
 
-  const handleInput = val => {
+  const handleInput = (val: any) => {
     update(val.target.checked ? trueValue.value : falseValue.value)
   }
 
