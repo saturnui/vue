@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "watch": "tsc -w",
+    "build": "tsc && vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -17,7 +18,8 @@
     "vee-validate": "^4.5.3",
     "vue": "^3.2.16",
     "vue-router": "4",
-    "vue-tabler-icons": "^2.1.0"
+    "vue-tabler-icons": "^2.1.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",

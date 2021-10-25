@@ -1,11 +1,15 @@
-<script setup lang="ts">
-import { default as XSwitch } from './components/switch/Switch.vue'
+<script>
+import Switch from './components/Switch/Switch.vue'
+export default {
+  components: { Switch },
+  setup() {},
+}
 </script>
 
 <template>
-  <XSwitch>
+  <Switch>
     <span class="pl-2">Toggle me</span>
-  </XSwitch>
+  </Switch>
   <div class="x-window">Hello</div>
 </template>
 
