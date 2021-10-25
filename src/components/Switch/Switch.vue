@@ -27,18 +27,4 @@ input:checked ~ .block {
 }
 </style>
 
-<script>
-export default {
-  props: {
-    id: {
-      type: String,
-    },
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['update:modelValue'],
-  setup() {},
-}
-</script>
+<script src="./Switch.js"></script>

@@ -13,7 +13,6 @@
       "esnext",
       "dom"
     ],
-    "outDir": "dist2"
   },
   "include": [
     "src/**/*.ts",

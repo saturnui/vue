@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build2": "tsc",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.4.1",
     "@vueuse/core": "^6.5.3",
     "dayjs": "^1.10.7",
     "kutty": "^0.5.2",

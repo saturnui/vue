@@ -14,8 +14,7 @@
           font-medium
           text-gray-700
           hover:bg-gray-50
-          focus:outline-none
-          focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500
         "
       >
         <more-icon></more-icon>
@@ -64,18 +63,4 @@
   </Menu>
 </template>
 
-<script>
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { SelectorIcon } from 'vue-tabler-icons'
-
-export default {
-  props: {
-    options: {
-      type: Array,
-      default: [],
-    },
-  },
-  components: { Menu, MenuButton, MenuItems, MenuItem, SelectorIcon },
-  setup() {},
-}
-</script>
+<script src="./Menu.ts"></script>

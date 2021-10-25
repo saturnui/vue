@@ -18,19 +18,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  emits: ['update:modelValue', 'submit'],
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(_, { emit }) {},
-}
-</script>
+<script src="./Dialog.js"></script>

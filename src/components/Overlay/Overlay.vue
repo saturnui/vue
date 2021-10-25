@@ -44,24 +44,4 @@
 }
 </style>
 
-<script>
-import { watch } from '@vue/runtime-core'
-export default {
-  emits: ['update:modelValue'],
-  props: {
-    modelValue: Boolean,
-  },
-  setup(props) {
-    watch(
-      () => props.modelValue,
-      val => {
-        if (val) {
-          document.body.style.overflow = 'hidden'
-        } else {
-          document.body.style.overflow = 'auto'
-        }
-      }
-    )
-  },
-}
-</script>
+<script src="./Overlay.js"></script>
