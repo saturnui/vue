@@ -1,2 +1,4 @@
-# vuwi
-Vue3 + Tailwind + Helpers
+# Vue + Tailwind Component Library
+
+<img src="assets/logo.png" width="120">
+
