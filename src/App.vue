@@ -1,16 +1,14 @@
-<script>
-import Switch from './components/Switch/Switch.vue'
-export default {
-  components: { Switch },
-  setup() {},
-}
+<script setup>
+import Switch from './Switch/Switch.vue'
 </script>
 
 <template>
-  <Switch>
-    <span class="pl-2">Toggle me</span>
-  </Switch>
-  <div class="x-window">Hello</div>
+  <div class="x-window">
+    <div class="x-content p-3">
+      <Switch></Switch>
+    </div>
+  </div>
+  
 </template>
 
 <style>
@@ -20,5 +18,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding: 20px;
 }
 </style>
