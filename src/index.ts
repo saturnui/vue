@@ -1,4 +1,4 @@
-import './styles/index.css'
+import './vuwi.css'
 
 // components
 export { default as XDropDown } from './DropDown/DropDown.vue'

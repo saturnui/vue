@@ -10,7 +10,7 @@
     >
       <!-- 
       @click="$emit('update:modelValue', false)"
-     -->
+      -->
       <div @click.stop>
         <slot></slot>
       </div>
@@ -44,4 +44,26 @@
 }
 </style>
 
-<script src="./Overlay.js"></script>
+<script lang="ts">
+import { watch } from '@vue/runtime-core'
+import { defineComponent } from "@vue/runtime-core"
+
+export default defineComponent({
+  emits: ['update:modelValue'],
+  props: {
+    modelValue: Boolean,
+  },
+  setup(props: any) {
+    watch(
+      () => props.modelValue,
+      val => {
+        if (val) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = 'auto'
+        }
+      }
+    )
+  },
+})
+</script>

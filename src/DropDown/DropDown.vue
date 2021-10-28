@@ -1,14 +1,23 @@
 <template>
-  <div class="relative flex gap-2 items-center border border-gray-200 bg-white rounded pr-2 py-1" :class="customClass">
-    <slot name="prepend"> </slot>
+  <div
+    class="relative flex gap-2 items-center border border-gray-200 bg-white rounded pr-2 py-1"
+    :class="customClass"
+  >
+    <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none px-3">
-        <label v-if="errorLabel" :for="name" class="block font-medium mb-1 text-red-600" style="font-size: 11px">
-          {{ label }} {{ errorLabel }}
-        </label>
-        <label v-else :for="name" class="block font-medium mb-1 text-gray-500" style="font-size: 11px">
-          {{ label }}
-        </label>
+        <label
+          v-if="errorLabel"
+          :for="name"
+          class="block font-medium mb-1 text-red-600"
+          style="font-size: 11px"
+        >{{ label }} {{ errorLabel }}</label>
+        <label
+          v-else
+          :for="name"
+          class="block font-medium mb-1 text-gray-500"
+          style="font-size: 11px"
+        >{{ label }}</label>
       </div>
       <select
         :name="name"
@@ -16,7 +25,7 @@
         :autocomplete="autocomplete"
         class="focus:outline-none w-full pt-4 px-2 text-black"
         v-model="value"
-        @change="$emit('update:modelValue', $event.target.value)"
+        @change="handleChange"
         @blur="handleBlur"
       >
         <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
@@ -33,4 +42,67 @@
   </div>
 </template>
 
-<script src="./DropDown.js"></script>
+<script lang="ts">
+import { computed } from 'vue'
+import { useField } from 'vee-validate'
+
+import { defineComponent } from "@vue/runtime-core"
+
+type Option = { label: string, value: any }
+
+export default defineComponent({
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    autocomplete: String,
+    error: String,
+    label: String,
+    loading: Boolean,
+    mask: String,
+    modelValue: String,
+    options: {
+      default: (): Option[] => [],
+    },
+    // placeholder: String,
+    required: Boolean,
+    // type: {
+    //   type: String,
+    //   default: 'text',
+    // },
+    rules: Function,
+  },
+  emits: ['update:modelValue'],
+  setup(props: any, { emit }) {
+    const { value, errorMessage, handleBlur, handleChange, meta } = useField(props.name, props.rules, {
+      initialValue: props.modelValue,
+    })
+    const customClass = computed(() => {
+      if (meta.valid || !meta.validated) {
+        return 'focus-within:border-primary text-primary'
+      }
+      return 'border-red-600 text-red-600'
+    })
+
+    const errorLabel = computed(() => {
+      return props.error || errorMessage.value
+    })
+
+    // const handleChange = (evt: Event) => {
+    //   const target = evt.target as HTMLSelectElement
+    //   emit('update:modelValue', target.value)
+    // }
+
+    return {
+      handleChange,
+      handleBlur,
+      errorLabel,
+      value,
+      meta,
+      customClass,
+    }
+  },
+})
+
+</script>
