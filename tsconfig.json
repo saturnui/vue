@@ -14,7 +14,7 @@
       "esnext",
       "dom"
     ],
-    "outDir": "comps"
+    "outDir": "dist"
   },
   "include": [
     "src/**/*.ts",

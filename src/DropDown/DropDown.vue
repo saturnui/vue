@@ -1,6 +1,16 @@
 <template>
   <div
-    class="relative flex gap-2 items-center border border-gray-200 bg-white rounded pr-2 py-1"
+    class="
+      relative
+      flex
+      gap-2
+      items-center
+      border border-gray-200
+      bg-white
+      rounded
+      pr-2
+      py-1
+    "
     :class="customClass"
   >
     <slot name="prepend"></slot>
@@ -11,24 +21,28 @@
           :for="name"
           class="block font-medium mb-1 text-red-600"
           style="font-size: 11px"
-        >{{ label }} {{ errorLabel }}</label>
+          >{{ label }} {{ errorLabel }}</label
+        >
         <label
           v-else
           :for="name"
           class="block font-medium mb-1 text-gray-500"
           style="font-size: 11px"
-        >{{ label }}</label>
+          >{{ label }}</label
+        >
       </div>
       <select
+        v-model="value"
         :name="name"
         :required="required"
         :autocomplete="autocomplete"
         class="focus:outline-none w-full pt-4 px-2 text-black"
-        v-model="value"
         @change="handleChange"
         @blur="handleBlur"
       >
-        <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
+        <option v-for="item in options" :key="item.value" :value="item.value">
+          {{ item.label }}
+        </option>
       </select>
     </div>
     <slot></slot>
@@ -37,7 +51,10 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <check-icon v-else-if="rules && meta.valid" class="text-green-500"></check-icon>
+    <check-icon
+      v-else-if="rules && meta.valid"
+      class="text-green-500"
+    ></check-icon>
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
@@ -46,9 +63,9 @@
 import { computed } from 'vue'
 import { useField } from 'vee-validate'
 
-import { defineComponent } from "@vue/runtime-core"
+import { defineComponent } from '@vue/runtime-core'
 
-type Option = { label: string, value: any }
+type Option = { label: string; value: string | number }
 
 export default defineComponent({
   props: {
@@ -56,28 +73,52 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    autocomplete: String,
-    error: String,
-    label: String,
-    loading: Boolean,
-    mask: String,
-    modelValue: String,
+    autocomplete: {
+      type: String,
+      default: '',
+    },
+    error: {
+      type: String,
+      default: '',
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    mask: {
+      type: String,
+      default: '',
+    },
+    modelValue: {
+      type: String,
+      default: '',
+    },
     options: {
+      type: null,
       default: (): Option[] => [],
     },
-    // placeholder: String,
-    required: Boolean,
-    // type: {
-    //   type: String,
-    //   default: 'text',
-    // },
-    rules: Function,
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    rules: {
+      type: String,
+      default: '',
+    },
   },
   emits: ['update:modelValue'],
-  setup(props: any, { emit }) {
-    const { value, errorMessage, handleBlur, handleChange, meta } = useField(props.name, props.rules, {
-      initialValue: props.modelValue,
-    })
+  setup(props) {
+    const { value, errorMessage, handleBlur, handleChange, meta } = useField(
+      props.name,
+      props.rules,
+      {
+        initialValue: props.modelValue,
+      }
+    )
     const customClass = computed(() => {
       if (meta.valid || !meta.validated) {
         return 'focus-within:border-primary text-primary'
@@ -104,5 +145,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

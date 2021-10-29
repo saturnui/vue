@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref } from '@vue/reactivity';
+import { ref } from '@vue/reactivity'
 import Switch from './Switch/Switch.vue'
-import Textfield from './Textfield/Textfield.vue';
+import Textfield from './Textfield/Textfield.vue'
 const checked = ref(false)
 const text = ref('hi')
 </script>
@@ -11,8 +11,8 @@ const text = ref('hi')
     <div class="x-content p-3">
       <Switch v-model="checked">On / Off</Switch>
       {{ checked }}
-      <Textfield name="a" v-model="text"></Textfield>
-      <Textfield name="b" v-model="text"></Textfield>
+      <Textfield v-model="text" name="a"></Textfield>
+      <Textfield v-model="text" name="b"></Textfield>
     </div>
   </div>
 </template>

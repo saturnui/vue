@@ -20,6 +20,7 @@ export default defineComponent({
     },
     file: {
       type: File,
+      default: null,
     },
   },
   setup(props) {
@@ -27,17 +28,21 @@ export default defineComponent({
     const source = ref()
     const dataUrl = ref()
 
-    const generateThumbnail = (file: File, boundBox = [props.width, props.height]) => {
+    const generateThumbnail = (
+      file: File,
+      boundBox = [props.width, props.height]
+    ) => {
       // var scaleRatio = Math.min(...boundBox) / Math.max(file.width, file.height)
       var fileReader = new FileReader()
       var canvas = document.createElement('canvas')
       var ctx = canvas.getContext('2d')
 
       return new Promise(resolve => {
-        fileReader.onload = event => {
+        fileReader.onload = () => {
           const image = new Image()
           image.onload = () => {
-            const scaleRatio = Math.min(...boundBox) / Math.max(props.width, props.height)
+            const scaleRatio =
+              Math.min(...boundBox) / Math.max(props.width, props.height)
             const w = props.width * scaleRatio
             const h = props.height * scaleRatio
             canvas.width = w
@@ -58,7 +63,11 @@ export default defineComponent({
       () => props.file,
       async file => {
         if (file) {
-          if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif') {
+          if (
+            file.type === 'image/jpeg' ||
+            file.type === 'image/png' ||
+            file.type === 'image/gif'
+          ) {
             source.value = URL.createObjectURL(file)
             dataUrl.value = await generateThumbnail(file)
           }

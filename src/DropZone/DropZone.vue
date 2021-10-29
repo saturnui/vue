@@ -1,28 +1,28 @@
 <template>
-  <file-drop ref="dropzone" class="block">
+  <vuwi-file-drop ref="dropzone" class="block">
     <slot></slot>
-  </file-drop>
+  </vuwi-file-drop>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import './FileDropElement.js'
+import { FileDropEvent } from './FileDropElement'
 
 export default defineComponent({
-  emit: ['change'],
+  emits: ['change'],
   setup(_, { emit }) {
     const dropzone = ref()
-    const files = ref([])
-    let _selectedFiles: File[] = []
+    const files = ref<File[]>([])
+    const _selectedFiles: string[] = []
 
     onMounted(() => {
-      dropzone.value.addEventListener('filedrop', (event: any) => {
+      dropzone.value.addEventListener('filedrop', (event: FileDropEvent) => {
         files.value = []
         _selectedFiles.length = 0
-        event.files.forEach(async (item: any) => {
+        event.files.forEach(async item => {
           if (!_selectedFiles.includes(item.name)) {
             _selectedFiles.push(item.name)
-            files.value.push(item as never) // TODO: should not be never
+            files.value.push(item) // TODO: should not be never
           }
           emit('change', files.value)
         })

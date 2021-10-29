@@ -1,12 +1,25 @@
 <template>
   <transition name="fade">
-    <div v-if="modelValue" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30"></div>
+    <div
+      v-if="modelValue"
+      class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30"
+    ></div>
   </transition>
 
   <transition name="slide-fade">
     <div
       v-if="modelValue"
-      class="fixed top-0 left-0 w-screen h-screen flex sm:items-center justify-center overflow-auto"
+      class="
+        fixed
+        top-0
+        left-0
+        w-screen
+        h-screen
+        flex
+        sm:items-center
+        justify-center
+        overflow-auto
+      "
     >
       <!-- 
       @click="$emit('update:modelValue', false)"
@@ -17,7 +30,33 @@
     </div>
   </transition>
 </template>
- 
+
+<script lang="ts">
+import { defineComponent, watch } from '@vue/runtime-core'
+
+export default defineComponent({
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ['update:modelValue'],
+  setup(props) {
+    watch(
+      () => props.modelValue,
+      val => {
+        if (val) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = 'auto'
+        }
+      }
+    )
+  },
+})
+</script>
+
 <style>
 .fade-enter-active,
 .fade-leave-active {
@@ -43,27 +82,3 @@
   opacity: 0;
 }
 </style>
-
-<script lang="ts">
-import { watch } from '@vue/runtime-core'
-import { defineComponent } from "@vue/runtime-core"
-
-export default defineComponent({
-  emits: ['update:modelValue'],
-  props: {
-    modelValue: Boolean,
-  },
-  setup(props: any) {
-    watch(
-      () => props.modelValue,
-      val => {
-        if (val) {
-          document.body.style.overflow = 'hidden'
-        } else {
-          document.body.style.overflow = 'auto'
-        }
-      }
-    )
-  },
-})
-</script>

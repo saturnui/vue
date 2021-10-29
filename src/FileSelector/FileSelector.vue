@@ -1,25 +1,40 @@
 <template>
   <div @click="selectFiles">
     <slot></slot>
-    <input type="file" ref="input" :multiple="multiple" @change="fileSelected" class="hidden" />
+    <input
+      ref="input"
+      type="file"
+      :multiple="multiple"
+      class="hidden"
+      @change="fileSelected"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/runtime-core'
 
+export type FileEventTarget = EventTarget & { files: FileList }
+
 export default defineComponent({
-  props: ['multiple'],
+  props: {
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
+  },
   emits: ['change'],
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const input = ref()
 
     const selectFiles = () => {
       input.value.click()
     }
 
-    const fileSelected = (e: any) => {
-      const files = e.target.files || e.dataTransfer.files
+    // https://github.com/microsoft/TypeScript/issues/31816
+    const fileSelected = (e: Event) => {
+      const target = e.target as HTMLInputElement
+      const files = target.files
       emit('change', files)
     }
 
@@ -31,4 +46,3 @@ export default defineComponent({
   },
 })
 </script>
-

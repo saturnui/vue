@@ -1,6 +1,16 @@
 <template>
   <div
-    class="relative flex gap-2 items-center border border-gray-200 bg-white rounded px-3 py-1"
+    class="
+      relative
+      flex
+      gap-2
+      items-center
+      border border-gray-200
+      bg-white
+      rounded
+      px-3
+      py-1
+    "
     :class="customClass"
   >
     <slot name="prepend"></slot>
@@ -11,15 +21,18 @@
           :for="name"
           class="block font-medium mb-1 text-red-600"
           style="font-size: 11px"
-        >{{ label }} {{ errorLabel }}</label>
+          >{{ label }} {{ errorLabel }}</label
+        >
         <label
           v-else
           :for="name"
           class="block font-medium mb-1 text-gray-400"
           style="font-size: 11px"
-        >{{ label }}</label>
+          >{{ label }}</label
+        >
       </div>
       <input
+        v-maska="mask"
         :name="name"
         :type="type"
         :placeholder="placeholder"
@@ -27,7 +40,6 @@
         :autocomplete="autocomplete"
         class="bg-transparent focus:outline-none w-full pt-5 pb-1 text-black"
         style="font-size: 15px"
-        v-maska="mask"
         :value="inputValue"
         @input="handleInput"
         @blur="handleBlur"
@@ -37,7 +49,10 @@
     <div v-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>
     </div>
-    <!-- <tabuler-check v-else-if="rules && meta.valid && meta.validated" class="text-green-500"></tabuler-check> -->
+    <tabuler-check
+      v-else-if="rules && meta.valid && meta.validated"
+      class="text-green-500"
+    ></tabuler-check>
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
@@ -46,16 +61,28 @@
 import { computed, watch } from 'vue'
 import { useField } from 'vee-validate'
 
-import { defineComponent } from "@vue/runtime-core"
+import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
   props: {
-    autocomplete: String,
+    autocomplete: {
+      type: String,
+      default: '',
+    },
     loading: Boolean,
     disabled: Boolean,
-    error: String,
-    label: String,
-    mask: String,
+    error: {
+      type: String,
+      default: '',
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+    mask: {
+      type: String,
+      default: '',
+    },
     modelValue: {
       type: [String, Number],
       default: () => '',
@@ -65,16 +92,22 @@ export default defineComponent({
       required: true,
       default: '',
     },
-    placeholder: String,
+    placeholder: {
+      type: String,
+      default: '',
+    },
     required: Boolean,
-    rules: Function,
+    rules: {
+      type: String,
+      default: '',
+    },
     type: {
       type: String,
       default: 'text',
     },
   },
   emits: ['update:modelValue'],
-  setup(props: any, { emit }) {
+  setup(props, { emit }) {
     const {
       value: inputValue,
       errorMessage,
@@ -111,13 +144,13 @@ export default defineComponent({
     }
 
     return {
+      customClass,
+      errorLabel,
       handleChange,
       handleBlur,
       handleInput,
-      errorLabel,
       inputValue,
       meta,
-      customClass,
     }
   },
 })

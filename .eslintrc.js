@@ -1,4 +1,5 @@
-export default {
+// eslint-disable-next-line
+module.exports = {
   env: {
     browser: true,
     es2021: true,
@@ -15,6 +16,6 @@ export default {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
   },
-  plugins: ['vue', '@typescript-eslint'],
+  plugins: ['vue', 'prettier', '@typescript-eslint'],
   rules: {},
 }
