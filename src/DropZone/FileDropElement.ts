@@ -1,64 +1,73 @@
 // Original: https://github.com/GoogleChromeLabs/file-drop
 
-const fileExtMap = {
-  doc: 'application/msword',
-  docx: 'application/msword',
-  gif: 'image/gif',
-  jpeg: 'image/jpeg',
-  jpg: 'image/jpeg',
-  mp4: 'video/mp4',
-  mpeg: 'video/mpeg',
-  pdf: 'application/pdf',
-  png: 'image/png',
-  ppt: 'application/vnd.ms-powerpoint',
-  pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  xls: 'application/vnd.ms-excel',
-  xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-}
+const fileExtMap = new Map()
+fileExtMap.set('doc', 'application/msword')
+fileExtMap.set('docx', 'application/msword')
+fileExtMap.set('gif', 'image/gif')
+fileExtMap.set('jpeg', 'image/jpeg')
+fileExtMap.set('jpg', 'image/jpeg')
+fileExtMap.set('mp4', 'video/mp4')
+fileExtMap.set('mpeg', 'video/mpeg')
+fileExtMap.set('pdf', 'application/pdf')
+fileExtMap.set('png', 'image/png')
+fileExtMap.set('ppt', 'application/vnd.ms-powerpoint')
+fileExtMap.set(
+  'pptx',
+  'application/vnd.openxmlformats-officedocu ment.presentationml.presentation'
+)
+fileExtMap.set('xls', 'application/vnd.ms-excel')
+fileExtMap.set(
+  'xlsx',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+)
 
 const getFileType = (filename = '') => {
-  return fileExtMap[filename.split('.').pop()] || ''
+  const index = filename.split('.').pop()
+  if (fileExtMap.has(index)) {
+    return fileExtMap.get(index)
+  }
+  return ''
 }
 
-const traverseFileTree = (fileDesc, path) => {
-  return new Promise(resolve => {
-    let files = []
-    path = path || ''
-    if (fileDesc.isFile) {
-      // Get file
-      fileDesc.file(file => {
-        // set type (read-only)
-        const fileType = fileDesc.type || getFileType(file.name)
-        Object.defineProperty(file, 'type', {
-          value: fileType,
-          writable: false,
-        })
-        if (fileType) {
-          files.push(file)
-        }
-        resolve(files)
-      })
-    } else if (fileDesc.isDirectory) {
-      // Get folder contents
-      var dirReader = fileDesc.createReader()
-      dirReader.readEntries(async entries => {
-        for (var i = 0; i < entries.length; i++) {
-          const f = await traverseFileTree(entries[i], path + fileDesc.name + '/')
-          files = files.concat(f)
-        }
-        resolve(files)
-      })
-    }
-  })
+const traverseFileTree = async (fileDesc: FileSystemEntry, path = '') => {
+  let files: File[] = []
+  if (fileDesc.isFile) {
+    const fileSystemFile = fileDesc as FileSystemFileEntry
+    // Get file
+    fileSystemFile.file(file => {
+      // set type (read-only)
+      // const fileType = fileDesc.type || getFileType(file.name)
+      const fileType = getFileType(file.name)
+      // Object.defineProperty(file, 'type', {
+      //   value: fileType,
+      //   writable: false,
+      // })
+      if (fileType) {
+        files.push(file)
+      }
+    })
+  } else if (fileDesc.isDirectory) {
+    // Get folder contents
+    const fileSystemDir = fileDesc as FileSystemDirectoryEntry
+    const dirReader = fileSystemDir.createReader()
+    dirReader.readEntries(async entries => {
+      for (let i = 0; i < entries.length; i++) {
+        const f = await traverseFileTree(entries[i], path + fileDesc.name + '/')
+        files = files.concat(f)
+      }
+    })
+  }
+  return files
 }
 
-const _getMatchingItems = async listArray => {
-  let files = []
-  let fileEntries = []
+const _getMatchingItems = async (listArray: DataTransferItem[]) => {
+  let files: File[] = []
+  const fileEntries: FileSystemEntry[] = []
   for (let i = 0; i < listArray.length; i++) {
     const fileEntry = listArray[i].webkitGetAsEntry()
     if (fileEntry) {
-      fileEntry.type = listArray[i].type
+      // fileEntry.type = listArray[i].type
+      Object.assign(fileEntry, { type: listArray[i].type }) // TODO: Not sure this will work
       fileEntries.push(fileEntry)
     }
   }
@@ -69,8 +78,13 @@ const _getMatchingItems = async listArray => {
   return files
 }
 
-const getMatchingItems = async (list, acceptVal, multiple) => {
-  const listArray = Array.from(list)
+// DataTransfer.items: DataTransferItemList
+const getMatchingItems = async (
+  list: DataTransferItemList,
+  acceptVal = '',
+  multiple = false
+) => {
+  const listArray = Array.from(list) as DataTransferItem[]
   let matchingItems = await _getMatchingItems(listArray)
   // Return the first item (or undefined) if our filter is for all files
   if (acceptVal === '') {
@@ -87,16 +101,20 @@ const getMatchingItems = async (list, acceptVal, multiple) => {
 
   const acceptsExtension = acceptsVals.filter(accept => accept.startsWith('.'))
 
-  const predicate = file => {
+  const predicate = (file: File) => {
     // 'Parse' the type.
-    const [typeMain, typeSub] = file.type
+    const fileType = getFileType(file.name)
+    const [typeMain, typeSub] = fileType
       .toLowerCase()
       .split('/')
-      .map(s => s.trim())
+      .map((s: string) => s.trim())
 
     for (const [acceptMain, acceptSub] of acceptsMime) {
       // Look for an exact match, or a partial match if * is accepted, eg image/*.
-      if (typeMain === acceptMain && (acceptSub === '*' || typeSub === acceptSub)) {
+      if (
+        typeMain === acceptMain &&
+        (acceptSub === '*' || typeSub === acceptSub)
+      ) {
         return true
       }
     }
@@ -116,23 +134,35 @@ const getMatchingItems = async (list, acceptVal, multiple) => {
   return matchingItems
 }
 
-const getFileData = async (rawData, accept, multiple) => {
+const getFileData = async (
+  rawData: DataTransfer,
+  accept = '',
+  multiple = false
+) => {
   return await getMatchingItems(rawData.items, accept, multiple)
 }
 
 // Safari and Edge don't quite support extending Event, this works around it.
-const fixExtendedEvent = (instance, type) => {
+const fixExtendedEvent = (
+  instance: FileDropEvent,
+  type: typeof FileDropEvent
+) => {
   if (!(instance instanceof type)) {
     Object.setPrototypeOf(instance, type.prototype)
   }
 }
 
 export class FileDropEvent extends Event {
-  constructor(typeArg, eventInitDict) {
-    super(typeArg, eventInitDict)
+  _files: File[]
+  _action = ''
+  constructor(
+    typeArg: string,
+    eventInitDict: { files: File[]; action: string }
+  ) {
+    super(typeArg)
     fixExtendedEvent(this, FileDropEvent)
-    this._files = eventInitDict.files
-    this._action = eventInitDict.action
+    this._files = eventInitDict.files as File[]
+    this._action = eventInitDict.action || ''
   }
 
   get action() {
@@ -146,13 +176,13 @@ export class FileDropEvent extends Event {
 
 /*
   Example Usage.
-  <file-drop
+  <vuwi-file-drop
     accept='image/*'
     multiple | undefined
     class='drop-valid|drop-invalid'
   >
   [everything in here is a drop target.]
-  </file-drop>
+  </vuwi-file-drop>
   dropElement.addEventListener('filedrop', (event) => console.log(event.detail))
 */
 export class FileDropElement extends HTMLElement {
@@ -191,7 +221,7 @@ export class FileDropElement extends HTMLElement {
     this.setAttribute('multiple', val || '')
   }
 
-  _onDragEnter(event) {
+  async _onDragEnter(event: DragEvent) {
     this._dragEnterCount += 1
     if (this._dragEnterCount > 1) return
     if (event.dataTransfer === null) {
@@ -201,14 +231,15 @@ export class FileDropElement extends HTMLElement {
 
     // We don't have data, attempt to get it and if it matches, set the correct state.
     const items = event.dataTransfer.items
-    const matchingFiles = getMatchingItems(items, this.accept, this.multiple !== null)
-    const validDrop =
-      event.dataTransfer && event.dataTransfer.items.length
-        ? matchingFiles[0] !== undefined
-        : // Safari doesn't give file information on drag enter, so the best we
-          // can do is return valid.
-          true
-
+    const matchingFiles = await getMatchingItems(
+      items,
+      this.accept,
+      this.multiple !== null
+    )
+    let validDrop = true
+    if (event.dataTransfer && event.dataTransfer.items.length) {
+      validDrop = matchingFiles.length > 0 && matchingFiles[0] !== undefined
+    }
     if (validDrop) {
       this.classList.add('drop-valid')
     } else {
@@ -223,23 +254,29 @@ export class FileDropElement extends HTMLElement {
     }
   }
 
-  _onDrop(event) {
+  async _onDrop(event: DragEvent) {
     event.preventDefault()
     if (event.dataTransfer === null) return
     this._reset()
     const action = 'drop'
-    getFileData(event.dataTransfer, this.accept, this.multiple !== null).then(files => {
-      if (files === undefined) return
-      this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))
-    })
+    const files = await getFileData(
+      event.dataTransfer,
+      this.accept,
+      this.multiple !== null
+    )
+    if (files === undefined) return
+    this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))
   }
 
-  _onPaste(event) {
+  async _onPaste(event: ClipboardEvent) {
     const action = 'paste'
-    getFileData(event.clipboardData, this.accept, this.multiple !== undefined).then(files => {
-      if (files === undefined) return
-      this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))
-    })
+    const files = await getFileData(
+      event.clipboardData as DataTransfer,
+      this.accept,
+      this.multiple !== undefined
+    )
+    if (files === undefined) return
+    this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))
   }
 
   _reset() {
@@ -249,4 +286,4 @@ export class FileDropElement extends HTMLElement {
   }
 }
 
-customElements.define('file-drop', FileDropElement)
+customElements.define('vuwi-file-drop', FileDropElement)

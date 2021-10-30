@@ -14,12 +14,14 @@
           font-medium
           text-gray-700
           hover:bg-gray-50
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-offset-gray-100
+          focus:ring-indigo-500
         "
       >
         <more-icon></more-icon>
-        <!-- Options
-        <selector-icon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" /> -->
       </MenuButton>
     </div>
 
@@ -51,8 +53,11 @@
         <div v-for="(section, i) in options" :key="i" class="py-1">
           <menu-item v-for="(item, n) in section" :key="n" v-slot="{ active }">
             <div
+              :class="[
+                active ? item.activeClass || 'text-blue-500' : '',
+                'block   px-4 py-2 text-c  enter text-gray  -500',
+              ]"
               @click="$emit('click:item', item)"
-              :class="[active ? item.activeClass || 'text-blue-500' : '', 'block px-4 py-2 text-center text-gray-500']"
             >
               {{ item.label }}
             </div>
@@ -63,4 +68,21 @@
   </Menu>
 </template>
 
-<script src="./Menu.ts"></script>
+<script lang="ts">
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+
+import { defineComponent } from 'vue-demi'
+
+type Option = { label: string; value: unknown }
+
+export default defineComponent({
+  components: { Menu, MenuButton, MenuItems, MenuItem },
+  props: {
+    options: {
+      type: null,
+      default: (): Option[] => [],
+    },
+  },
+  emits: ['click:item'],
+})
+</script>

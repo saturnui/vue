@@ -1,5 +1,5 @@
 @layer components {
-  .x {
+  .vuwi {
     &-container {
       @apply py-8 flex items-center;
     }
@@ -7,7 +7,7 @@
       @apply w-full mx-auto max-w-4xl;
     }
     &-card {
-      @apply bg-white border rounded px-4 py-4;
+      @apply border rounded;
       &.shadow {
         @apply border-none filter drop-shadow-sm;
       }
@@ -25,7 +25,10 @@
       @apply flex items-center gap-2;
     }
     &-dialog {
-      @apply absolute w-full max-w-3xl;
+      @apply w-full max-w-xl shadow-lg rounded;
+      &.dialog-lg {
+        @apply w-full max-w-3xl shadow-lg;
+      }
     }
     &-window {
       @apply border rounded-2xl pt-5 overflow-hidden overflow-y-auto;
