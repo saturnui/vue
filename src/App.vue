@@ -2,8 +2,10 @@
 import { ref } from '@vue/reactivity'
 import Switch from './Switch/Switch.vue'
 import Textfield from './Textfield/Textfield.vue'
+import Snackbar from './Snackbar/Snackbar.vue'
+import SnackbarIcon from './app/icons/SnackbarIcon.vue'
 const checked = ref(false)
-const text = ref('hi')
+const text = ref('This is a test')
 </script>
 
 <template>
@@ -15,6 +17,17 @@ const text = ref('hi')
       <Textfield v-model="text" name="b"></Textfield>
     </div>
   </div>
+  <Snackbar
+    text="You've been mentionned in a note in Michael Jordan's chart."
+    current="1"
+    total="3"
+    cancel="Dismiss"
+    confirm="Ok"
+  >
+    <template #icon>
+      <SnackbarIcon class="h-8 w-8" />
+    </template>
+  </Snackbar>
 </template>
 
 <style>

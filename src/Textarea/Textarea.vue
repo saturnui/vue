@@ -57,10 +57,10 @@
     <div v-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>
     </div>
-    <check-icon
+    <CheckIcon
       v-else-if="rules && meta.valid && meta.validated"
-      class="text-green-500"
-    ></check-icon>
+      class="svg:fill-green-500"
+    />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
@@ -70,8 +70,10 @@ import { computed, watch } from 'vue'
 import { useField } from 'vee-validate'
 
 import { defineComponent } from '@vue/runtime-core'
+import CheckIcon from './icons/CheckIcon.vue'
 
 export default defineComponent({
+  components: { CheckIcon },
   props: {
     autocomplete: {
       type: String,
@@ -133,23 +135,19 @@ export default defineComponent({
     } = useField(props.name, props.rules, {
       initialValue: props.modelValue,
     })
-
     watch(
       () => props.modelValue,
       val => (inputValue.value = val)
     )
-
     const textareaClass = computed(() => {
       if (meta.valid || !meta.validated) {
         return 'focus-within:border-primary text-primary'
       }
       return 'border-red-600 text-red-600'
     })
-
     const errorLabel = computed(() => {
       return props.error || errorMessage.value
     })
-
     return {
       errorLabel,
       handleChange,

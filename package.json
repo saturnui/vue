@@ -19,6 +19,7 @@
     "uuid": "^8.3.2",
     "vee-validate": "^4.5.3",
     "vue": "^3.2.16",
+    "vue-demi": "^0.12.0",
     "vue-router": "4",
     "vue-tabler-icons": "^2.1.0"
   },

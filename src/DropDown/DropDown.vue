@@ -51,23 +51,23 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <check-icon
-      v-else-if="rules && meta.valid"
-      class="text-green-500"
-    ></check-icon>
+    <CheckIcon
+      v-else-if="rules && meta.valid && meta.validated"
+      class="svg:fill-green-500"
+    />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
+import { computed, defineComponent } from 'vue-demi'
 import { useField } from 'vee-validate'
-
-import { defineComponent } from '@vue/runtime-core'
+import CheckIcon from './icons/CheckIcon.vue'
 
 type Option = { label: string; value: string | number }
 
 export default defineComponent({
+  components: { CheckIcon },
   props: {
     name: {
       type: String,
@@ -125,16 +125,13 @@ export default defineComponent({
       }
       return 'border-red-600 text-red-600'
     })
-
     const errorLabel = computed(() => {
       return props.error || errorMessage.value
     })
-
     // const handleChange = (evt: Event) => {
     //   const target = evt.target as HTMLSelectElement
     //   emit('update:modelValue', target.value)
     // }
-
     return {
       handleChange,
       handleBlur,

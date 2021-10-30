@@ -49,21 +49,22 @@
     <div v-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>
     </div>
-    <tabuler-check
+    <CheckIcon
       v-else-if="rules && meta.valid && meta.validated"
-      class="text-green-500"
-    ></tabuler-check>
+      class="svg:fill-green-500"
+    />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, watch } from 'vue'
+import { defineComponent, computed, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 
-import { defineComponent } from '@vue/runtime-core'
+import CheckIcon from './icons/CheckIcon.vue'
 
 export default defineComponent({
+  components: { CheckIcon },
   props: {
     autocomplete: {
       type: String,
@@ -117,12 +118,10 @@ export default defineComponent({
     } = useField(props.name, props.rules, {
       initialValue: props.modelValue,
     })
-
     watch(
       () => props.modelValue,
       val => (inputValue.value = val)
     )
-
     const customClass = computed(() => {
       let cls = 'border-red-600 text-red-600'
       if (meta.valid || !meta.validated) {
@@ -133,16 +132,13 @@ export default defineComponent({
       }
       return cls
     })
-
     const errorLabel = computed(() => {
       return props.error || errorMessage.value
     })
-
     const handleInput = (evt: Event) => {
       const target = evt.target as HTMLInputElement
       emit('update:modelValue', target.value)
     }
-
     return {
       customClass,
       errorLabel,

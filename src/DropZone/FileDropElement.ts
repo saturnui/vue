@@ -13,7 +13,7 @@ fileExtMap.set('png', 'image/png')
 fileExtMap.set('ppt', 'application/vnd.ms-powerpoint')
 fileExtMap.set(
   'pptx',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+  'application/vnd.openxmlformats-officedocu ment.presentationml.presentation'
 )
 fileExtMap.set('xls', 'application/vnd.ms-excel')
 fileExtMap.set(

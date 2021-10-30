@@ -26,7 +26,7 @@
             class="btn btn-icon"
             @click="$emit('update:modelValue', false)"
           >
-            <tablar-x />
+            <CloseIcon class="h-8 w-8" />
           </button>
         </div>
         <div class="x-content">
@@ -39,8 +39,10 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-core'
+import CloseIcon from './icons/CloseIcon.vue'
 
 export default defineComponent({
+  components: { CloseIcon },
   props: {
     title: {
       type: String,
