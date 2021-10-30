@@ -1,44 +1,17 @@
 <template>
-  <div>
-    <div
-      v-if="modelValue"
-      class="
-        fixed
-        flex flex-col
-        items-center
-        top-0
-        left-0
-        w-screen
-        h-screen
-        bg-black bg-opacity-20
-        z-10
-        overflow-y-auto
-      "
-      @click="$emit('update:modelValue', false)"
-    >
-      <div
-        class="x-dialog x-card rounded-t-none p-0 shadow-xl max-w-xl"
-        @click.stop
-      >
-        <div class="x-row border-b justify-between py-2 pl-4 pr-2">
-          <div class="font-medium">{{ title }}</div>
-          <button
-            class="btn btn-icon"
-            @click="$emit('update:modelValue', false)"
-          >
-            <CloseIcon class="h-8 w-8" />
-          </button>
-        </div>
-        <div class="x-content">
-          <slot></slot>
-        </div>
-      </div>
+  <div v-if="modelValue" class="vuwi-dialog" @click.stop>
+    <div class="vuwi-row border-b justify-between py-3 pl-4 pr-2">
+      <div class="font-medium">{{ title }}</div>
+      <button class="btn btn-icon btn-sm" @click="close">
+        <CloseIcon />
+      </button>
     </div>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue-demi'
 import CloseIcon from './icons/CloseIcon.vue'
 
 export default defineComponent({
@@ -53,6 +26,14 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:modelValue', 'submit'],
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const close = () => {
+      emit('update:modelValue', false)
+    }
+    return {
+      close,
+    }
+  },
 })
 </script>

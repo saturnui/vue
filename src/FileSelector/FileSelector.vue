@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/runtime-core'
+import { defineComponent, ref } from 'vue-demi'
 
 export type FileEventTarget = EventTarget & { files: FileList }
 

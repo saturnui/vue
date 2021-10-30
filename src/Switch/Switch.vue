@@ -30,13 +30,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
     id: {
       type: String,
-      default: '',
+      default: () => Math.floor(Math.random() * Date.now()).toString(),
     },
     modelValue: {
       type: Boolean,
@@ -45,8 +45,10 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    console.log(props)
     const handleInput = (evt: Event) => {
       const target = evt.target as HTMLInputElement
+      console.log('handleInput:', target.checked)
       emit('update:modelValue', target.checked)
     }
     return {

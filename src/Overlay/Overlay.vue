@@ -2,7 +2,18 @@
   <transition name="fade">
     <div
       v-if="modelValue"
-      class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30"
+      class="
+        fixed
+        flex flex-col
+        items-center
+        top-0
+        left-0
+        w-screen
+        h-screen
+        bg-black bg-opacity-30
+        overflow-y-auto
+        z-10
+      "
     ></div>
   </transition>
 
@@ -19,20 +30,17 @@
         sm:items-center
         justify-center
         overflow-auto
+        z-10
       "
+      @click="handleClick"
     >
-      <!-- 
-      @click="$emit('update:modelValue', false)"
-      -->
-      <div @click.stop>
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </transition>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from '@vue/runtime-core'
+import { defineComponent, watch } from 'vue-demi'
 
 export default defineComponent({
   props: {
@@ -40,9 +48,18 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    modal: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue'],
-  setup(props) {
+  setup(props, { emit }) {
+    const handleClick = () => {
+      if (!props.modal) {
+        emit('update:modelValue', false)
+      }
+    }
     watch(
       () => props.modelValue,
       val => {
@@ -53,11 +70,14 @@ export default defineComponent({
         }
       }
     )
+    return {
+      handleClick,
+    }
   },
 })
 </script>
 
-<style>
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

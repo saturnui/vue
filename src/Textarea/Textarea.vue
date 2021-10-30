@@ -19,15 +19,13 @@
         <label
           v-if="errorLabel"
           :for="name"
-          class="block font-medium mb-1 text-red-600"
-          style="font-size: 11px"
+          class="block text-sm font-medium mb-1 text-red-600"
           >{{ label }} {{ errorLabel }}</label
         >
         <label
           v-else
           :for="name"
-          class="block font-medium mb-1 text-gray-500"
-          style="font-size: 11px"
+          class="block text-sm font-medium mb-1 text-gray-400"
           >{{ label }}</label
         >
       </div>
@@ -43,33 +41,30 @@
           bg-transparent
           focus:outline-none
           w-full
-          pt-4
+          mt-5
           text-black
           resize-none
         "
         :class="customClass"
-        style="font-size: 15px"
         @input="handleChange"
         @blur="handleBlur"
       />
     </div>
     <slot></slot>
-    <div v-if="loading" class="spinner" role="status">
+    <CheckIcon
+      v-if="valid || (rules && meta.valid && meta.validated)"
+      class="h-5 w-5 fill-current text-green-600"
+    />
+    <div v-else-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>
     </div>
-    <CheckIcon
-      v-else-if="rules && meta.valid && meta.validated"
-      class="svg:fill-green-500"
-    />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, watch } from 'vue'
+import { defineComponent, computed, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
-
-import { defineComponent } from '@vue/runtime-core'
 import CheckIcon from './icons/CheckIcon.vue'
 
 export default defineComponent({
@@ -105,7 +100,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: true,
+      default: () => Math.floor(Math.random() * Date.now()).toString(),
     },
     placeholder: {
       type: String,
@@ -122,6 +117,10 @@ export default defineComponent({
     type: {
       type: String,
       default: 'text',
+    },
+    valid: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update:modelValue'],

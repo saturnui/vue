@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue-demi'
 import { FileDropEvent } from './FileDropElement'
 
 export default defineComponent({

@@ -71,7 +71,7 @@
 <script lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue-demi'
 
 type Option = { label: string; value: unknown }
 

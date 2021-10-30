@@ -19,15 +19,13 @@
         <label
           v-if="errorLabel"
           :for="name"
-          class="block font-medium mb-1 text-red-600"
-          style="font-size: 11px"
+          class="block text-sm font-medium mb-1 text-red-600"
           >{{ label }} {{ errorLabel }}</label
         >
         <label
           v-else
           :for="name"
-          class="block font-medium mb-1 text-gray-400"
-          style="font-size: 11px"
+          class="block text-sm font-medium mb-1 text-gray-400"
           >{{ label }}</label
         >
       </div>
@@ -38,21 +36,20 @@
         :placeholder="placeholder"
         :required="required"
         :autocomplete="autocomplete"
-        class="bg-transparent focus:outline-none w-full pt-5 pb-1 text-black"
-        style="font-size: 15px"
+        class="bg-transparent focus:outline-none w-full mt-5 text-black"
         :value="inputValue"
         @input="handleInput"
         @blur="handleBlur"
       />
     </div>
     <slot></slot>
-    <div v-if="loading" class="spinner" role="status">
+    <CheckIcon
+      v-if="valid || (rules && meta.valid && meta.validated)"
+      class="h-5 w-5 fill-current text-green-600"
+    />
+    <div v-else-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>
     </div>
-    <CheckIcon
-      v-else-if="rules && meta.valid && meta.validated"
-      class="svg:fill-green-500"
-    />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
@@ -90,8 +87,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: true,
-      default: '',
+      default: () => Math.floor(Math.random() * Date.now()).toString(),
     },
     placeholder: {
       type: String,
@@ -105,6 +101,10 @@ export default defineComponent({
     type: {
       type: String,
       default: 'text',
+    },
+    valid: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update:modelValue'],
