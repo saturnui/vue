@@ -1,10 +1,7 @@
 <template>
   <div class="vuwi-avatar">
     <img v-if="photo" :src="photo" :alt="name" />
-    <div
-      v-else-if="name"
-      class="w-full h-full flex justify-center items-center"
-    >
+    <div v-else-if="name" class="initial">
       {{ initial }}
     </div>
   </div>

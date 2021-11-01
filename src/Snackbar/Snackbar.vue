@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade">
+  <transition name="vuwi-snackbar">
     <div
       v-if="modelValue"
       class="
@@ -106,19 +106,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style>
-.slide-fade-enter-active {
-  transition: all 0.2s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.2s ease-in;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-</style>

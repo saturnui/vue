@@ -1,7 +1,7 @@
 <template>
-  <div v-if="modelValue" ref="dialog" @click.stop>
-    <div class="vuwi-row border-b justify-between py-3 pl-4 pr-2">
-      <div class="font-medium">{{ title }}</div>
+  <div v-if="modelValue" ref="dialog" class="vuwi-dialog" @click.stop>
+    <div class="dialog-title">
+      <div>{{ title }}</div>
       <button class="btn btn-icon btn-sm" @click="close">
         <CloseIcon />
       </button>
@@ -38,7 +38,6 @@ export default defineComponent({
     }
     const dialog = ref()
     onMounted(() => {
-      console.log(dialog.value)
       onClickOutside(dialog.value, () => {
         if (!props.modal) {
           close()

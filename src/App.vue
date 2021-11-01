@@ -30,7 +30,7 @@ const dialogClass = computed(() => {
     case 'right':
       return 'vuwi-drawer w-96'
     default:
-      return 'vuwi-dialog max-w-xl'
+      return 'vuwi-dialog w-full max-w-xl'
   }
 })
 </script>
