@@ -4,7 +4,10 @@
       <div>
         <slot name="header"></slot>
       </div>
-      <CollapseIcon class="transition duration-150 transform" :class="{ 'rotate-180': show }" />
+      <CollapseIcon
+        class="transition duration-150 transform"
+        :class="{ 'rotate-180': show }"
+      />
     </div>
     <transition
       name="vuwi-collapse"
@@ -21,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from "@vue/runtime-core"
+import { defineComponent, watch } from '@vue/runtime-core'
 import { onUnmounted, ref } from 'vue-demi'
 import { useGroup } from './group'
 import CollapseIcon from './icons/CollapseIcon.vue'
@@ -36,25 +39,31 @@ export default defineComponent({
     modelValue: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const uuid = () => {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = (Math.random() * 16) | 0,
-          v = c == 'x' ? r : (r & 0x3) | 0x8
-        return v.toString(16)
-      })
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+        /[xy]/g,
+        function (c) {
+          const r = (Math.random() * 16) | 0,
+            v = c == 'x' ? r : (r & 0x3) | 0x8
+          return v.toString(16)
+        }
+      )
     }
 
-    const { emit: emitGroup, on: onGroup, off: offGroup } = useGroup(props.group)
-
+    const {
+      emit: emitGroup,
+      on: onGroup,
+      off: offGroup,
+    } = useGroup(props.group)
 
     const id = uuid()
 
     if (props.group) {
-      const handler = (data: { id: string, show: boolean }) => {
+      const handler = (data: { id: string; show: boolean }) => {
         if (data.show) {
           show.value = id === data.id
           emit('update:modelValue', show.value)
@@ -92,9 +101,13 @@ export default defineComponent({
       el.style.height = ''
     }
 
-    watch(() => props.modelValue, (val) => {
-      invalidate(val)
-    }, { immediate: true })
+    watch(
+      () => props.modelValue,
+      val => {
+        invalidate(val)
+      },
+      { immediate: true }
+    )
 
     return {
       end,
@@ -102,6 +115,6 @@ export default defineComponent({
       start,
       toggle,
     }
-  }
+  },
 })
 </script>

@@ -34,6 +34,10 @@ const dialogClass = computed(() => {
       return 'vuwi-dialog w-full max-w-xl'
   }
 })
+
+const expA = ref(true)
+const expB = ref(false)
+const expC = ref(false)
 </script>
 
 <template>
@@ -89,22 +93,56 @@ const dialogClass = computed(() => {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
           </Collapse>
-          
+
           <div class="h-5"></div>
-           <Collapse v-for="i in 3" :key="i" group="a">
-            <template #header>
-              <div>Hello</div>
-            </template>
-            <div class="border p-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </Collapse>
+          <div class="bg-white" :class="{ 'm-4 shadow-lg': expA }">
+            <Collapse v-model="expA" group="a">
+              <template #header>
+                <div>Hello</div>
+              </template>
+              <div class="border p-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </Collapse>
+          </div>
+          <div class="bg-white" :class="{ 'm-4 shadow-lg': expB }">
+            <Collapse v-model="expB" group="a">
+              <template #header>
+                <div>Hello</div>
+              </template>
+              <div class="border p-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </Collapse>
+          </div>
+          <div class="bg-white" :class="{ 'm-4 shadow-lg': expC }">
+            <Collapse v-model="expC" group="a">
+              <template #header>
+                <div>Hello</div>
+              </template>
+              <div class="border p-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </Collapse>
+          </div>
         </div>
 
         <div class="flex gap-4 p-4 bg-gray-100 filter shadow-md">
