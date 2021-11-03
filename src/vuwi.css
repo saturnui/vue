@@ -226,7 +226,7 @@
 
 .vuwi-collapse-header {
   @apply relative p-3 flex justify-between items-center border;
-  background-color: rgba(249, 250, 251, 1)
+  /* background-color: rgba(249, 250, 251, 1) */
 }
 
 .vuwi-collapse-content {

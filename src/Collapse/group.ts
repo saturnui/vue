@@ -3,8 +3,8 @@ import mitt from '../directives/mitt'
 const bus = mitt()
 
 export const useGroup = (name: string) => {
-  const emit = (id: string) => {
-    bus.emit(name, id)
+  const emit = (id: string, show = false) => {
+    bus.emit(name, {id, show})
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const on = (handler: any) => {
