@@ -10,6 +10,7 @@ import Textarea from './Textarea/Textarea.vue'
 import Overlay from './Overlay/Overlay.vue'
 import Dialog from './Dialog/Dialog.vue'
 import FormSection from './FormSection/FormSection.vue'
+import Collapse from './Collapse/Collapse.vue'
 const showWindow = ref(false)
 const showSnackbar = ref(false)
 const text = ref('This is a test')
@@ -72,6 +73,40 @@ const dialogClass = computed(() => {
             class="vuwi-avatar-xl rounded-full bg-primary text-white"
           />
         </div>
+
+        <div>
+          <Collapse v-for="i in 3" :key="i">
+            <template #header>
+              <div>Hello</div>
+            </template>
+            <div class="border p-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </Collapse>
+          
+          <div class="h-5"></div>
+           <Collapse v-for="i in 3" :key="i" group="a">
+            <template #header>
+              <div>Hello</div>
+            </template>
+            <div class="border p-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </Collapse>
+        </div>
+
         <div class="flex gap-4 p-4 bg-gray-100 filter shadow-md">
           <div class="w-32">
             <select
@@ -171,7 +206,7 @@ const dialogClass = computed(() => {
         <div v-for="i in 100" :key="i">{{ i }}</div>
       </div>
     </div>
-  </div> -->
+  </div>-->
 
   <Snackbar
     v-model="showSnackbar"

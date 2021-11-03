@@ -213,3 +213,35 @@
   transform: translateY(20px);
   opacity: 0;
 }
+
+/* Collapse */
+.vuwi-collapse {
+  @apply overflow-hidden;
+}
+
+.vuwi-collapse ~ .vuwi-collapse {
+  margin-top: -1px;
+  
+}
+
+.vuwi-collapse-header {
+  @apply relative p-3 flex justify-between items-center border;
+  background-color: rgba(249, 250, 251, 1)
+}
+
+.vuwi-collapse-content {
+  margin-top: -1px;
+}
+
+.vuwi-collapse-enter-active,
+.vuwi-collapse-leave-active {
+  will-change: height, opacity;
+  transition: height 300ms ease, opacity 300ms ease;
+  overflow: hidden;
+}
+
+.vuwi-collapse-enter-from,
+.vuwi-collapse-leave-to {
+  height: 0 !important;
+  opacity: 0;
+}
