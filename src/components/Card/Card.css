@@ -1,0 +1,10 @@
+@layer components {
+  .vuwi {
+    &-card {
+      @apply border rounded;
+      &.shadow {
+        @apply border-none filter drop-shadow-sm;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
+
   theme: {
     extend: {
       colors: {
@@ -17,9 +17,10 @@ module.exports = {
     extend: {
       opacity: ['group-hover'],
       overflow: ['hover', 'focus'],
+      skew: ['active', 'group-hover'],
       // ringOpacity: ['hover', 'active'],
       zIndex: ['hover', 'active'],
     },
   },
-  plugins: [require('kutty')],
+  plugins: [],
 }

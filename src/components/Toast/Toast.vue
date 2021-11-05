@@ -1,5 +1,5 @@
 <template>
-  <transition name="vuwi-snackbar">
+  <transition name="vuwi-toast">
     <div
       v-if="modelValue"
       class="

@@ -1,3 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Layout */
+@import './layout/Center.css';
+@import './layout/Column.css';
+@import './layout/Container.css';
+@import './layout/Contents.css';
+@import './layout/Row.css';
+
+/* Components */
+@import './components/Avatar/Avatar.css';
+@import './components/Button/Button.css';
+@import './components/Card/Card.css';
+@import './components/Collapse/Collapse.css';
+@import './components/Dialog/Dialog.css';
+@import './components/Drawer/Drawer.css';
+@import './components/Header/Header.css';
+@import './components/Overlay/Overlay.css';
+@import './components/Switch/Switch.css';
+@import './components/Toast/Toast.css';
+@import './components/Window/Window.css';
