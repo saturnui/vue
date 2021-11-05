@@ -1,0 +1,7 @@
+@layer components {
+  .vuwi {
+    &-row {
+      @apply flex items-center gap-2;
+    }
+  }
+}

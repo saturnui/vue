@@ -3,7 +3,7 @@
     <div class="dialog-title">
       <div>{{ title }}</div>
       <button class="btn btn-icon btn-sm" @click="close">
-        <CloseIcon />
+        <CloseIcon class="h-4 w-4" />
       </button>
     </div>
     <slot></slot>

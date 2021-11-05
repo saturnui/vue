@@ -1,7 +1,7 @@
 import { createApp } from 'vue-demi'
-import App from './App.vue'
+import App from './playground/App.vue'
+import 'virtual:windi.css'
 import './index.css'
-import './vuwi.css'
 import maska from 'maska'
 
 const app = createApp(App)

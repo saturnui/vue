@@ -1,0 +1,24 @@
+@layer components {
+  .vuwi {
+     &-switch {
+      @apply flex items-center cursor-pointer;
+      input ~ .dot {
+        background-color: white;
+        @apply absolute left-1 top-1 w-4 h-4 rounded-full transition;
+      };
+      input ~ .pill {
+        background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
+        border-radius: 9999px;
+        width: 2.5rem;
+        height: 1.5rem
+      };
+      input:checked ~ .dot {
+        transform: translateX(100%);
+      };
+      input:checked ~ .pill {
+        /* transition: background-color 0.5s ease; */
+        background-color: #48bb78;
+      };
+    }
+  }
+}

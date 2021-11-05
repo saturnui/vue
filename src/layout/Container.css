@@ -1,0 +1,7 @@
+@layer components {
+  .vuwi {
+    &-container {
+      @apply py-8 flex items-center;
+    }
+  }
+}

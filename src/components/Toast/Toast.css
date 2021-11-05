@@ -1,0 +1,18 @@
+@layer components {
+  .vuwi {
+    /* Toast */
+    &-toast-enter-active {
+      transition: all 0.2s ease-out;
+    }
+
+    &-toast-leave-active {
+      transition: all 0.2s ease-in;
+    }
+
+    &-toast-enter-from,
+    &-toast-leave-to {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import mitt from '../directives/mitt'
+import mitt from '../../helpers/mitt'
 
 const bus = mitt()
 

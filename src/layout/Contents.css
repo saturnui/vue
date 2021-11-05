@@ -1,0 +1,7 @@
+@layer components {
+  .vuwi {
+    &-contents {
+      @apply w-full mx-auto max-w-4xl;
+    }
+  }
+}
