@@ -18,35 +18,31 @@ export default defineComponent({
     let formInputs: NodeList
 
     const handleKeyDown = (evt: KeyboardEvent) => {
-      console.log(
-        'evt:',
-        evt,
-        formInputs.forEach((item, index) => {
-          if (item === evt.target) {
-            if (
-              ['Backspace'].filter(v => new RegExp(v, 'i').test(evt.code))
-                .length > 0
-            ) {
-              const prevItem = formInputs.item(index - 1) as HTMLInputElement
-              if (prevItem) {
-                setTimeout(() => {
-                  prevItem.focus()
-                })
-              }
-            } else if (
-              ['Key', 'Digit'].filter(v => new RegExp(v, 'i').test(evt.code))
-                .length > 0
-            ) {
-              const nextItem = formInputs.item(index + 1) as HTMLInputElement
-              if (nextItem) {
-                setTimeout(() => {
-                  nextItem.focus()
-                })
-              }
+      formInputs.forEach((item, index) => {
+        if (item === evt.target) {
+          if (
+            ['Backspace'].filter(v => new RegExp(v, 'i').test(evt.code))
+              .length > 0
+          ) {
+            const prevItem = formInputs.item(index - 1) as HTMLInputElement
+            if (prevItem) {
+              setTimeout(() => {
+                prevItem.focus()
+              })
+            }
+          } else if (
+            ['Key', 'Digit'].filter(v => new RegExp(v, 'i').test(evt.code))
+              .length > 0
+          ) {
+            const nextItem = formInputs.item(index + 1) as HTMLInputElement
+            if (nextItem) {
+              setTimeout(() => {
+                nextItem.focus()
+              })
             }
           }
-        })
-      )
+        }
+      })
     }
 
     const focusHandler = (evt: FocusEvent) => {
@@ -62,7 +58,6 @@ export default defineComponent({
         const vals = val.split('')
         props.pattern.split('').map((k: string, i) => {
           if (k.toUpperCase() === 'X') {
-            console.log(i, k)
             values.value[i] = vals.shift() || ''
           }
         })
