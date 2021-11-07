@@ -21,7 +21,7 @@
         <div v-if="cancel || confirm" class="flex gap-4">
           <button
             v-if="cancel"
-            class="btn rounded uppercase text-xs font-bold text-white"
+            class="vuwi-btn rounded uppercase text-xs font-bold text-white"
             @click="$emit('click:cancel')"
           >
             {{ cancel }}
@@ -29,9 +29,9 @@
           <button
             v-if="confirm"
             class="
-              btn
+              vuwi-btn
               rounded
-              btn-primary
+              vuwi-btn-primary
               text-xs
               uppercase
               font-bold

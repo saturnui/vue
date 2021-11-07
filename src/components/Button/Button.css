@@ -1,7 +1,13 @@
 @layer components {
   .vuwi {
     &-btn {
-      @apply transform duration-150 active:scale-90
+      @apply transform duration-150 active:scale-90;
+    }
+    &-btn-icon {
+      @apply flex justify-center items-center;
+    }
+    &-btn-primary {
+      @apply bg-primary text-white rounded px-3 py-1;
     }
   }
 }

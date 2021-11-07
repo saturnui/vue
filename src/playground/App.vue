@@ -16,7 +16,7 @@ import MenuIcon from './icons/MenuIcon.vue'
 import Line from '../components/Line/Line.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 
-const darkMode = ref(false)
+const darkMode = ref(true)
 const showWindow = ref(false)
 const showToast = ref(false)
 const showDrawer = ref(false)
@@ -109,7 +109,7 @@ const expC = ref(false)
             <div>
               <Collapse v-for="i in 3" :key="i">
                 <template #header>
-                  <div>Hello</div>
+                  <div class="text-lg font-bold">Collapse title</div>
                 </template>
                 <div class="vuwi-collapse-content">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -127,7 +127,10 @@ const expC = ref(false)
               <div class="bg-white" :class="{ 'm-4 shadow-lg': expA }">
                 <Collapse v-model="expA" group="a">
                   <template #header>
-                    <div>Hello</div>
+                    <div class="flex items-center gap-4 text-lg font-bold">
+                      <ToastIcon class="w-6 h-6" />
+                      <span>Accordion title</span>
+                    </div>
                   </template>
                   <div class="vuwi-card p-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -144,7 +147,10 @@ const expC = ref(false)
               <div class="bg-white" :class="{ 'm-4 shadow-lg': expB }">
                 <Collapse v-model="expB" group="a">
                   <template #header>
-                    <div>Hello</div>
+                    <div class="flex items-center gap-4 text-lg font-bold">
+                      <ToastIcon class="w-6 h-6" />
+                      <span>Accordion title</span>
+                    </div>
                   </template>
                   <div class="vuwi-card p-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -161,7 +167,10 @@ const expC = ref(false)
               <div class="bg-white" :class="{ 'm-4 shadow-lg': expC }">
                 <Collapse v-model="expC" group="a">
                   <template #header>
-                    <div>Hello</div>
+                    <div class="flex items-center gap-4 text-lg font-bold">
+                      <ToastIcon class="w-6 h-6" />
+                      <span>Accordion title</span>
+                    </div>
                   </template>
                   <div class="vuwi-card p-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -255,7 +264,10 @@ const expC = ref(false)
         >
           <div class="p-4 text-left">This is a test.</div>
           <div class="vuwi-row justify-end p-2">
-            <button class="btn btn-primary" @click="showWindow = false">
+            <button
+              class="vuwi-btn vuwi-btn-primary px-6 py-2 text-lg"
+              @click="showWindow = false"
+            >
               Submit
             </button>
           </div>
