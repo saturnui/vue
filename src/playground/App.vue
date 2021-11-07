@@ -15,6 +15,8 @@ import Button from './button/Button.vue'
 import MenuIcon from './icons/MenuIcon.vue'
 import Line from '../components/Line/Line.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
+import CodeInput from '../components/CodeInput/CodeInput.vue'
+import Pagination from '../components/Pagination/Pagination.vue'
 
 const darkMode = ref(true)
 const showWindow = ref(false)
@@ -51,6 +53,7 @@ const dialogClass = computed(() => {
 const expA = ref(true)
 const expB = ref(false)
 const expC = ref(false)
+const currentPage = ref(1)
 </script>
 
 <template>
@@ -74,6 +77,10 @@ const expC = ref(false)
           <div class="vuwi-content p-3 space-y-4">
             <!-- <button class="vuwi-btn bg-blue-400">Button</button> -->
             <Button>Hello, world!</Button>
+
+            <CodeInput />
+
+            <Pagination v-model="currentPage" :visible="7" :length="20" />
 
             <div class="vuwi-card rounded-lg flex gap-4 p-4 overflow-x-auto">
               <Avatar

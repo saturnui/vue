@@ -10,6 +10,7 @@
 @import './components/Avatar/Avatar.css';
 @import './components/Button/Button.css';
 @import './components/Card/Card.css';
+@import './components/CodeInput/CodeInput.css';
 @import './components/Collapse/Collapse.css';
 @import './components/Dialog/Dialog.css';
 @import './components/Drawer/Drawer.css';
@@ -17,6 +18,7 @@
 @import './components/FormSection/FormSection.css';
 @import './components/Header/Header.css';
 @import './components/Overlay/Overlay.css';
+@import './components/Pagination/Pagination.css';
 @import './components/Select/Select.css';
 @import './components/Switch/Switch.css';
 @import './components/Toast/Toast.css';
