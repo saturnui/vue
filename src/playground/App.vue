@@ -17,6 +17,7 @@ import Line from '../components/Line/Line.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import CodeInput from '../components/CodeInput/CodeInput.vue'
 import Pagination from '../components/Pagination/Pagination.vue'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const darkMode = ref(true)
 const showWindow = ref(false)
@@ -55,6 +56,14 @@ const expB = ref(false)
 const expC = ref(false)
 const currentPage = ref(1)
 const code = ref('123456')
+
+const tooltipOptions = [
+  { label: 'Top', value: 'top' },
+  { label: 'Left', value: 'left' },
+  { label: 'Right', value: 'right' },
+  { label: 'Bottom', value: 'bottom' },
+]
+const tooltipPlacement = ref('right')
 </script>
 
 <template>
@@ -84,6 +93,31 @@ const code = ref('123456')
             </div>
 
             <Pagination v-model="currentPage" :visible="7" :length="20" />
+
+            <div class="vuwi-card flex items-center gap-4 p-4 rounded-lg">
+              <div class="font-bold">Tooltip:</div>
+              <Tooltip :placement="tooltipPlacement">
+                <template #tooltip>
+                  <div class="px-4 py-3 flex gap-4 items-center">
+                    <Avatar
+                      name="Alex Lifeson"
+                      :photo="photo"
+                      class="vuwi-avatar-sm rounded-full overflow-hidden"
+                    />
+                    Hello, world!
+                  </div>
+                </template>
+                <Avatar
+                  name="Alex Lifeson"
+                  :photo="photo"
+                  class="vuwi-avatar-sm rounded-full overflow-hidden"
+                />
+              </Tooltip>
+              <Dropdown
+                v-model="tooltipPlacement"
+                :options="tooltipOptions"
+              ></Dropdown>
+            </div>
 
             <div class="vuwi-card rounded-lg flex gap-4 p-4 overflow-x-auto">
               <Avatar
