@@ -17,7 +17,7 @@
       @apply w-16
     };
     &-drawer.show {
-      @apply w-75 filter drop-shadow-xl
+      @apply w-95 filter drop-shadow-xl
     };
   }
 }
