@@ -54,6 +54,7 @@ const expA = ref(true)
 const expB = ref(false)
 const expC = ref(false)
 const currentPage = ref(1)
+const code = ref('123456')
 </script>
 
 <template>
@@ -75,10 +76,12 @@ const currentPage = ref(1)
         <div class="vuwi-window mx-4">
           <Line />
           <div class="vuwi-content p-3 space-y-4">
-            <!-- <button class="vuwi-btn bg-blue-400">Button</button> -->
             <Button>Hello, world!</Button>
 
-            <CodeInput />
+            <div class="vuwi-row">
+              <CodeInput v-model="code" />
+              {{ code }}
+            </div>
 
             <Pagination v-model="currentPage" :visible="7" :length="20" />
 
