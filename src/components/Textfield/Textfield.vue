@@ -1,25 +1,9 @@
 <template>
-  <div
-    class="
-      relative
-      flex
-      gap-2
-      items-center
-      border border-gray-200
-      bg-white
-      rounded
-      px-3
-      py-1
-    "
-    :class="customClass"
-  >
+  <div class="vuwi-textfield" :class="customClass">
     <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
-        <label
-          v-if="errorLabel"
-          :for="name"
-          class="block text-sm font-medium mb-1 text-red-600"
+        <label v-if="errorLabel" :for="name" class="vuwi-textfield-error"
           >{{ label }} {{ errorLabel }}</label
         >
         <label
@@ -36,7 +20,6 @@
         :placeholder="placeholder"
         :required="required"
         :autocomplete="autocomplete"
-        class="bg-transparent focus:outline-none w-full mt-5 text-black"
         :value="inputValue"
         @input="handleInput"
         @blur="handleBlur"
@@ -45,7 +28,7 @@
     <slot></slot>
     <CheckIcon
       v-if="valid || (rules && meta.valid && meta.validated)"
-      class="h-5 w-5 fill-current text-green-600"
+      class="vuwi-textfield-check"
     />
     <div v-else-if="loading" class="spinner" role="status">
       <span class="sr-only">Busy...</span>

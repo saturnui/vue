@@ -1,6 +1,5 @@
 @layer components {
   .vuwi {
-    /* Button */
     &-btn {
       @apply transform duration-150 active:scale-90
     }

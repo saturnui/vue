@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue-demi'
 import Avatar from '../components/Avatar/Avatar.vue'
-import Select from '../components/Select/Select.vue'
 import Switch from '../components/Switch/Switch.vue'
 import Textfield from '../components/Textfield/Textfield.vue'
 import Toast from '../components/Toast/Toast.vue'
@@ -57,12 +56,6 @@ const expC = ref(false)
 <template>
   <div :class="{ dark: darkMode }">
     <div class="vuwi-main">
-      <Drawer v-model="showDrawer" class="responsive"></Drawer>
-      <Overlay
-        v-model="showDrawer"
-        class="md:hidden"
-        @click="showDrawer = false"
-      ></Overlay>
       <div class="vuwi-container navbar responsive">
         <div class="flex p-4">
           <button class="vuwi-btn md:hidden" @click="showDrawer = !showDrawer">
@@ -215,31 +208,43 @@ const expC = ref(false)
               loading
               error="is required"
             ></Textarea>
-            <Select
+            <Dropdown
               v-model="selectedValue"
               name="agree"
               label="Do you agree?"
               :options="selectOptions"
               class="w-60"
             />
+            <Switch v-model="showWindow">
+              <span class="ml-2">Show Overlay</span>
+            </Switch>
+          </div>
+          <div class="vuwi-card p-4 mt-4">
+            <FormSection
+              v-for="i in 3"
+              :key="i"
+              title="Profile"
+              desc="Public profile available for all to see."
+              :line="i !== 1"
+            >
+              <div class="space-y-4">
+                <Textfield v-model="text" label="Name" required></Textfield>
+                <Textfield v-model="text" label="Email"></Textfield>
+              </div>
+            </FormSection>
           </div>
         </div>
-
-        <div class="vuwi-card p-4 bg-white mt-4">
-          <FormSection
-            v-for="i in 3"
-            :key="i"
-            title="Profile"
-            desc="Public profile available for all to see."
-            :line="i !== 1"
-          >
-            <div class="space-y-4">
-              <Textfield v-model="text" label="Name" required></Textfield>
-              <Textfield v-model="text" label="Email"></Textfield>
-            </div>
-          </FormSection>
-        </div>
       </div>
+
+      <Overlay
+        v-model="showDrawer"
+        class="md:hidden"
+        @click="showDrawer = false"
+      ></Overlay>
+      <Drawer v-model="showDrawer" class="responsive">
+        <div v-for="i in 100" :key="i">Test {{ i }}</div>
+      </Drawer>
+
       <Overlay v-model="showWindow" :position="overlayPosition">
         <Dialog
           v-model="showWindow"

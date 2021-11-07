@@ -10,8 +10,8 @@
       rounded
       pr-2
       py-1
-      dark:border-none
-      dark:bg-gray-600;
+      dark:border-gray-600
+      dark:bg-gray-800;
 
       select {
         @apply bg-transparent 

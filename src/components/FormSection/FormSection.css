@@ -1,0 +1,18 @@
+@layer components {
+  .vuwi {
+    &-form-section {
+      @apply dark:text-white;
+    };
+    &-form-section-title {
+      @apply text-lg font-medium leading-6 text-gray-900 dark:text-gray-100;
+    }
+    &-form-section-desc {
+      @apply mt-1 text-gray-600 dark:text-gray-300;
+    }
+    &-form-section-card-content {
+      @apply px-4 py-5 bg-white space-y-6 sm:p-6 dark:bg-gray-700;
+    }
+  }
+}
+
+

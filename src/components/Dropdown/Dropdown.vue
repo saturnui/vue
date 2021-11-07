@@ -23,7 +23,7 @@
         :name="name"
         :required="required"
         :autocomplete="autocomplete"
-        class=""
+        :class="{ label: label }"
         @change="handleChange"
         @blur="handleBlur"
       >
