@@ -16,7 +16,7 @@
       @before-leave="start"
       @after-leave="end"
     >
-      <div v-show="show" class="vuwi-collapse-content">
+      <div v-show="show">
         <slot></slot>
       </div>
     </transition>
@@ -26,6 +26,7 @@
 <script lang="ts">
 import { defineComponent, watch } from '@vue/runtime-core'
 import { onUnmounted, ref } from 'vue-demi'
+import { uuid } from '../../helpers/uuid'
 import { useGroup } from './group'
 import CollapseIcon from './icons/CollapseIcon.vue'
 
@@ -43,17 +44,6 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const uuid = () => {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-        /[xy]/g,
-        function (c) {
-          const r = (Math.random() * 16) | 0,
-            v = c == 'x' ? r : (r & 0x3) | 0x8
-          return v.toString(16)
-        }
-      )
-    }
-
     const {
       emit: emitGroup,
       on: onGroup,

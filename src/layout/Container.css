@@ -1,7 +1,19 @@
 @layer components {
   .vuwi {
     &-container {
-      @apply py-8 flex items-center;
+      @apply relative ml-0 transition 
+    }
+    &-container.navbar {
+      @apply md:ml-75
+    };
+    &-container.navbar.responsive {
+      @apply md:ml-16 xl:ml-75
+    };
+    &-container.navbar.mini {
+      @apply ml-16
+    }
+    &-container.navbar.show {
+      @apply !ml-75
     }
   }
 }

@@ -3,7 +3,7 @@
     &-dialog {
       @apply rounded filter shadow-lg;
       .dialog-title {
-        @apply flex items-center justify-between py-3 pl-4 pr-2 text-lg font-bold gap-2 border-b;
+        @apply flex items-center justify-between py-3 pl-4 pr-2 text-lg font-bold gap-2 border-b dark:border-gray-700;
       }
     }
   }

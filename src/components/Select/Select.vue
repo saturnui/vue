@@ -1,18 +1,5 @@
 <template>
-  <div
-    class="
-      relative
-      flex
-      gap-2
-      items-center
-      border border-gray-200
-      bg-white
-      rounded
-      pr-2
-      py-1
-    "
-    :class="customClass"
-  >
+  <div class="vuwi-select" :class="customClass">
     <slot name="prepend"> </slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none px-3">

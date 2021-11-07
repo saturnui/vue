@@ -1,7 +1,17 @@
 @layer components {
   .vuwi {
     &-drawer {
-      @apply h-full;
-    }
+      @apply z-10 h-full overflow-x-hidden overflow-y-auto transition origin-left transform w-75 md:translate-x-0 flex flex-col bg-white dark:bg-gray-900
+      
+    };
+    &-drawer.responsive {
+      @apply w-16 xl:w-75
+    };
+    &-drawer.mini {
+      @apply w-16
+    };
+    &-drawer.show {
+      @apply w-75 filter drop-shadow-xl
+    };
   }
 }

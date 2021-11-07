@@ -1,8 +1,7 @@
 @layer components {
   .vuwi {
     &-overlay {
-      background-color: #00000030;
-      @apply fixed items-center top-0 left-0 w-screen h-screen overflow-y-auto z-10;
+      @apply fixed top-0 left-0 w-screen h-screen overflow-y-auto z-10 bg-black bg-opacity-30 dark:bg-opacity-60;
     }
     &-overlay-left {
       @apply fixed top-0 left-0 h-full z-10;

@@ -1,0 +1,17 @@
+@layer components {
+  .vuwi {
+    &-select {
+      @apply relative
+      flex
+      gap-2
+      items-center
+      border border-gray-200
+      bg-white
+      rounded
+      pr-2
+      py-1
+      dark:border-none
+      dark:bg-gray-600;
+    }
+  }
+}

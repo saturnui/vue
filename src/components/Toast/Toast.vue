@@ -1,18 +1,6 @@
 <template>
   <transition name="vuwi-toast">
-    <div
-      v-if="modelValue"
-      class="
-        fixed
-        bottom-0
-        right-0
-        w-full
-        sm:rounded-lg sm:w-96 sm:bottom-2 sm:right-2
-        p-4
-        bg-gray-800
-        text-white
-      "
-    >
+    <div v-if="modelValue" class="vuwi-toast">
       <div class="flex items-center justify-between">
         <div class="flex justify-center items-center gap-4">
           <div v-if="hasIcon">

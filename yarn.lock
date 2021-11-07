@@ -1331,11 +1331,6 @@ jstransformer@1.0.0:
     is-promise "^2.0.0"
     promise "^7.0.1"
 
-kutty@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/kutty/-/kutty-0.5.2.tgz#8fd569e699256eb390ea93c98ccda3770d12db88"
-  integrity sha512-rs5AONzrbCNK0Zz0d2RxqDI6Tr8fpR+wBPbbuC8s/kdAvy+WEoddvTJQIwfZl+dL9B9iALUce/n2XIsrsQjDPw==
-
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"

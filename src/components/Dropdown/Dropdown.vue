@@ -1,20 +1,7 @@
 <template>
-  <div
-    class="
-      relative
-      flex
-      gap-2
-      items-center
-      border border-gray-200
-      bg-white
-      rounded
-      pr-2
-      py-1
-    "
-    :class="customClass"
-  >
+  <div class="vuwi-dropdown" :class="customClass">
     <slot name="prepend"></slot>
-    <div class="flex-grow">
+    <div class="flex-grow" :class="{ label: label || errorLabel }">
       <div class="absolute top-1 pointer-events-none px-3">
         <label
           v-if="errorLabel"
@@ -24,7 +11,7 @@
           >{{ label }} {{ errorLabel }}</label
         >
         <label
-          v-else
+          v-else-if="label"
           :for="name"
           class="block font-medium mb-1 text-gray-500"
           style="font-size: 11px"
@@ -36,7 +23,7 @@
         :name="name"
         :required="required"
         :autocomplete="autocomplete"
-        class="focus:outline-none w-full pt-4 px-2 text-black"
+        class=""
         @change="handleChange"
         @blur="handleBlur"
       >
@@ -63,6 +50,7 @@
 import { computed, defineComponent } from 'vue-demi'
 import { useField } from 'vee-validate'
 import CheckIcon from './icons/CheckIcon.vue'
+import { uuid } from '../../helpers/uuid'
 
 type Option = { label: string; value: string | number }
 
@@ -71,7 +59,7 @@ export default defineComponent({
   props: {
     name: {
       type: String,
-      required: true,
+      default: () => uuid(),
     },
     autocomplete: {
       type: String,
@@ -111,14 +99,16 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props) {
-    const { value, errorMessage, handleBlur, handleChange, meta } = useField(
-      props.name,
-      props.rules,
-      {
-        initialValue: props.modelValue,
-      }
-    )
+  setup(props, { emit }) {
+    const {
+      value,
+      errorMessage,
+      handleChange: veeHandleChange,
+      handleBlur,
+      meta,
+    } = useField(props.name, props.rules, {
+      initialValue: props.modelValue,
+    })
     const customClass = computed(() => {
       if (meta.valid || !meta.validated) {
         return 'focus-within:border-primary text-primary'
@@ -128,10 +118,11 @@ export default defineComponent({
     const errorLabel = computed(() => {
       return props.error || errorMessage.value
     })
-    // const handleChange = (evt: Event) => {
-    //   const target = evt.target as HTMLSelectElement
-    //   emit('update:modelValue', target.value)
-    // }
+    const handleChange = (evt: Event) => {
+      veeHandleChange(evt)
+      const target = evt.target as HTMLSelectElement
+      emit('update:modelValue', target.value)
+    }
     return {
       handleChange,
       handleBlur,

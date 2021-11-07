@@ -1,13 +1,15 @@
 <template>
-  <transition name="vuwi-fade">
-    <div v-if="modelValue" class="vuwi-overlay"></div>
-  </transition>
+  <div>
+    <transition name="vuwi-fade">
+      <div v-if="modelValue" class="vuwi-overlay"></div>
+    </transition>
 
-  <transition :name="transitionName">
-    <div v-if="modelValue" :class="positionClass">
-      <slot></slot>
-    </div>
-  </transition>
+    <transition :name="transitionName">
+      <div v-if="modelValue" :class="positionClass">
+        <slot></slot>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script lang="ts">
@@ -44,6 +46,7 @@ export default defineComponent({
         }
       }
     )
+
     return {
       positionClass,
       transitionName,

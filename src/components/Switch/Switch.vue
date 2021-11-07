@@ -33,10 +33,8 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    console.log(props)
     const handleInput = (evt: Event) => {
       const target = evt.target as HTMLInputElement
-      console.log('handleInput:', target.checked)
       emit('update:modelValue', target.checked)
     }
     return {
