@@ -1,6 +1,11 @@
 {
-  "name": "vite-project",
-  "version": "0.0.0",
+  "name": "vuwi",
+  "version": "0.0.1",
+  "author": {
+    "name": "Rob Taylor",
+    "email": "roboncode@gmail.com",
+    "url": "https://roboncode.com"
+  },
   "scripts": {
     "dev": "vite",
     "watch": "tsc -w",
