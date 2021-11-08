@@ -125,6 +125,7 @@ const tooltipPlacement = ref('right')
                   vuwi-spinner
                   w-8
                   h-8
+                  min-w-8 min-h-8
                   border-4 border-purple-600 border-r-transparent
                 "
                 role="status"
