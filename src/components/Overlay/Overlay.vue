@@ -13,8 +13,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, watch } from 'vue-demi'
-
 export default defineComponent({
   props: {
     modelValue: {
@@ -38,13 +36,13 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      val => {
-        if (val) {
+      (val) => {
+        if (val)
           document.body.style.overflow = 'hidden'
-        } else {
+
+        else
           document.body.style.overflow = 'auto'
-        }
-      }
+      },
     )
 
     return {

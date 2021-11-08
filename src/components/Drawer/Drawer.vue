@@ -9,9 +9,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue-demi'
-import { debounce } from '../../helpers/debounce'
-
 export default defineComponent({
   props: {
     modelValue: {
@@ -23,7 +20,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const drawer = ref()
 
-    const resizeHandler = debounce(() => {
+    const resizeHandler = useDebounceFn(() => {
       emit('update:modelValue', false)
     }, 200)
 

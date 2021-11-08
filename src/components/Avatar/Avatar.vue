@@ -8,8 +8,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue-demi'
-
 export default defineComponent({
   props: {
     photo: {
@@ -27,9 +25,8 @@ export default defineComponent({
   },
   setup(props) {
     const initial = computed(() => {
-      if (props.name) {
+      if (props.name)
         return props.name[0]
-      }
     })
 
     return {

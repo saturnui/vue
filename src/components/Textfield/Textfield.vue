@@ -3,15 +3,8 @@
     <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
-        <label v-if="errorLabel" :for="name" class="vuwi-textfield-error"
-          >{{ label }} {{ errorLabel }}</label
-        >
-        <label
-          v-else
-          :for="name"
-          class="block text-sm font-medium mb-1 text-gray-400"
-          >{{ label }}</label
-        >
+        <label v-if="errorLabel" :for="name" class="vuwi-textfield-error">{{ label }} {{ errorLabel }}</label>
+        <label v-else :for="name" class="block text-sm font-medium mb-1 text-gray-400">{{ label }}</label>
       </div>
       <input
         v-maska="mask"
@@ -26,37 +19,25 @@
       />
     </div>
     <slot></slot>
-    <CheckIcon
-      v-if="valid || (rules && meta.valid && meta.validated)"
-      class="vuwi-textfield-check"
-    />
+    <tabler-check v-if="valid || (rules && meta.valid && meta.validated)" class="vuwi-textfield-check" />
     <div
       v-else-if="loading"
-      class="
-        vuwi-spinner
-        w-6
-        h-6
-        border-3
-        dark:border-gray-500 dark:border-r-transparent
-      "
+      class="vuwi-spinner w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent"
       role="status"
     >
       <span class="sr-only">Busy...</span>
     </div>
     <span v-else-if="required" class="text-2xl -mb-2">
-      <CheckIcon class="vuwi-textfield-required" />
+      <tabler-check class="vuwi-textfield-required" />
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
-
-import CheckIcon from './icons/CheckIcon.vue'
+import { useUuid } from '~/composables'
 
 export default defineComponent({
-  components: { CheckIcon },
   props: {
     autocomplete: {
       type: String,
@@ -82,7 +63,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      default: () => Math.floor(Math.random() * Date.now()).toString(),
+      default: () => useUuid(),
     },
     placeholder: {
       type: String,
@@ -115,16 +96,14 @@ export default defineComponent({
     })
     watch(
       () => props.modelValue,
-      val => (inputValue.value = val)
+      (val: string | number) => (inputValue.value = val),
     )
     const customClass = computed(() => {
       let cls = 'border-red-600 text-red-600'
-      if (meta.valid || !meta.validated) {
-        cls = 'focus-within:border-primary text-primary'
-      }
-      if (!props.disabled) {
-        cls += ' border'
-      }
+      if (meta.valid || !meta.validated) cls = 'focus-within:border-primary text-primary'
+
+      if (!props.disabled) cls += ' border'
+
       return cls
     })
     const errorLabel = computed(() => {

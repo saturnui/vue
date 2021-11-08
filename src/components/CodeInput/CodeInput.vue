@@ -1,5 +1,4 @@
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, watch } from 'vue-demi'
 export default defineComponent({
   props: {
     modelValue: {
@@ -30,7 +29,8 @@ export default defineComponent({
                 prevItem.focus()
               })
             }
-          } else if (
+          }
+          else if (
             ['Key', 'Digit'].filter(v => new RegExp(v, 'i').test(evt.code))
               .length > 0
           ) {
@@ -46,10 +46,9 @@ export default defineComponent({
     }
 
     const focusHandler = (evt: FocusEvent) => {
-      let el = evt.target as HTMLInputElement
-      if (el) {
+      const el = evt.target as HTMLInputElement
+      if (el)
         el.select()
-      }
     }
 
     watch(
@@ -57,12 +56,12 @@ export default defineComponent({
       (val = '') => {
         const vals = val.split('')
         props.pattern.split('').map((k: string, i) => {
-          if (k.toUpperCase() === 'X') {
+          if (k.toUpperCase() === 'X')
             values.value[i] = vals.shift() || ''
-          }
+          return false
         })
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     const value = computed(() => {
@@ -73,7 +72,7 @@ export default defineComponent({
       return props.pattern.split('')
     })
 
-    watch(value, newVal => {
+    watch(value, (newVal) => {
       emit('update:modelValue', newVal)
     })
 

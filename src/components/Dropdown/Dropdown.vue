@@ -8,15 +8,10 @@
           :for="name"
           class="block font-medium mb-1 text-red-600"
           style="font-size: 11px"
-          >{{ label }} {{ errorLabel }}</label
-        >
-        <label
-          v-else-if="label"
-          :for="name"
-          class="block font-medium mb-1 text-gray-500"
-          style="font-size: 11px"
-          >{{ label }}</label
-        >
+        >{{ label }} {{ errorLabel }}</label>
+        <label v-else-if="label" :for="name" class="block font-medium mb-1 text-gray-500" style="font-size: 11px">{{
+          label
+        }}</label>
       </div>
       <select
         v-model="value"
@@ -38,28 +33,22 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <CheckIcon
-      v-else-if="rules && meta.valid && meta.validated"
-      class="svg:fill-green-500"
-    />
+    <tabler-check v-else-if="rules && meta.valid && meta.validated" class="svg:fill-green-500" />
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue-demi'
 import { useField } from 'vee-validate'
-import CheckIcon from './icons/CheckIcon.vue'
-import { uuid } from '../../helpers/uuid'
+import { useUuid } from '~/composables'
 
 type Option = { label: string; value: string | number }
 
 export default defineComponent({
-  components: { CheckIcon },
   props: {
     name: {
       type: String,
-      default: () => uuid(),
+      default: () => useUuid(),
     },
     autocomplete: {
       type: String,
@@ -110,9 +99,9 @@ export default defineComponent({
       initialValue: props.modelValue,
     })
     const customClass = computed(() => {
-      if (meta.valid || !meta.validated) {
+      if (meta.valid || !meta.validated)
         return 'focus-within:border-primary text-primary'
-      }
+
       return 'border-red-600 text-red-600'
     })
     const errorLabel = computed(() => {

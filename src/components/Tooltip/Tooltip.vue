@@ -1,5 +1,4 @@
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue-demi'
 import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
@@ -25,7 +24,7 @@ export default defineComponent({
     const showTooltip = () => {
       showingTooltip.value = true
       nextTick(() => {
-        let tooltipEl = component.value.querySelector('[name="tooltip"]')
+        const tooltipEl = component.value.querySelector('[name="tooltip"]')
         popper = createPopper(component.value, tooltipEl, {
           placement: props.placement as Placement,
           modifiers: [

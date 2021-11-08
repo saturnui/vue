@@ -4,7 +4,7 @@
       <div>
         <slot name="header"></slot>
       </div>
-      <CollapseIcon
+      <tabler-chevron-up
         class="transition duration-150 transform"
         :class="{ 'rotate-180': show }"
       />
@@ -24,14 +24,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from '@vue/runtime-core'
-import { onUnmounted, ref } from 'vue-demi'
-import { uuid } from '../../helpers/uuid'
-import { useGroup } from './group'
-import CollapseIcon from './icons/CollapseIcon.vue'
+import { useGroupEmitter, useUuid } from '~/composables'
 
 export default defineComponent({
-  components: { CollapseIcon },
   props: {
     group: {
       type: String,
@@ -48,14 +43,16 @@ export default defineComponent({
       emit: emitGroup,
       on: onGroup,
       off: offGroup,
-    } = useGroup(props.group)
+    } = useGroupEmitter(props.group)
 
-    const id = uuid()
+    const id = useUuid()
+    const show = ref(false)
+    const toggleShow = useToggle(show)
 
     if (props.group) {
       const handler = (data: { id: string; show: boolean }) => {
         if (data.show) {
-          show.value = id === data.id
+          toggleShow()
           emit('update:modelValue', show.value)
         }
       }
@@ -66,8 +63,6 @@ export default defineComponent({
         offGroup(handler)
       })
     }
-
-    const show = ref(false)
 
     const invalidate = (val: boolean) => {
       if (show.value !== val) {
@@ -83,7 +78,7 @@ export default defineComponent({
 
     const start = (element: Element) => {
       const el = element as HTMLElement
-      el.style.height = el.scrollHeight + 'px'
+      el.style.height = `${el.scrollHeight}px`
     }
 
     const end = (element: Element) => {
@@ -93,10 +88,10 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      val => {
+      (val) => {
         invalidate(val)
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     return {

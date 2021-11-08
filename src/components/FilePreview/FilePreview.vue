@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue-demi'
-
 export default defineComponent({
   props: {
     width: {
@@ -30,26 +28,26 @@ export default defineComponent({
 
     const generateThumbnail = (
       file: File,
-      boundBox = [props.width, props.height]
+      boundBox = [props.width, props.height],
     ) => {
       // var scaleRatio = Math.min(...boundBox) / Math.max(file.width, file.height)
-      var fileReader = new FileReader()
-      var canvas = document.createElement('canvas')
-      var ctx = canvas.getContext('2d')
+      const fileReader = new FileReader()
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         fileReader.onload = () => {
           const image = new Image()
           image.onload = () => {
-            const scaleRatio =
-              Math.min(...boundBox) / Math.max(props.width, props.height)
+            const scaleRatio
+              = Math.min(...boundBox) / Math.max(props.width, props.height)
             const w = props.width * scaleRatio
             const h = props.height * scaleRatio
             canvas.width = w
             canvas.height = h
-            if (ctx) {
+            if (ctx)
               ctx.drawImage(image, 0, 0, w, h)
-            }
+
             dataUrl.value = canvas.toDataURL(file.type)
             resolve(canvas.toDataURL(file.type))
           }
@@ -61,18 +59,18 @@ export default defineComponent({
 
     watch(
       () => props.file,
-      async file => {
+      async(file) => {
         if (file) {
           if (
-            file.type === 'image/jpeg' ||
-            file.type === 'image/png' ||
-            file.type === 'image/gif'
+            file.type === 'image/jpeg'
+            || file.type === 'image/png'
+            || file.type === 'image/gif'
           ) {
             source.value = URL.createObjectURL(file)
             dataUrl.value = await generateThumbnail(file)
           }
         }
-      }
+      },
     )
 
     return {
