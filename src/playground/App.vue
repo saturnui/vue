@@ -120,6 +120,17 @@ const tooltipPlacement = ref('right')
             </div>
 
             <div class="vuwi-card rounded-lg flex gap-4 p-4 overflow-x-auto">
+              <div
+                class="
+                  vuwi-spinner
+                  w-8
+                  h-8
+                  border-4 border-purple-600 border-r-transparent
+                "
+                role="status"
+              >
+                <span class="sr-only">Loading...</span>
+              </div>
               <Avatar
                 name="Alex Lifeson"
                 :photo="photo"
@@ -252,6 +263,12 @@ const tooltipPlacement = ref('right')
               valid
               loading
               error="is required"
+            ></Textfield>
+            <Textfield
+              v-model="text"
+              label="Last name"
+              required
+              loading
             ></Textfield>
             <Textarea
               v-model="text"

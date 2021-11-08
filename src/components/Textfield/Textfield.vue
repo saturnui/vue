@@ -30,7 +30,17 @@
       v-if="valid || (rules && meta.valid && meta.validated)"
       class="vuwi-textfield-check"
     />
-    <div v-else-if="loading" class="spinner" role="status">
+    <div
+      v-else-if="loading"
+      class="
+        vuwi-spinner
+        w-6
+        h-6
+        border-3
+        dark:border-gray-500 dark:border-r-transparent
+      "
+      role="status"
+    >
       <span class="sr-only">Busy...</span>
     </div>
     <span v-else-if="required" class="text-2xl -mb-2">

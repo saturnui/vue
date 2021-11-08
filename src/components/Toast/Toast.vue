@@ -78,9 +78,6 @@ export default defineComponent({
   },
   emits: ['click:confirm', 'click:cancel'],
   setup(props, { slots }) {
-    if (slots.icon) {
-      console.log(slots.icon().length)
-    }
     const hasIcon = computed(() => {
       return slots.icon && slots.icon().length > 0
     })

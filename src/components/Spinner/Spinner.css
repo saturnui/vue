@@ -1,0 +1,35 @@
+@layer components {
+  .vuwi {
+    &-spinner {
+      @apply inline-block border-2 border-current border-r-transparent rounded-full w-12 h-12 align-middle;
+      /* border-color: currentColor;
+      border-radius: 9999px; */
+      /* border-width: 2px; */
+      /* display: inline-block; */
+      /* height: 1.5rem; */
+      /* vertical-align: middle; */
+      /* width: 1.5rem; */
+      /* border-right-color: transparent !important; */
+      -webkit-animation: spinner 1s linear infinite;
+	    animation: spinner 1s linear infinite;
+    }
+  }
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
