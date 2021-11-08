@@ -2,18 +2,18 @@
   .vuwi {
     &-collapse {
       @apply overflow-hidden dark:bg-gray-800;
+
+      .collapse-header {
+        @apply relative p-3 flex justify-between items-center border dark:border-gray-700;
+      }
     }
 
     &-collapse ~ &-collapse {
       margin-top: -1px;
     }
 
-    &-collapse-header {
-      @apply relative p-3 flex justify-between items-center border dark:border-gray-700;
-    }
-
     &-collapse-content {
-      @apply border dark:border-none p-2;
+      @apply border dark:border-none;
       margin-top: -1px;
     }
 

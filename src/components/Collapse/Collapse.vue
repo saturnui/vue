@@ -1,6 +1,6 @@
 <template>
-  <div class="vuwi-collapse">
-    <div class="vuwi-collapse-header" role="button" @click="toggle">
+  <div :class="theme">
+    <div class="collapse-header" role="button" @click="toggle">
       <div>
         <slot name="header"></slot>
       </div>
@@ -28,6 +28,10 @@ import { useGroupEmitter, useUuid } from '~/composables'
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi-collapse',
+    },
     group: {
       type: String,
       default: '',
