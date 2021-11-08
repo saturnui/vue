@@ -47,12 +47,11 @@ export default defineComponent({
 
     const id = useUuid()
     const show = ref(false)
-    const toggleShow = useToggle(show)
 
     if (props.group) {
       const handler = (data: { id: string; show: boolean }) => {
         if (data.show) {
-          toggleShow()
+          show.value = id === data.id
           emit('update:modelValue', show.value)
         }
       }
