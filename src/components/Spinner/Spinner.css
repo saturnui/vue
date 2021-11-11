@@ -2,14 +2,6 @@
   .vuwi {
     &-spinner {
       @apply inline-block border-2 border-current border-r-transparent rounded-full w-12 h-12 align-middle;
-      /* border-color: currentColor;
-      border-radius: 9999px; */
-      /* border-width: 2px; */
-      /* display: inline-block; */
-      /* height: 1.5rem; */
-      /* vertical-align: middle; */
-      /* width: 1.5rem; */
-      /* border-right-color: transparent !important; */
       -webkit-animation: spinner 1s linear infinite;
 	    animation: spinner 1s linear infinite;
     }

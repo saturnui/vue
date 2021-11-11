@@ -1,13 +1,11 @@
 @layer components {
   .vuwi {
     &-card {
-      @apply bg-white dark:bg-gray-700 border dark:border-none;
+      @apply bg-white dark:bg-gray-800 border dark:border-none;
       &.shadow {
         @apply border-none;
       }
     }
-    &-window &-card {
-      @apply dark:bg-gray-800
-    }
+
   }
 }

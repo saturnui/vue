@@ -1,5 +1,5 @@
 <template>
-  <VuwiLine v-if="line" class="py-4"></VuwiLine>
+  <Line v-if="line" class="py-4"></Line>
 
   <div class="vuwi-form-section md:grid lg:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
@@ -23,11 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue-demi'
-import VuwiLine from '../Line/Line.vue'
-
 export default defineComponent({
-  components: { VuwiLine },
   props: {
     line: {
       type: Boolean,

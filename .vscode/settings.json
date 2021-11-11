@@ -1,3 +1,6 @@
 {
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "i18n-ally.localesPaths": [
+    "locales"
+  ]
 }

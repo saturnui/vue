@@ -6,8 +6,7 @@
       h-full overflow-x-hidden overflow-y-auto 
       transition origin-left transform w-75 
       md:translate-x-0 
-      flex flex-col 
-      bg-white dark:bg-gray-900;
+      bg-white dark:bg-gray-800;
       
     };
     &-drawer.responsive {

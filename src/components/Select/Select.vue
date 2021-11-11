@@ -1,6 +1,7 @@
 <template>
   <div class="vuwi-select" :class="customClass">
-    <slot name="prepend"> </slot>
+    <slot name="prepend">
+    </slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none px-3">
         <label
@@ -38,23 +39,20 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <CheckIcon
+    <tabler-check
       v-else-if="rules && meta.valid"
       class="text-green-500"
-    ></CheckIcon>
+    ></tabler-check>
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue-demi'
 import { useField } from 'vee-validate'
-import CheckIcon from '../Textfield/icons/CheckIcon.vue'
 
 type Option = { label: string; value: string | number }
 
 export default defineComponent({
-  components: { CheckIcon },
   props: {
     name: {
       type: String,
@@ -102,12 +100,12 @@ export default defineComponent({
       props.rules,
       {
         initialValue: props.modelValue,
-      }
+      },
     )
     const customClass = computed(() => {
-      if (meta.valid || !meta.validated) {
+      if (meta.valid || !meta.validated)
         return 'focus-within:border-primary text-primary'
-      }
+
       return 'border-red-600 text-red-600'
     })
     const errorLabel = computed(() => {

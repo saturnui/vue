@@ -12,8 +12,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue-demi'
-
 export type FileEventTarget = EventTarget & { files: FileList }
 
 export default defineComponent({

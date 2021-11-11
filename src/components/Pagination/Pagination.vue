@@ -1,8 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue-demi'
-import ChevronIcon from './icons/ChevronIcon.vue'
 export default defineComponent({
-  components: { ChevronIcon },
   props: {
     visible: {
       type: Number,
@@ -32,23 +29,23 @@ export default defineComponent({
     function generatePageItems(total: number, current: number, width: number) {
       if (width < MINIMAL_PAGE_ITEM_COUNT) {
         throw new Error(
-          `Must allow at least ${MINIMAL_PAGE_ITEM_COUNT} page items`
+          `Must allow at least ${MINIMAL_PAGE_ITEM_COUNT} page items`,
         )
       }
-      if (width % 2 === 0) {
-        throw new Error(`Must allow odd number of page items`)
-      }
-      if (total < width) {
+      if (width % 2 === 0)
+        throw new Error('Must allow odd number of page items')
+
+      if (total < width)
         return [...new Array(total).keys()]
-      }
+
       const left = Math.max(
         0,
-        Math.min(total - width, current - Math.floor(width / 2))
+        Math.min(total - width, current - Math.floor(width / 2)),
       )
       const items = new Array(width)
-      for (let i = 0; i < width; i += 1) {
+      for (let i = 0; i < width; i += 1)
         items[i] = i + left
-      }
+
       // replace non-ending items with placeholders
       if (items[0] > 0) {
         items[0] = 0
@@ -56,7 +53,7 @@ export default defineComponent({
       }
       if (items[items.length - 1] < total - 1) {
         items[items.length - 1] = total - 1
-        items[items.length - 2] = props.more //next-more
+        items[items.length - 2] = props.more // next-more
       }
       return items
     }
@@ -64,14 +61,12 @@ export default defineComponent({
       return generatePageItems(props.length, props.modelValue, props.visible)
     })
     const prev = () => {
-      if (props.modelValue) {
+      if (props.modelValue)
         emit('update:modelValue', props.modelValue - 1)
-      }
     }
     const next = () => {
-      if (props.modelValue < props.length - 1) {
+      if (props.modelValue < props.length - 1)
         emit('update:modelValue', props.modelValue + 1)
-      }
     }
     const value = (val: number) => emit('update:modelValue', val)
     return {
@@ -102,7 +97,7 @@ export default defineComponent({
       aria-label="Goto previous page"
       @click="prev"
     >
-      <ChevronIcon class="icon"></ChevronIcon>
+      <tabler-chevron-left class="icon"></tabler-chevron-left>
     </button>
     <span v-for="(i, index) in values" :key="index">
       <button v-if="i === '...'" disabled class="vuwi-pagination-link">
@@ -117,8 +112,8 @@ export default defineComponent({
         {{ i + 1 }}
       </button>
     </span>
-    <button class="vuwi-pagination-nav-link right" @click="next">
-      <ChevronIcon class="icon"></ChevronIcon>
+    <button class="vuwi-pagination-nav-link" @click="next">
+      <tabler-chevron-right class="icon"></tabler-chevron-right>
     </button>
   </nav>
 </template>

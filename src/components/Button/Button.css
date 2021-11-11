@@ -1,13 +1,88 @@
 @layer components {
   .vuwi {
     &-btn {
-      @apply transform duration-150 active:scale-90;
+      @apply flex items-center justify-center 
+        px-4 font-medium rounded-md
+        rounded transform duration-150 active:scale-90
+        h-9
+        hover:bg-black hover:bg-opacity-5
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-xs {
+      @apply px-1 font-medium rounded-md
+        leading-0
+        text-xs
+        h-5
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-sm {
+      @apply px-3 font-medium rounded-md
+        leading-0
+        text-sm
+        h-8
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-lg {
+      @apply px-6 font-medium rounded-md
+        h-12
+        text-lg
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-xl {
+      @apply px-8 font-medium rounded-md
+        h-14
+        text-xl
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-pill {
+      @apply rounded-full;
     }
     &-btn-icon {
-      @apply flex justify-center items-center;
+      @apply p-0 rounded-full;
+    }
+    &-btn.vuwi-btn-icon {
+      @apply w-9;
+    }
+    &-btn-xs.vuwi-btn-icon {
+      @apply w-5;
+    }
+    &-btn-sm.vuwi-btn-icon {
+      @apply w-8;
+    }
+    &-btn-lg.vuwi-btn-icon {
+      @apply w-12;
+    }
+    &-btn-xl.vuwi-btn-icon {
+      @apply w-14;
     }
     &-btn-primary {
-      @apply bg-primary text-white rounded px-3 py-1;
+      @apply bg-primary text-white hover:bg-primary-dark;
+    }
+    &-btn-outline {
+      @apply border bg-transparent text-gray-800 dark:text-gray-100;
+    }
+    &-btn-outline.vuwi-btn-primary {
+      @apply border-primary bg-transparent text-primary hover:bg-primary hover:bg-opacity-10;
     }
   }
 }
