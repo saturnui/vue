@@ -53,7 +53,7 @@ const tooltipPlacement = ref('right')
 
 <template>
   <div class="flex justify-center">
-    <div class="grid gap-4 p-4 max-w-4xl">
+    <div class="grid gap-8 p-4 max-w-4xl">
       <div class="flex p-4">
         <button class="vuwi-btn md:hidden" @click="showDrawer = !showDrawer">
           <tabler-menu-2 />
