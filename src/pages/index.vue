@@ -5,8 +5,8 @@ const showWindow = ref(false)
 const showToast = ref(false)
 const showDrawer = ref(false)
 const text = ref('This is a test')
-const photo
-  = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+const photo =
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 const selectedValue = ref('yes')
 const selectOptions = [
   { label: 'Yes', value: 'yes' },
@@ -65,13 +65,132 @@ const tooltipPlacement = ref('right')
   <div class="vuwi-window mx-4">
     <Line />
     <div class="vuwi-content p-3 space-y-4">
-      <button>Hello, world!</button>
+      <div class="font-bold text-lg">Button Link</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="vuwi-btn vuwi-btn-xs">Extra Small</button>
+        <button class="vuwi-btn vuwi-btn-sm">Small</button>
+        <button class="vuwi-btn">Normal</button>
+        <button class="vuwi-btn vuwi-btn-lg">Large</button>
+        <button class="vuwi-btn vuwi-btn-xl">Extra Large</button>
+      </div>
 
+      <div class="font-bold text-lg">Button Solid</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="vuwi-btn vuwi-btn-xs vuwi-btn-primary">
+          Extra Small
+        </button>
+        <button class="vuwi-btn vuwi-btn-sm vuwi-btn-primary">Small</button>
+        <button class="vuwi-btn vuwi-btn-primary">Normal</button>
+        <button class="vuwi-btn vuwi-btn-lg vuwi-btn-primary">Large</button>
+        <button class="vuwi-btn vuwi-btn-xl vuwi-btn-primary">
+          Extra Large
+        </button>
+      </div>
+
+      <div class="font-bold text-lg">Button Outline</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="vuwi-btn vuwi-btn-xs vuwi-btn-outline">
+          Extra Small
+        </button>
+        <button class="vuwi-btn vuwi-btn-sm vuwi-btn-outline vuwi-btn-primary">
+          Small
+        </button>
+        <button class="vuwi-btn vuwi-btn-outline">Normal</button>
+        <button class="vuwi-btn vuwi-btn-lg vuwi-btn-outline vuwi-btn-primary">
+          Large
+        </button>
+        <button class="vuwi-btn vuwi-btn-xl vuwi-btn-outline">
+          Extra Large
+        </button>
+      </div>
+
+      <div class="font-bold text-lg">Button Pill</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button
+          class="
+            vuwi-btn vuwi-btn-xs vuwi-btn-outline vuwi-btn-pill vuwi-btn-primary
+          "
+        >
+          Extra Small
+        </button>
+        <button class="vuwi-btn vuwi-btn-sm vuwi-btn-pill vuwi-btn-primary">
+          Small
+        </button>
+        <button class="vuwi-btn vuwi-btn-outline vuwi-btn-pill">Normal</button>
+        <button class="vuwi-btn vuwi-btn-lg vuwi-btn-pill vuwi-btn-primary">
+          Large
+        </button>
+        <button
+          class="
+            vuwi-btn vuwi-btn-xl vuwi-btn-outline vuwi-btn-pill vuwi-btn-primary
+          "
+        >
+          Extra Large
+        </button>
+      </div>
+
+      <div class="font-bold text-lg">Button Icon</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="vuwi-btn vuwi-btn-xs vuwi-btn-icon vuwi-btn-primary">
+          <tabler-box class="text-[0.5rem]" />
+        </button>
+        <button class="vuwi-btn vuwi-btn-sm vuwi-btn-icon vuwi-btn-primary">
+          <tabler-box class="text-sm" />
+        </button>
+        <button class="vuwi-btn vuwi-btn-icon vuwi-btn-primary">
+          <tabler-box />
+        </button>
+        <button class="vuwi-btn vuwi-btn-lg vuwi-btn-icon vuwi-btn-primary">
+          <tabler-box class="text-2xl" />
+        </button>
+
+        <!-- Alternatives -->
+        <button class="vuwi-btn vuwi-btn-xl vuwi-btn-icon vuwi-btn-primary">
+          <tabler-box class="text-3xl" />
+        </button>
+
+        <button class="vuwi-btn vuwi-btn-xl vuwi-btn-icon">
+          <tabler-box class="text-3xl" />
+        </button>
+
+        <button
+          class="
+            vuwi-btn vuwi-btn-xl vuwi-btn-icon vuwi-btn-outline vuwi-btn-primary
+          "
+        >
+          <tabler-box class="text-3xl" />
+        </button>
+
+        <button class="vuwi-btn vuwi-btn-xl vuwi-btn-icon vuwi-btn-outline">
+          <tabler-box class="text-3xl" />
+        </button>
+
+        <button
+          class="vuwi-btn vuwi-btn-xl vuwi-btn-outline px-4 vuwi-btn-primary"
+        >
+          <tabler-box class="text-3xl mr-2" />
+          Text
+        </button>
+
+        <button
+          class="
+            vuwi-btn vuwi-btn-xl vuwi-btn-outline vuwi-btn-pill
+            px-4
+            vuwi-btn-primary
+          "
+        >
+          <tabler-box class="text-3xl mr-2" />
+          Text
+        </button>
+      </div>
+
+      <div class="font-bold text-lg">Code</div>
       <div class="vuwi-row">
         <CodeInput v-model="code" />
         {{ code }}
       </div>
 
+      <div class="font-bold text-lg">Pagination</div>
       <Pagination v-model="currentPage" :visible="7" :length="20" />
 
       <div class="vuwi-card flex items-center gap-4 p-4 rounded-lg">
@@ -180,8 +299,7 @@ const tooltipPlacement = ref('right')
           <Collapse v-model="expB" group="a">
             <template #header>
               <div class="flex items-center gap-4 text-lg font-bold">
-                <!-- <ToastIcon class="w-6 h-6" /> -->
-                ToastIcon
+                <tabler-message />
                 <span>Accordion title</span>
               </div>
             </template>
@@ -200,8 +318,7 @@ const tooltipPlacement = ref('right')
           <Collapse v-model="expC" group="a">
             <template #header>
               <div class="flex items-center gap-4 text-lg font-bold">
-                <!-- <ToastIcon class="w-6 h-6" /> -->
-                ToastIcon
+                <tabler-message />
                 <span>Accordion title</span>
               </div>
             </template>
@@ -284,8 +401,12 @@ const tooltipPlacement = ref('right')
     class="md:hidden"
     @click="showDrawer = false"
   ></Overlay>
-  <Drawer v-model="showDrawer" class="overflow-y-auto overflow-x-hidden">
-    <Collapse v-for="i in 3" :key="i" theme="vuwi-menu">
+  <Drawer
+    v-model="showDrawer"
+    class="responsive overflow-y-auto overflow-x-hidden"
+  >
+    <!-- Menu Expanded -->
+    <Collapse v-for="i in 3" :key="i" theme="vuwi-menu" class="vuwi-menu-expanded">
       <template #header>
         <div class="flex gap-4">
           <tabler-box />
@@ -298,6 +419,16 @@ const tooltipPlacement = ref('right')
         </div>
       </div>
     </Collapse>
+    <!-- Menu Collapsed -->
+    <div class="vuwi-menu-collapsed">
+      <button
+        v-for="i in 3"
+        :key="i"
+        class="vuwi-btn vuwi-btn-xl vuwi-btn-icon rounded-lg vuwi-btn-primary"
+      >
+        <tabler-box class="text-3xl" />
+      </button>
+    </div>
   </Drawer>
 
   <Overlay v-model="showWindow" :position="overlayPosition">
@@ -332,9 +463,7 @@ const tooltipPlacement = ref('right')
     @click:cancel="showToast = false"
     @click:confirm="showToast = false"
   >
-    <template #icon>
-      ToastIcon
-    </template>
+    <template #icon> ToastIcon </template>
   </Toast>
 </template>
 

@@ -8,6 +8,14 @@
       }
     }
 
+    &-menu-expanded {
+      @apply md:hidden xl:block;
+    }
+
+    &-menu-collapsed {
+      @apply flex-col items-center py-2 gap-3 hidden md:flex xl:hidden;
+    }
+
     &-menu ~ &-menu {
       margin-top: -1px;
     }
