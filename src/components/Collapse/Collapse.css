@@ -1,15 +1,22 @@
 @layer components {
   .vuwi {
     &-collapse {
-      @apply overflow-hidden dark:bg-gray-800;
+      @apply overflow-hidden;
 
       .collapse-header {
-        @apply relative p-3 flex justify-between items-center border dark:border-gray-700;
+        @apply relative p-3 flex justify-between items-center;
       }
     }
 
     &-collapse ~ &-collapse {
-      margin-top: -1px;
+      margin-top: 1px;
+    }
+
+    &-collapse-border {
+      .collapse-header {
+        @apply bg-white dark:bg-gray-800 border dark:border-gray-700;
+      }
+      margin-top: -1px !important;
     }
 
     &-collapse-content {
