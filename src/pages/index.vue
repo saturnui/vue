@@ -41,6 +41,7 @@ const expandedItems = reactive<KeyVal>({
 })
 const currentPage = ref(1)
 const code = ref('123456')
+const showAlert = ref(false)
 
 const tooltipOptions = [
   { label: 'Top', value: 'top' },
@@ -108,6 +109,33 @@ const tooltipPlacement = ref('right')
               :options="tooltipOptions"
             ></Dropdown>
           </div>
+        </div>
+      </div>
+
+      <div class="vuwi-window">
+        <Line />
+        <div class="vuwi-content p-3 space-y-4">
+          <div class="vuwi-alert" role="alert">
+            <div class="p-3">Default alert message...</div>
+          </div>
+          <Switch v-model="showAlert">
+            <span class="ml-2">Show Alert (with Transition)</span>
+          </Switch>
+          <transition name="vuwi-alert">
+            <div
+              v-if="showAlert"
+              class="vuwi-alert bg-red-700 text-white"
+              role="alert"
+            >
+              <div class="p-3">Insert alert message here...</div>
+              <button
+                class="vuwi-btn vuwi-btn-icon mr-2"
+                @click="showAlert = false"
+              >
+                <tabler-x class="text-xl" />
+              </button>
+            </div>
+          </transition>
         </div>
       </div>
 
