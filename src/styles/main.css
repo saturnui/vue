@@ -1,7 +1,6 @@
 @import './markdown.css';
 @import '../components/Alert/Alert.css';
 @import '../components/Menu/Menu.css';
-@import '../components/Spinner/Spinner.css';
 
 html,
 body,

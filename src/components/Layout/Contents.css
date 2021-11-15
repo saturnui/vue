@@ -3,5 +3,8 @@
     &-contents {
       @apply w-full mx-auto max-w-4xl;
     }
+    &-text {
+      @apply dark:text-gray-400;
+    }
   }
 }

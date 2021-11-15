@@ -1,6 +1,6 @@
 <template>
   <!-- https://codepen.io/lhermann/pen/EBGZRZ -->
-  <label :for="id" class="vuwi-switch">
+  <label :for="id" class="vuwi-switch" :class="{ disabled: disabled }">
     <slot name="left"></slot>
     <div class="relative">
       <input
@@ -8,12 +8,15 @@
         type="checkbox"
         class="sr-only"
         :checked="modelValue"
+        :disabled="disabled"
         @input="handleInput($event)"
       />
       <div class="pill"></div>
       <div class="dot"></div>
     </div>
-    <slot></slot>
+    <div class="vuwi-switch-label">
+      <slot></slot>
+    </div>
   </label>
 </template>
 
@@ -25,6 +28,10 @@ export default defineComponent({
       default: () => Math.floor(Math.random() * Date.now()).toString(),
     },
     modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

@@ -18,10 +18,6 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    size: {
-      type: String,
-      default: 'md',
-    },
   },
   setup(props) {
     const initial = computed(() => {

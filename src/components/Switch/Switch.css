@@ -6,7 +6,7 @@
         @apply absolute left-1 top-1 w-4 h-4 rounded-full transition bg-white;
       };
       input ~ .pill {
-        @apply rounded-full w-10 h-6 bg-gray-300  dark:bg-gray-600;
+        @apply rounded-full w-10 h-6 bg-black bg-opacity-10 dark:bg-gray-800;
       };
       input:checked ~ .dot {
         transform: translateX(100%);
@@ -14,6 +14,15 @@
       input:checked ~ .pill {
         @apply bg-green-500;
       };
+      &.disabled {
+        @apply cursor-default;
+        .vuwi-switch-label {
+          @apply opacity-50;
+        };
+        input:checked ~ .pill {
+          @apply bg-gray-300 dark:bg-gray-700;
+        };
+      }
     }
   }
 }

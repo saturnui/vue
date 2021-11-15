@@ -3,7 +3,7 @@
     <slot name="prepend">
     </slot>
     <div class="flex-grow">
-      <div class="absolute top-1 pointer-events-none px-3">
+      <div v-if="label" class="absolute top-1 pointer-events-none px-3">
         <label
           v-if="errorLabel"
           :for="name"
@@ -24,7 +24,16 @@
         :name="name"
         :required="required"
         :autocomplete="autocomplete"
-        class="focus:outline-none w-full pt-4 px-2 text-black"
+        class="
+          focus:outline-none
+          w-full
+          pt-6
+          px-2
+          text-black
+          dark:text-white
+          bg-transparent
+        "
+        :disabled="disabled"
         @change="handleChange"
         @blur="handleBlur"
       >
@@ -71,6 +80,7 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    disabled: Boolean,
     loading: Boolean,
     mask: {
       type: String,
@@ -103,19 +113,33 @@ export default defineComponent({
       },
     )
     const customClass = computed(() => {
+      let cls = ''
+      if (props.disabled)
+        cls += 'disabled'
+
       if (meta.valid || !meta.validated)
-        return 'focus-within:border-primary text-primary'
+        return cls += ' focus-within:border-primary text-primary'
 
       return 'border-red-600 text-red-600'
     })
     const errorLabel = computed(() => {
       return props.error || errorMessage.value
     })
+    // const customStyle = computed(() => {
+    //   if (props.disabled) {
+    //     return {
+    //       appearance: 'none',
+    //       paddingLeft: '12px',
+    //     }
+    //   }
+    //   return {}
+    // })
     // const handleChange = (evt: Event) => {
     //   const target = evt.target as HTMLSelectElement
     //   emit('update:modelValue', target.value)
     // }
     return {
+      // customStyle,
       handleChange,
       handleBlur,
       errorLabel,

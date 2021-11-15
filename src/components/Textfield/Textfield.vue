@@ -4,7 +4,7 @@
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
         <label v-if="errorLabel" :for="name" class="vuwi-textfield-error">{{ label }} {{ errorLabel }}</label>
-        <label v-else :for="name" class="block text-sm font-medium mb-1 text-gray-400">{{ label }}</label>
+        <label v-else :for="name" class="block text-sm font-medium mb-1 text-black dark:text-white text-opacity-40 dark:text-opacity-40">{{ label }}</label>
       </div>
       <input
         v-maska="mask"
@@ -71,8 +71,8 @@ export default defineComponent({
     },
     required: Boolean,
     rules: {
-      type: String,
-      default: '',
+      type: Function,
+      default: null,
     },
     type: {
       type: String,
@@ -100,9 +100,9 @@ export default defineComponent({
     )
     const customClass = computed(() => {
       let cls = 'border-red-600 text-red-600'
-      if (meta.valid || !meta.validated) cls = 'focus-within:border-primary text-primary'
+      if (meta.valid || !meta.validated) cls = 'focus-within:border-primary focus-within:!border-opacity-100 text-primary'
 
-      if (!props.disabled) cls += ' border'
+      // if (!props.disabled) cls += ' border'
 
       return cls
     })
