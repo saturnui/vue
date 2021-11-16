@@ -1,5 +1,5 @@
 <template>
-  <div v-if="modelValue" ref="dialog" class="vuwi-dialog" @click.stop>
+  <div ref="dialog" class="vuwi-dialog" @click.stop>
     <div class="vuwi-dialog-title">
       <div>{{ title }}</div>
       <button
