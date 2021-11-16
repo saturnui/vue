@@ -55,14 +55,11 @@ const tooltipPlacement = ref('right')
 <template>
   <div class="flex justify-center">
     <div class="grid gap-8 p-4 max-w-4xl">
-      <div class="flex p-4">
+      <div class="flex">
         <button class="vuwi-btn md:hidden" @click="showDrawer = !showDrawer">
           <tabler-menu-2 />
         </button>
         <div class="flex-grow"></div>
-        <Switch v-model="isDark">
-          <span class="ml-2">Dark</span>
-        </Switch>
       </div>
       <!-- Card -->
       <div class="vuwi-card flex gap-4 p-4 overflow-x-auto">
@@ -403,12 +400,14 @@ const tooltipPlacement = ref('right')
             valid
             loading
             error="is required"
+            class="vuwi-border vuwi-shade"
           ></Textfield>
           <Textfield
             v-model="text"
             label="Last name"
             required
             loading
+            class="vuwi-border vuwi-shade"
           ></Textfield>
           <Textarea
             v-model="text"
@@ -417,6 +416,7 @@ const tooltipPlacement = ref('right')
             valid
             loading
             error="is required"
+            class="vuwi-border vuwi-shade"
           ></Textarea>
           <Dropdown
             v-model="selectedValue"
@@ -549,9 +549,9 @@ const tooltipPlacement = ref('right')
           </div>
           <div class="vuwi-content p-3 space-y-1">
             <div class="vuwi-row gap-4">
-              <CodeInput v-model="code" />
+              <CodeInput v-model="code" class="border-2 vuwi-border vuwi-shade" />
               <div
-                class="bg-gray-900 rounded-full py-1 px-4 text-2xl font-bold"
+                class="vuwi-border rounded-full py-1 px-4 text-2xl font-bold"
               >
                 {{ code }}
               </div>
@@ -626,8 +626,17 @@ const tooltipPlacement = ref('right')
           :line="i !== 1"
         >
           <div class="space-y-4">
-            <Textfield v-model="text" label="Name" required></Textfield>
-            <Textfield v-model="text" label="Email"></Textfield>
+            <Textfield
+              v-model="text"
+              label="Name"
+              required
+              class="vuwi-shade vuwi-border"
+            ></Textfield>
+            <Textfield
+              v-model="text"
+              label="Email"
+              class="vuwi-shade vuwi-border"
+            ></Textfield>
           </div>
         </FormSection>
       </div>
@@ -670,6 +679,13 @@ const tooltipPlacement = ref('right')
       >
         <tabler-box class="text-3xl" />
       </button>
+    </div>
+    <div class="flex-grow" />
+    <Line />
+    <div class="p-4">
+      <Switch v-model="isDark">
+        <span class="ml-2">Dark</span>
+      </Switch>
     </div>
   </Drawer>
 

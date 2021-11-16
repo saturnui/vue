@@ -9,6 +9,10 @@ export default defineComponent({
       type: String,
       default: 'XXX-XXX',
     },
+    class: {
+      type: String,
+      default: '',
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -76,11 +80,16 @@ export default defineComponent({
       emit('update:modelValue', newVal)
     })
 
+    const customClass = computed(() => {
+      return props.class
+    })
+
     onMounted(() => {
       formInputs = root.value.querySelectorAll('input')
     })
 
     return {
+      customClass,
       root,
       focusHandler,
       handleKeyDown,
@@ -101,6 +110,7 @@ export default defineComponent({
         v-model="values[i]"
         type="text"
         :maxlength="1"
+        :class="customClass"
         @focus="focusHandler"
         @keydown="handleKeyDown"
       />

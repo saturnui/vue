@@ -1,7 +1,7 @@
 @layer components {
   .vuwi {
     &-code-input {
-      @apply flex gap-2 items-center;
+      @apply flex gap-2 items-center !border-none !bg-transparent;
       input {
         @apply w-11
         h-11
@@ -9,9 +9,7 @@
         text-center text-2xl
         font-extrabold
         uppercase
-        border-2 border-gray-300
-        dark:border-gray-700
-        dark:bg-gray-800;
+        bg-transparent;
       }
     }
     &-code-input-break {
