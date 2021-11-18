@@ -1,6 +1,10 @@
 import mitt from 'mitt'
 const emitter = mitt()
 
+export const useEmitter = () => {
+  return emitter
+}
+
 export const useGroupEmitter = (name: string) => {
   const emit = (id: string, show = false) => {
     emitter.emit(name, { id, show })

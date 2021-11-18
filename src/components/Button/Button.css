@@ -87,5 +87,11 @@
     &-btn-fill {
       @apply bg-gray-100 bg-opacity-5 text-gray-800 dark:text-gray-100;
     }
+    &-btn-link {
+      @apply hover:cursor-pointer hover:underline rounded
+    }
+    &-btn-link-primary {
+      @apply text-primary dark:text-primary-light;
+    }
   }
 }
