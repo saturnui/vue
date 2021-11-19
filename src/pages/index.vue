@@ -418,13 +418,22 @@ const tooltipPlacement = ref('right')
             error="is required"
             class="vuwi-border vuwi-shade"
           ></Textarea>
-          <Dropdown
-            v-model="selectedValue"
-            name="agree"
-            label="Do you agree?"
-            :options="selectOptions"
-            class="w-60"
-          />
+          <div class="flex gap-4">
+            <Dropdown
+              v-model="selectedValue"
+              name="agree"
+              label="Do you agree?"
+              :options="selectOptions"
+              class="w-60"
+            />
+            <Dropdown
+              v-model="selectedValue"
+              name="agree"
+              label="Do you agree?"
+              :options="selectOptions"
+              class="w-60"
+            />
+          </div>
         </div>
       </div>
 
@@ -549,7 +558,10 @@ const tooltipPlacement = ref('right')
           </div>
           <div class="vuwi-content p-3 space-y-1">
             <div class="vuwi-row gap-4">
-              <CodeInput v-model="code" class="border-2 vuwi-border vuwi-shade" />
+              <CodeInput
+                v-model="code"
+                class="border-2 vuwi-border vuwi-shade"
+              />
               <div
                 class="vuwi-border rounded-full py-1 px-4 text-2xl font-bold"
               >
@@ -587,16 +599,7 @@ const tooltipPlacement = ref('right')
             Spinner
           </div>
           <div class="vuwi-content p-3 flex gap-8 items-center">
-            <div
-              class="
-                vuwi-spinner
-                w-8
-                h-8
-                min-w-8 min-h-8
-                border-4 border-yellow-400 border-r-transparent
-              "
-              role="status"
-            >
+            <div class="vuwi-spinner w-8 h-8" role="status">
               <span class="sr-only">Loading...</span>
             </div>
 
