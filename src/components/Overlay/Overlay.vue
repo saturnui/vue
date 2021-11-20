@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts">
+import { SwipeDirection } from '@vueuse/core'
 import { ref, nextTick } from 'vue-demi'
 
 export default defineComponent({
@@ -30,9 +31,10 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'swipe:start', 'swipe', 'swipe:end'],
   setup(props, { emit }) {
     const content = ref()
+    const overlay = ref()
     let off: any
 
     const transitionName = computed(() => {
@@ -51,6 +53,19 @@ export default defineComponent({
           nextTick(() => {
             off = onClickOutside(content.value, () => {
               if (!props.modal) emit('update:modelValue', false)
+            })
+
+            useSwipe(content.value, {
+              passive: true,
+              onSwipeStart(e: TouchEvent) {
+                emit('swipe:start', { event: e })
+              },
+              onSwipe(e: TouchEvent) {
+                emit('swipe', { event: e })
+              },
+              onSwipeEnd(e: TouchEvent, direction: SwipeDirection) {
+                emit('swipe:end', { event: e, direction })
+              },
             })
           })
         }
@@ -73,6 +88,7 @@ export default defineComponent({
 
     return {
       content,
+      overlay,
       positionClass,
       transitionName,
     }
