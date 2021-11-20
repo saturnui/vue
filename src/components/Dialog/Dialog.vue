@@ -1,7 +1,9 @@
 <template>
-  <div ref="dialog" class="vuwi-dialog" @click.stop>
-    <div class="vuwi-dialog-title">
-      <div>{{ title }}</div>
+  <div class="vuwi-dialog" @click.stop>
+    <div class="flex items-center  p-2">
+      <div class="flex-grow">
+        <slot name="title" class=""></slot>
+      </div>
       <button
         class="vuwi-btn vuwi-btn-icon rounded-full h-8 w-8"
         @click="close"
@@ -15,14 +17,8 @@
 </template>
 
 <script lang="ts">
-import { onClickOutside } from '@vueuse/core'
-
 export default defineComponent({
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
     modelValue: {
       type: Boolean,
       default: false,
@@ -37,16 +33,8 @@ export default defineComponent({
     const close = () => {
       emit('update:modelValue', false)
     }
-    const dialog = ref()
-    onMounted(() => {
-      onClickOutside(dialog.value, () => {
-        if (!props.modal)
-          close()
-      })
-    })
     return {
       close,
-      dialog,
     }
   },
 })
