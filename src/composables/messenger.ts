@@ -1,11 +1,13 @@
 import { useEmitter } from './emitter'
 
+export type Message = { text: string }
+
 const emitter = useEmitter()
 const ADD_MESSAGE = 'snackbar:add_message'
 
-type messageHandler = (data: { text: string }) => {}
+type MessageHandler = (data: Message) => void
 
-const onAddMessage = (handler: messageHandler) => {
+const onAddMessage = (handler: MessageHandler) => {
   emitter.on(ADD_MESSAGE, handler as any)
   return () => {
     emitter.off(ADD_MESSAGE, handler as any)

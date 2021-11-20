@@ -28,7 +28,9 @@
     >
       <span class="sr-only">Busy...</span>
     </div>
-    <span v-else-if="required" class="text-2xl -mb-2">*</span>
+    <span v-else-if="required" class="text-2xl">
+      <tabler-check class="vuwi-textfield-required" />
+    </span>
   </div>
 </template>
 
