@@ -18,12 +18,14 @@
           class="relative block w-full pl-3 pr-12 py-2 rounded-md overflow-hidden text-sm text-gray-700 placeholder-gray-400 transition-colors bg-white border border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-500 focus:ring-opacity-10 focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-blue-500 dark:focus:ring-opacity-20"
           v-bind="$attrs"
           :placeholder="givenPlaceholder"
+          :disabled="disableInput"
           @keyup="keyUp"
         />
         <span
           class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden"
         >
           <button
+            v-if="!disableInput"
             type="button"
             class="px-2 py-1 mr-1 focus:outline-none text-gray-400 dark:text-opacity-70 rounded-md"
             @click="pickerValue ? clearPicker() : pickerInputRef.focus()"
@@ -253,6 +255,10 @@ export default /* #__PURE__ */ defineComponent({
     },
     disableDate: {
       type: [Boolean, Array, Function],
+      default: false,
+    },
+    disableInput: {
+      type: Boolean,
       default: false,
     },
     disableInRange: {

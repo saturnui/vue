@@ -72,6 +72,9 @@ export const useDirective = (binding: any) => {
       return (instance.isShow = false)
     }
     else {
+      // disable the picker when input is disabled
+      if (instance.pickerInputRef?.disabled)
+        return (instance.isShow = false)
       if (instance.vuwiDateRangePicker) {
         const { autoApply, previous, next } = instance
         const target = targetElem.classList.contains(
@@ -101,6 +104,7 @@ export const useDirective = (binding: any) => {
           || document.getElementById(value) === targetElem
           || value === targetElem)
       }
+
       return (instance.isShow = true)
     }
   })
