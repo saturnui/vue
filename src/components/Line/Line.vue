@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center">
-    <div class="border-t flex-grow border-gray-200 dark:border-dark-800"></div>
+    <div class="border-t flex-grow border-black border-opacity-10 dark:border-opacity-20"></div>
     <div v-if="label" class="px-2 text-sm">{{ label }}</div>
     <div
       v-if="label"
