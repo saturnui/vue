@@ -3,8 +3,16 @@
     <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
-        <label v-if="errorLabel" :for="name" class="vuwi-textfield-error">{{ label }} {{ errorLabel }}</label>
-        <label v-else :for="name" class="block text-sm font-medium mb-1 text-black dark:text-white text-opacity-40 dark:text-opacity-40">{{ label }}</label>
+        <label
+          v-if="errorLabel"
+          :for="name"
+          class="vuwi-textfield-error"
+        >{{ label }} {{ errorLabel }}</label>
+        <label
+          v-else
+          :for="name"
+          class="block text-sm font-medium mb-1 text-black dark:text-white text-opacity-40 dark:text-opacity-40"
+        >{{ label }}</label>
       </div>
       <input
         v-maska="mask"
@@ -14,12 +22,16 @@
         :required="required"
         :autocomplete="autocomplete"
         :value="inputValue"
+        :disabled="disabled"
         @input="handleInput"
         @blur="handleBlur"
       />
     </div>
     <slot></slot>
-    <tabler-check v-if="valid || (rules && meta.valid && meta.validated)" class="vuwi-textfield-check" />
+    <tabler-check
+      v-if="valid || (rules && meta.valid && meta.validated)"
+      class="vuwi-textfield-check"
+    />
     <div
       v-else-if="loading"
       class="vuwi-spinner w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent"
@@ -101,8 +113,7 @@ export default defineComponent({
     const customClass = computed(() => {
       let cls = 'border-red-600 text-red-600'
       if (meta.valid || !meta.validated) cls = 'focus-within:border-primary focus-within:!border-opacity-100 text-primary'
-
-      // if (!props.disabled) cls += ' border'
+      if (props.disabled) cls += ' disabled'
 
       return cls
     })

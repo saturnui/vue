@@ -1,6 +1,6 @@
 import { useEmitter } from './emitter'
 
-export type Message = { text: string }
+export type Message = { text: string; icon?: string }
 
 const emitter = useEmitter()
 const ADD_MESSAGE = 'snackbar:add_message'
@@ -14,8 +14,8 @@ const onAddMessage = (handler: MessageHandler) => {
   }
 }
 
-const addMessage = (text: string) => {
-  emitter.emit(ADD_MESSAGE, { text })
+const addMessage = (message: Message) => {
+  emitter.emit(ADD_MESSAGE, message)
 }
 
 export const useMessenger = () => {

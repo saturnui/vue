@@ -7,7 +7,7 @@
             <slot name="icon"></slot>
           </div>
           <div
-            class="flex h-full text-left justify-center"
+            class="flex h-full text-left justify-center text-gray-300"
             :class="{ 'border-l border-opacity-20 pl-4': hasIcon }"
           >
             {{ text }}
