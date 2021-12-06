@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     404: typeof import('./components/layouts/404.vue')['default']
     Avatar: typeof import('./components/Avatar/Avatar.vue')['default']
+    Calendar: typeof import('./components/DatePicker/components/Calendar.vue')['default']
     CarbonCampsite: typeof import('~icons/carbon/campsite')['default']
     CarbonDicomOverlay: typeof import('~icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('~icons/carbon/language')['default']
@@ -20,6 +21,7 @@ declare module 'vue' {
     CodeInput: typeof import('./components/CodeInput/CodeInput.vue')['default']
     Collapse: typeof import('./components/Collapse/Collapse.vue')['default']
     CollapseIcon: typeof import('./components/Collapse/icons/CollapseIcon.vue')['default']
+    DatePicker: typeof import('./components/DatePicker/DatePicker.vue')['default']
     Default: typeof import('./components/layouts/default.vue')['default']
     Dialog: typeof import('./components/Dialog/Dialog.vue')['default']
     Drawer: typeof import('./components/Drawer/Drawer.vue')['default']
@@ -29,14 +31,17 @@ declare module 'vue' {
     FileSelector: typeof import('./components/FileSelector/FileSelector.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     FormSection: typeof import('./components/FormSection/FormSection.vue')['default']
+    Header: typeof import('./components/DatePicker/components/Header.vue')['default']
     Home: typeof import('./components/layouts/home.vue')['default']
     Line: typeof import('./components/Line/Line.vue')['default']
     Menu: typeof import('./components/Menu/Menu.vue')['default']
     MenuItem: typeof import('./components/Menu/MenuItem.vue')['default']
+    Month: typeof import('./components/DatePicker/components/Month.vue')['default']
     Overlay: typeof import('./components/Overlay/Overlay.vue')['default']
     Pagination: typeof import('./components/Pagination/Pagination.vue')['default']
     README: typeof import('./components/README.md')['default']
     Select: typeof import('./components/Select/Select.vue')['default']
+    Shortcut: typeof import('./components/DatePicker/components/Shortcut.vue')['default']
     Switch: typeof import('./components/Switch/Switch.vue')['default']
     TablerBox: typeof import('~icons/tabler/box')['default']
     TablerCheck: typeof import('~icons/tabler/check')['default']
@@ -52,6 +57,8 @@ declare module 'vue' {
     Textfield: typeof import('./components/Textfield/Textfield.vue')['default']
     Toast: typeof import('./components/Toast/Toast.vue')['default']
     Tooltip: typeof import('./components/Tooltip/Tooltip.vue')['default']
+    Week: typeof import('./components/DatePicker/components/Week.vue')['default']
+    Year: typeof import('./components/DatePicker/components/Year.vue')['default']
   }
 }
 
