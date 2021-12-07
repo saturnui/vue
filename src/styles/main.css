@@ -18,7 +18,7 @@ html.dark {
 }
 
 #nprogress .bar {
-  @apply bg-primary opacity-75;
+  @apply bg-blue-500 opacity-75;
 
   position: fixed;
   z-index: 1031;

@@ -4,10 +4,8 @@
       @apply fixed 
       top-0 left-0 
       h-full overflow-x-hidden overflow-y-auto 
-      transition origin-left transform w-75 
-      md:translate-x-0 
-      bg-white dark:bg-gray-800;
-      
+      transition-transform origin-left transform w-75 
+      md:translate-x-0;
     };
     &-drawer.responsive {
       @apply w-16 xl:w-75

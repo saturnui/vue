@@ -1,0 +1,15 @@
+/* Slide Down */
+.slide-down-enter-active {
+  transition: all 200ms ease-out;
+}
+
+.slide-down-leave-active {
+  transition: all 200ms ease-in;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+

@@ -13,28 +13,28 @@ fileExtMap.set('png', 'image/png')
 fileExtMap.set('ppt', 'application/vnd.ms-powerpoint')
 fileExtMap.set(
   'pptx',
-  'application/vnd.openxmlformats-officedocu ment.presentationml.presentation'
+  'application/vnd.openxmlformats-officedocu ment.presentationml.presentation',
 )
 fileExtMap.set('xls', 'application/vnd.ms-excel')
 fileExtMap.set(
   'xlsx',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 )
 
 const getFileType = (filename = '') => {
   const index = filename.split('.').pop()
-  if (fileExtMap.has(index)) {
+  if (fileExtMap.has(index))
     return fileExtMap.get(index)
-  }
+
   return ''
 }
 
-const traverseFileTree = async (fileDesc: FileSystemEntry, path = '') => {
+const traverseFileTree = async(fileDesc: FileSystemEntry, path = '') => {
   let files: File[] = []
   if (fileDesc.isFile) {
     const fileSystemFile = fileDesc as FileSystemFileEntry
     // Get file
-    fileSystemFile.file(file => {
+    fileSystemFile.file((file) => {
       // set type (read-only)
       // const fileType = fileDesc.type || getFileType(file.name)
       const fileType = getFileType(file.name)
@@ -42,17 +42,17 @@ const traverseFileTree = async (fileDesc: FileSystemEntry, path = '') => {
       //   value: fileType,
       //   writable: false,
       // })
-      if (fileType) {
+      if (fileType)
         files.push(file)
-      }
     })
-  } else if (fileDesc.isDirectory) {
+  }
+  else if (fileDesc.isDirectory) {
     // Get folder contents
     const fileSystemDir = fileDesc as FileSystemDirectoryEntry
     const dirReader = fileSystemDir.createReader()
-    dirReader.readEntries(async entries => {
+    dirReader.readEntries(async(entries) => {
       for (let i = 0; i < entries.length; i++) {
-        const f = await traverseFileTree(entries[i], path + fileDesc.name + '/')
+        const f = await traverseFileTree(entries[i], `${path + fileDesc.name}/`)
         files = files.concat(f)
       }
     })
@@ -60,7 +60,7 @@ const traverseFileTree = async (fileDesc: FileSystemEntry, path = '') => {
   return files
 }
 
-const _getMatchingItems = async (listArray: DataTransferItem[]) => {
+const _getMatchingItems = async(listArray: DataTransferItem[]) => {
   let files: File[] = []
   const fileEntries: FileSystemEntry[] = []
   for (let i = 0; i < listArray.length; i++) {
@@ -79,22 +79,21 @@ const _getMatchingItems = async (listArray: DataTransferItem[]) => {
 }
 
 // DataTransfer.items: DataTransferItemList
-const getMatchingItems = async (
+const getMatchingItems = async(
   list: DataTransferItemList,
   acceptVal = '',
-  multiple = false
+  multiple = false,
 ) => {
   const listArray = Array.from(list) as DataTransferItem[]
   let matchingItems = await _getMatchingItems(listArray)
   // Return the first item (or undefined) if our filter is for all files
-  if (acceptVal === '') {
+  if (acceptVal === '')
     return multiple ? matchingItems : [matchingItems[0]]
-  }
 
   const acceptsVals = acceptVal.toLowerCase().split(',')
   // Split accepts values by ',' then by '/'. Trim everything & lowercase.
   const acceptsMime = acceptsVals
-    .map(accept => {
+    .map((accept) => {
       return accept.split('/').map(part => part.trim())
     })
     .filter(acceptParts => acceptParts.length === 2) // Filter invalid values
@@ -112,32 +111,29 @@ const getMatchingItems = async (
     for (const [acceptMain, acceptSub] of acceptsMime) {
       // Look for an exact match, or a partial match if * is accepted, eg image/*.
       if (
-        typeMain === acceptMain &&
-        (acceptSub === '*' || typeSub === acceptSub)
-      ) {
+        typeMain === acceptMain
+        && (acceptSub === '*' || typeSub === acceptSub)
+      )
         return true
-      }
     }
 
-    for (const extension of acceptsExtension) {
+    for (const extension of acceptsExtension)
       if (file.name.endsWith(extension)) return true
-    }
 
     return false
   }
 
   matchingItems = matchingItems.filter(predicate)
-  if (!multiple) {
+  if (!multiple)
     matchingItems = [matchingItems[0]]
-  }
 
   return matchingItems
 }
 
-const getFileData = async (
+const getFileData = async(
   rawData: DataTransfer,
   accept = '',
-  multiple = false
+  multiple = false,
 ) => {
   return await getMatchingItems(rawData.items, accept, multiple)
 }
@@ -145,11 +141,10 @@ const getFileData = async (
 // Safari and Edge don't quite support extending Event, this works around it.
 const fixExtendedEvent = (
   instance: FileDropEvent,
-  type: typeof FileDropEvent
+  type: typeof FileDropEvent,
 ) => {
-  if (!(instance instanceof type)) {
+  if (!(instance instanceof type))
     Object.setPrototypeOf(instance, type.prototype)
-  }
 }
 
 export class FileDropEvent extends Event {
@@ -157,7 +152,7 @@ export class FileDropEvent extends Event {
   _action = ''
   constructor(
     typeArg: string,
-    eventInitDict: { files: File[]; action: string }
+    eventInitDict: { files: File[]; action: string },
   ) {
     super(typeArg)
     fixExtendedEvent(this, FileDropEvent)
@@ -234,24 +229,23 @@ export class FileDropElement extends HTMLElement {
     const matchingFiles = await getMatchingItems(
       items,
       this.accept,
-      this.multiple !== null
+      this.multiple !== null,
     )
     let validDrop = true
-    if (event.dataTransfer && event.dataTransfer.items.length) {
+    if (event.dataTransfer && event.dataTransfer.items.length)
       validDrop = matchingFiles.length > 0 && matchingFiles[0] !== undefined
-    }
-    if (validDrop) {
+
+    if (validDrop)
       this.classList.add('drop-valid')
-    } else {
+
+    else
       this.classList.add('drop-invalid')
-    }
   }
 
   _onDragLeave() {
     this._dragEnterCount -= 1
-    if (this._dragEnterCount === 0) {
+    if (this._dragEnterCount === 0)
       this._reset()
-    }
   }
 
   async _onDrop(event: DragEvent) {
@@ -262,7 +256,7 @@ export class FileDropElement extends HTMLElement {
     const files = await getFileData(
       event.dataTransfer,
       this.accept,
-      this.multiple !== null
+      this.multiple !== null,
     )
     if (files === undefined) return
     this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))
@@ -273,7 +267,7 @@ export class FileDropElement extends HTMLElement {
     const files = await getFileData(
       event.clipboardData as DataTransfer,
       this.accept,
-      this.multiple !== undefined
+      this.multiple !== undefined,
     )
     if (files === undefined) return
     this.dispatchEvent(new FileDropEvent('filedrop', { action, files }))

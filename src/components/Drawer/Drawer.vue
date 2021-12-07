@@ -1,7 +1,7 @@
 <template>
   <div
     ref="drawer"
-    class="vuwi-drawer -translate-x-full md:translate-x-0"
+    class="vuwi-drawer -translate-x-full lg:translate-x-0"
     :class="{ '!translate-x-0 show': modelValue }"
   >
     <slot></slot>

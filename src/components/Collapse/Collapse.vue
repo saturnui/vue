@@ -1,9 +1,7 @@
 <template>
   <div :class="theme">
     <div class="collapse-header" role="button" @click="toggle">
-      <div>
-        <slot name="header"></slot>
-      </div>
+      <slot name="header"></slot>
       <tabler-chevron-up
         class="transition duration-150 transform"
         :class="{ 'rotate-180': show }"

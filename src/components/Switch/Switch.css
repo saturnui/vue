@@ -16,7 +16,7 @@
       };
       &.disabled {
         @apply cursor-default;
-        .vuwi-switch-label {
+        &-switch-label {
           @apply opacity-50;
         };
         input:checked ~ .pill {
