@@ -1,41 +1,24 @@
 <template>
-  <div class="vuwi-dialog" @click.stop>
-    <div class="flex items-center  p-2">
+  <div class="vuwi-dialog vuwi-light-dark">
+    <div class="p-2 flex items-center ">
       <div class="flex-grow">
-        <slot name="title" class=""></slot>
+        <slot name="title"></slot>
       </div>
       <button
-        class="vuwi-btn vuwi-btn-icon rounded-full h-8 w-8"
-        @click="close"
+        class="vuwi-btn vuwi-btn-icon"
+        @click="$emit('close')"
       >
-        <tabler-x class="vuwi-dialog-close-icon h-4 w-4" />
+        <tabler-x class="h-6 w-6" />
       </button>
     </div>
     <Line />
     <slot></slot>
+    <slot name="actions"></slot>
   </div>
 </template>
 
 <script lang="ts">
 export default defineComponent({
-  props: {
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-    modal: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const close = () => {
-      emit('update:modelValue', false)
-    }
-    return {
-      close,
-    }
-  },
+  emits: ['close'],
 })
 </script>

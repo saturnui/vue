@@ -51,9 +51,11 @@ export default defineComponent({
         if (val) {
           document.body.style.overflow = 'hidden'
           nextTick(() => {
-            off = onClickOutside(content.value, () => {
-              if (!props.modal) emit('update:modelValue', false)
-            })
+            if (content.value.firstElementChild) {
+              off = onClickOutside(content.value.firstElementChild, () => {
+                if (!props.modal) emit('update:modelValue', false)
+              })
+            }
 
             useSwipe(content.value, {
               passive: true,
@@ -77,9 +79,11 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      onClickOutside(content.value, () => {
-        if (!props.modal) emit('update:modelValue', false)
-      })
+      if (content.value) {
+        onClickOutside(content.value, () => {
+          if (!props.modal) emit('update:modelValue', false)
+        })
+      }
     })
 
     onBeforeUnmount(() => {
