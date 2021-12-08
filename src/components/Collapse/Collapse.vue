@@ -1,20 +1,16 @@
 <template>
   <div :class="theme">
-    <div class="collapse-header" role="button" @click="toggle">
-      <slot name="header"></slot>
-      <tabler-chevron-up
-        class="transition duration-150 transform"
-        :class="{ 'rotate-180': show }"
-      />
+    <div role="button" @click="toggle">
+      <slot name="header" :open="open"></slot>
     </div>
     <transition
-      name="vuwi-collapse"
+      :name="theme"
       @enter="start"
       @after-enter="end"
       @before-leave="start"
       @after-leave="end"
     >
-      <div v-show="show">
+      <div v-show="open">
         <slot></slot>
       </div>
     </transition>
@@ -48,13 +44,13 @@ export default defineComponent({
     } = useGroupEmitter(props.group)
 
     const id = useUuid()
-    const show = ref(false)
+    const open = ref(false)
 
     if (props.group) {
-      const handler = (data: { id: string; show: boolean }) => {
-        if (data.show) {
-          show.value = id === data.id
-          emit('update:modelValue', show.value)
+      const handler = (data: { id: string; active: boolean }) => {
+        if (data.active) {
+          open.value = id === data.id
+          emit('update:modelValue', open.value)
         }
       }
 
@@ -66,15 +62,15 @@ export default defineComponent({
     }
 
     const invalidate = (val: boolean) => {
-      if (show.value !== val) {
-        show.value = val
+      if (open.value !== val) {
+        open.value = val
         emit('update:modelValue', val)
         emitGroup(id, val)
       }
     }
 
     const toggle = () => {
-      invalidate(!show.value)
+      invalidate(!open.value)
     }
 
     const start = (element: Element) => {
@@ -97,7 +93,7 @@ export default defineComponent({
 
     return {
       end,
-      show,
+      open,
       start,
       toggle,
     }
