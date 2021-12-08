@@ -6,8 +6,8 @@ export const useEmitter = () => {
 }
 
 export const useGroupEmitter = (name: string) => {
-  const emit = (id: string, show = false) => {
-    emitter.emit(name, { id, show })
+  const emit = (id: string, active = false) => {
+    emitter.emit(name, { id, active })
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const on = (handler: any) => {

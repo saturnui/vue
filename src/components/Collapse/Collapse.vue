@@ -18,8 +18,7 @@
 </template>
 
 <script lang="ts">
-import { useGroupEmitter, useUuid } from '~/composables'
-
+import { useGroupEmitter, useUuid } from '../../composables'
 export default defineComponent({
   props: {
     theme: {

@@ -1,6 +1,6 @@
 @layer components {
   .vuwi {
-    &-contents {
+    &-content {
       @apply w-full mx-auto max-w-4xl;
     }
     &-text {

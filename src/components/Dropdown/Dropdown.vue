@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { useField } from 'vee-validate'
-import { useUuid } from '~/composables'
+import { useUuid } from '../../composables'
 
 type Option = { label: string; value: string | number }
 

@@ -5,8 +5,8 @@ const showWindow = ref(false)
 const showToast = ref(false)
 const showDrawer = ref(false)
 const text = ref('This is a test')
-const photo =
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+const photo
+  = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 const selectedValue = ref('yes')
 const selectOptions = [
   { label: 'Yes', value: 'yes' },
@@ -113,7 +113,9 @@ const tooltipPlacement = ref('right')
         <Line />
         <div class="vuwi-content p-3 space-y-4">
           <div class="vuwi-alert" role="alert">
-            <div class="p-3">Default alert message...</div>
+            <div class="p-3">
+              Default alert message...
+            </div>
           </div>
           <Switch v-model="showAlert">
             <span class="ml-2">Show Alert (with Transition)</span>
@@ -124,7 +126,9 @@ const tooltipPlacement = ref('right')
               class="vuwi-alert bg-red-700 text-white"
               role="alert"
             >
-              <div class="p-3">Insert alert message here...</div>
+              <div class="p-3">
+                Insert alert message here...
+              </div>
               <button
                 class="vuwi-btn vuwi-btn-icon mr-2"
                 @click="showAlert = false"
@@ -154,11 +158,21 @@ const tooltipPlacement = ref('right')
             Button Link
           </div>
           <div class="flex flex-wrap items-center gap-4">
-            <button class="vuwi-btn vuwi-btn-xs">Extra Small</button>
-            <button class="vuwi-btn vuwi-btn-sm">Small</button>
-            <button class="vuwi-btn">Normal</button>
-            <button class="vuwi-btn vuwi-btn-lg">Large</button>
-            <button class="vuwi-btn vuwi-btn-xl">Extra Large</button>
+            <button class="vuwi-btn vuwi-btn-xs">
+              Extra Small
+            </button>
+            <button class="vuwi-btn vuwi-btn-sm">
+              Small
+            </button>
+            <button class="vuwi-btn">
+              Normal
+            </button>
+            <button class="vuwi-btn vuwi-btn-lg">
+              Large
+            </button>
+            <button class="vuwi-btn vuwi-btn-xl">
+              Extra Large
+            </button>
           </div>
 
           <div
@@ -179,9 +193,15 @@ const tooltipPlacement = ref('right')
             <button class="vuwi-btn vuwi-btn-xs vuwi-btn-primary">
               Extra Small
             </button>
-            <button class="vuwi-btn vuwi-btn-sm vuwi-btn-primary">Small</button>
-            <button class="vuwi-btn vuwi-btn-primary">Normal</button>
-            <button class="vuwi-btn vuwi-btn-lg vuwi-btn-primary">Large</button>
+            <button class="vuwi-btn vuwi-btn-sm vuwi-btn-primary">
+              Small
+            </button>
+            <button class="vuwi-btn vuwi-btn-primary">
+              Normal
+            </button>
+            <button class="vuwi-btn vuwi-btn-lg vuwi-btn-primary">
+              Large
+            </button>
             <button class="vuwi-btn vuwi-btn-xl vuwi-btn-primary">
               Extra Large
             </button>
@@ -209,7 +229,9 @@ const tooltipPlacement = ref('right')
             >
               Small
             </button>
-            <button class="vuwi-btn vuwi-btn-outline">Normal</button>
+            <button class="vuwi-btn vuwi-btn-outline">
+              Normal
+            </button>
             <button
               class="vuwi-btn vuwi-btn-lg vuwi-btn-outline vuwi-btn-primary"
             >
@@ -724,7 +746,9 @@ const tooltipPlacement = ref('right')
     @click:cancel="showToast = false"
     @click:confirm="showToast = false"
   >
-    <template #icon> ToastIcon </template>
+    <template #icon>
+      ToastIcon
+    </template>
   </Toast>
 </template>
 
