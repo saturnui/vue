@@ -1,0 +1,7 @@
+@layer components {
+  .vuwi {
+    &-line {
+      @apply border-t flex-grow border-black border-opacity-10 dark:border-white dark:border-opacity-20;
+    }
+  }
+}

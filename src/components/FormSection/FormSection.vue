@@ -1,19 +1,25 @@
 <template>
-  <Line v-if="line" class="py-4"></Line>
+  <div>
+    <Line v-if="line" class="py-4"></Line>
 
-  <div class="vuwi-form-section md:grid lg:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="vuwi-form-section-title">{{ title }}</h3>
-        <p class="vuwi-form-section-desc">{{ desc }}</p>
+    <div class="vuwi-form-section vuwi-text md:grid lg:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="vuwi-form-section-title">
+            {{ title }}
+          </h3>
+          <p class="vuwi-form-section-desc">
+            {{ desc }}
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="mt-5 md:mt-0 md:col-span-2">
-      <div class="shadow sm:rounded-md sm:overflow-hidden">
-        <div class="vuwi-form-section-card-content">
-          <div class="grid grid-cols-3 gap-4">
-            <div class="col-span-6 sm:col-span-4">
-              <slot></slot>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+          <div class="vuwi-card px-4 py-5">
+            <div class="grid grid-cols-3 gap-4">
+              <div class="col-span-6 sm:col-span-4">
+                <slot></slot>
+              </div>
             </div>
           </div>
         </div>
