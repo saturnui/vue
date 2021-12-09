@@ -1,0 +1,20 @@
+@layer components {
+  .vuwi {
+    &-drawer {
+      @apply fixed 
+      top-0 left-0 
+      h-full overflow-x-hidden overflow-y-auto 
+      transition-transform origin-left transform w-75 
+      -translate-x-full lg:translate-x-0;
+    };
+    &-drawer.responsive {
+      @apply w-16 xl:w-75
+    };
+    &-drawer.mini {
+      @apply w-16
+    };
+    &-drawer.show {
+      @apply w-95 filter drop-shadow-xl
+    };
+  }
+}
