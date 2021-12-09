@@ -1,9 +1,5 @@
 @layer components {
   .vuwi {
-    &-collapse {
-      @apply overflow-hidden;
-    }
-
     &-collapse ~ &-collapse {
       margin-top: 1px;
     }
