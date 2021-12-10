@@ -42,7 +42,7 @@ export default defineComponent({
     let off: any
 
     const transitionName = computed(() => {
-      return `${props.theme}-${props.position}`
+      return `${props.theme}-overlay-${props.position}`
     })
 
     const positionClass = computed(() => {
