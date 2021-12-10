@@ -1,7 +1,7 @@
 @layer components {
   .vuwi {
     &-window {
-      @apply rounded pt-5 overflow-hidden overflow-y-auto bg-white dark:bg-gray-800;
+      @apply rounded pt-5 overflow-hidden overflow-y-auto bg-white dark:bg-dark-800;
       &:before {
         content: '';
         box-shadow: 1.4em 0, 2.8em 0, 4.2em 0;
