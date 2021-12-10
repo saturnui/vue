@@ -1,12 +1,12 @@
 <template>
-  <div class="vuwi-textfield" :class="customClass">
+  <div :class="customClass">
     <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
         <label
           v-if="errorLabel"
           :for="name"
-          class="vuwi-textfield-error"
+          class="textfield-error"
         >{{ label }} {{ errorLabel }}</label>
         <label
           v-else
@@ -30,17 +30,18 @@
     <slot></slot>
     <tabler-check
       v-if="valid || (rules && meta.valid && meta.validated)"
-      class="vuwi-textfield-check"
+      class="textfield-check"
     />
     <div
       v-else-if="loading"
-      class="vuwi-spinner w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent"
+      :class="`${theme}-spinner`"
+      class="textfield-spinner"
       role="status"
     >
       <span class="sr-only">Busy...</span>
     </div>
     <span v-else-if="required" class="text-2xl">
-      <tabler-check class="vuwi-textfield-required" />
+      <tabler-check class="textfield-required" />
     </span>
   </div>
 </template>
@@ -51,6 +52,10 @@ import { useUuid } from '../../composables'
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     autocomplete: {
       type: String,
       default: '',
@@ -111,8 +116,8 @@ export default defineComponent({
       (val: string | number) => (inputValue.value = val),
     )
     const customClass = computed(() => {
-      let cls = 'border-red-600 text-red-600'
-      if (meta.valid || !meta.validated) cls = 'focus-within:border-primary focus-within:!border-opacity-100 text-primary'
+      let cls = `${props.theme}-textfield border-red-600 text-red-600`
+      if (meta.valid || !meta.validated) cls = `${props.theme}-textfield focus-within:border-primary focus-within:!border-opacity-100 text-primary`
       if (props.disabled) cls += ' disabled'
 
       return cls

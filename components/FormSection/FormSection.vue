@@ -1,25 +1,21 @@
 <template>
-  <div>
-    <Line v-if="line" class="py-4"></Line>
-
-    <div class="vuwi-form-section vuwi-text md:grid lg:grid-cols-3 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="vuwi-form-section-title">
-            {{ title }}
-          </h3>
-          <p class="vuwi-form-section-desc">
-            {{ desc }}
-          </p>
+  <div :class="`${theme}-form-section`">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <div class="form-section-title">
+          <span class="form-section-title">{{ title }}</span>
+        </div>
+        <div class="form-section-desc">
+          <span class="form-section-desc">{{ desc }}</span>
         </div>
       </div>
-      <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="vuwi-card px-4 py-5">
-            <div class="grid grid-cols-3 gap-4">
-              <div class="col-span-6 sm:col-span-4">
-                <slot></slot>
-              </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <div class="shadow sm:rounded-md sm:overflow-hidden">
+        <div class="vuwi-card px-4 py-5">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col-span-6 sm:col-span-4">
+              <slot></slot>
             </div>
           </div>
         </div>
@@ -31,9 +27,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    line: {
-      type: Boolean,
-      default: true,
+    theme: {
+      type: String,
+      default: 'vuwi',
     },
     title: {
       type: String,

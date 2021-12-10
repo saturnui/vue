@@ -1,10 +1,10 @@
 <template>
-  <div :class="vuwiClass">
+  <div :class="`${theme}-collapse`">
     <div role="button" @click="toggle">
       <slot name="header" :open="open"></slot>
     </div>
     <transition
-      :name="vuwiClass"
+      :name="`${theme}-collapse`"
       @enter="start"
       @after-enter="end"
       @before-leave="start"
@@ -21,9 +21,9 @@
 import { useGroupEmitter, useUuid } from '../../composables'
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-collapse',
+      default: 'vuwi',
     },
     group: {
       type: String,

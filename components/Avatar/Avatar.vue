@@ -1,5 +1,5 @@
 <template>
-  <div :class="vuwiClass">
+  <div :class="`${theme}-avatar`">
     <img v-if="photo" :src="photo" :alt="name" />
     <div v-else-if="name" class="initial">
       {{ initial }}
@@ -10,9 +10,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-avatar',
+      default: 'vuwi',
     },
     photo: {
       type: String,

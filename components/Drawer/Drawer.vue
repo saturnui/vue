@@ -7,9 +7,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-drawer',
+      default: 'vuwi',
     },
     modelValue: {
       type: Boolean,
@@ -23,7 +23,7 @@ export default defineComponent({
     }, 200)
 
     const computedClass = computed(() => {
-      let c = props.vuwiClass
+      let c = `${props.theme}-drawer`
       if (props.modelValue) c += ' !translate-x-0 show'
       return c
     })

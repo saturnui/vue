@@ -1,12 +1,12 @@
 <template>
-  <div class="vuwi-textarea" :class="customClass">
+  <div :class="computedClass">
     <slot name="prepend"></slot>
     <div class="flex-grow">
       <div class="absolute top-1 pointer-events-none">
         <label
           v-if="errorLabel"
           :for="name"
-          class="vuwi-textarea-error"
+          class="textarea-error"
         >{{ label }} {{ errorLabel }}</label>
         <label v-else :for="name" class="block text-sm font-medium mb-1 text-gray-400">{{ label }}</label>
       </div>
@@ -25,17 +25,18 @@
     <slot></slot>
     <tabler-check
       v-if="valid || (rules && meta.valid && meta.validated)"
-      class="vuwi-textarea-check"
+      class="textarea-check"
     />
     <div
       v-else-if="loading"
-      class="vuwi-spinner w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent"
+      :class="`${theme}-spinner`"
+      class="w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent"
       role="status"
     >
       <span class="sr-only">Busy...</span>
     </div>
     <span v-else-if="required" class="text-2xl">
-      <tabler-check class="vuwi-textfield-required" />
+      <tabler-check class="textfield-required" />
     </span>
   </div>
 </template>
@@ -45,6 +46,10 @@ import { useField } from 'vee-validate'
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     autocomplete: {
       type: String,
       default: '',
@@ -120,8 +125,8 @@ export default defineComponent({
       return props.error || errorMessage.value
     })
 
-    const customClass = computed(() => {
-      let cls = 'border-red-600 text-red-600'
+    const computedClass = computed(() => {
+      let cls = `${props.theme}-textarea border-red-600 text-red-600`
       if (meta.valid || !meta.validated) cls = 'focus-within:border-primary focus-within:!border-opacity-100 text-primary'
       if (props.disabled) cls += ' disabled'
 
@@ -129,7 +134,7 @@ export default defineComponent({
     })
 
     return {
-      customClass,
+      computedClass,
       errorLabel,
       handleChange,
       handleBlur,

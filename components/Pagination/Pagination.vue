@@ -1,6 +1,10 @@
 <script lang="ts">
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     visible: {
       type: Number,
       default: 0,
@@ -88,31 +92,31 @@ export default defineComponent({
 
 <template>
   <nav
-    class="vuwi-pagination vuwi-pagination-sm"
+    :class="`${theme}-pagination`"
     role="navigation"
     aria-label="pagination"
   >
     <button
-      class="vuwi-pagination-nav-link left"
+      class="pagination-nav-link left"
       aria-label="Goto previous page"
       @click="prev"
     >
       <tabler-chevron-left class="icon"></tabler-chevron-left>
     </button>
     <span v-for="(i, index) in values" :key="index">
-      <button v-if="i === '...'" disabled class="vuwi-pagination-link">
+      <button v-if="i === '...'" disabled class="pagination-link">
         {{ i }}
       </button>
       <button
         v-else
-        class="vuwi-pagination-link w-10"
-        :class="{ 'vuwi-pagination-link-active': i === modelValue }"
+        class="pagination-link w-10"
+        :class="{ 'pagination-link-active': i === modelValue }"
         @click="value(i)"
       >
         {{ i + 1 }}
       </button>
     </span>
-    <button class="vuwi-pagination-nav-link" @click="next">
+    <button class="pagination-nav-link" @click="next">
       <tabler-chevron-right class="icon"></tabler-chevron-right>
     </button>
   </nav>

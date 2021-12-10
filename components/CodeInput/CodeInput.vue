@@ -1,9 +1,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-code-input',
+      default: 'vuwi',
     },
     modelValue: {
       type: String,
@@ -106,7 +106,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="root" :class="vuwiClass">
+  <div ref="root" :class="`${theme}-code-input`">
     <div v-for="(k, i) in patternList" :key="i">
       <div v-if="k === '-'" class="code-input-break"></div>
       <input

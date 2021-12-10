@@ -52,9 +52,9 @@ type Option = { label: string; value: string | number }
 
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-dropdown',
+      default: 'vuwi',
     },
     name: {
       type: String,
@@ -109,7 +109,7 @@ export default defineComponent({
       initialValue: props.modelValue,
     })
     const computedClass = computed(() => {
-      const c = props.vuwiClass
+      const c = `${props.theme}-dropdown`
       // TODO: Move this to .css file
       if (meta.valid || !meta.validated)
         return `${c} focus-within:border-primary text-primary`

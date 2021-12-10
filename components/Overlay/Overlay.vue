@@ -1,7 +1,7 @@
 <template>
   <div>
-    <transition name="vuwi-fade">
-      <div v-if="modelValue" class="vuwi-overlay"></div>
+    <transition :name="`${theme}-overlay`">
+      <div v-if="modelValue" :class="`${theme}-overlay`"></div>
     </transition>
 
     <transition :name="transitionName">
@@ -18,6 +18,10 @@ import { ref, nextTick } from 'vue-demi'
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     modelValue: {
       type: Boolean,
       default: false,
@@ -38,11 +42,11 @@ export default defineComponent({
     let off: any
 
     const transitionName = computed(() => {
-      return `vuwi-${props.position}`
+      return `${props.theme}-${props.position}`
     })
 
     const positionClass = computed(() => {
-      return `vuwi-overlay-${props.position}`
+      return `${props.theme}-overlay-${props.position}`
     })
 
     watch(

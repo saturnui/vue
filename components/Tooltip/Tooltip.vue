@@ -3,6 +3,10 @@ import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     target: {
       type: String,
       default: '',
@@ -60,7 +64,7 @@ export default defineComponent({
 <template>
   <div
     ref="component"
-    class="vuwi-tooltip-target"
+    :class="`${theme}-tooltip-target`"
     aria-describedby="tooltip"
     @mouseenter="showTooltip"
     @mouseleave="hideTooltip"
@@ -70,10 +74,10 @@ export default defineComponent({
       v-if="showingTooltip"
       name="tooltip"
       role="tooltip"
-      class="vuwi-tooltip"
+      :class="`${theme}-tooltip`"
     >
       <slot name="tooltip"></slot>
-      <div class="vuwi-tooltip-arrow" data-popper-arrow></div>
+      <div :class="`${theme}-tooltip-arrow`" data-popper-arrow></div>
     </div>
   </div>
 </template>

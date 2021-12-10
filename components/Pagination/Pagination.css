@@ -2,25 +2,25 @@
   .vuwi {
     &-pagination {
       @apply flex items-center;
-    };
-    &-pagination-link {
-      @apply font-bold w-10 bg-transparent cursor-default;
-    };
-    &-pagination-link-active {
-      @apply bg-primary text-white rounded h-8 w-5;
-    };
-    &-pagination-nav-link {
-      @apply rounded mr-2;
-      .icon {
-        @apply h-5 w-5;
+      .pagination-link {
+        @apply font-bold w-10 bg-transparent cursor-default;
       }
-      &.left {
-        @apply mr-2;
+      .pagination-link-active {
+        @apply bg-primary text-white rounded h-8 w-5;
       }
-      &.right {
-        @apply ml-2;
+      .pagination-nav-link {
+        @apply rounded mr-2;
         .icon {
-          @apply transform rotate-180;
+          @apply h-5 w-5;
+        }
+        &.left {
+          @apply mr-2;
+        }
+        &.right {
+          @apply ml-2;
+          .icon {
+            @apply transform rotate-180;
+          }
         }
       }
     }

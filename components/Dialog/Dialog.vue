@@ -1,5 +1,5 @@
 <template>
-  <div :class="vuwiClass" class="vuwi-light-dark">
+  <div :class="`${theme}-dialog ${theme}-light-dark`">
     <div class="p-2 flex items-center ">
       <div class="flex-grow">
         <slot name="title"></slot>
@@ -20,9 +20,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    vuwiClass: {
+    theme: {
       type: String,
-      default: 'vuwi-dialog',
+      default: 'vuwi',
     },
   },
   emits: ['close'],

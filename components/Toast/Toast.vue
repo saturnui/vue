@@ -1,6 +1,6 @@
 <template>
-  <transition name="vuwi-toast">
-    <div v-if="modelValue" class="vuwi-toast">
+  <transition :name="`${theme}-toast`">
+    <div v-if="modelValue" :class="`${theme}-toast`">
       <slot />
       <slot name="action" />
     </div>
@@ -10,6 +10,10 @@
 <script lang="ts">
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     modelValue: {
       type: Boolean,
       default: false,

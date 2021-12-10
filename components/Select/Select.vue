@@ -1,5 +1,5 @@
 <template>
-  <div class="vuwi-select" :class="customClass">
+  <div :class="computedClass">
     <slot name="prepend">
     </slot>
     <div class="flex-grow">
@@ -63,6 +63,10 @@ type Option = { label: string; value: string | number }
 
 export default defineComponent({
   props: {
+    theme: {
+      type: String,
+      default: 'vuwi',
+    },
     name: {
       type: String,
       required: true,
@@ -112,8 +116,8 @@ export default defineComponent({
         initialValue: props.modelValue,
       },
     )
-    const customClass = computed(() => {
-      let cls = ''
+    const computedClass = computed(() => {
+      let cls = `${props.theme}-select`
       if (props.disabled)
         cls += 'disabled'
 
@@ -139,13 +143,12 @@ export default defineComponent({
     //   emit('update:modelValue', target.value)
     // }
     return {
-      // customStyle,
       handleChange,
       handleBlur,
       errorLabel,
       value,
       meta,
-      customClass,
+      computedClass,
     }
   },
 })
