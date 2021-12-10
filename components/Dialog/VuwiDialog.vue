@@ -11,7 +11,7 @@
         <tabler-x class="h-6 w-6" />
       </button>
     </div>
-    <Line />
+    <VuwiLine />
     <slot></slot>
     <slot name="actions"></slot>
   </div>

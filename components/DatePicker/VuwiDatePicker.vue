@@ -58,13 +58,13 @@
             :class="placement ? 'place-left' : 'place-right'"
           >
             <div class="flex flex-wrap lg:flex-nowrap">
-              <picker-shortcut
+              <vuwi-date-picker-calendar
                 v-if="shortcuts"
                 :shortcuts="shortcuts"
                 :as-range="asRange()"
                 :as-single="asSingle"
                 :i18n="options.shortcuts"
-              ></picker-shortcut>
+              ></vuwi-date-picker-calendar>
               <!--          Calendar-->
               <div class="relative flex flex-wrap sm:flex-nowrap p-1">
                 <div
@@ -79,30 +79,30 @@
                   class="relative w-full sm:w-80"
                   :class="{ 'mb-3 sm:mb-0 sm:mr-2': asRange() && !asSingle }"
                 >
-                  <picker-header
+                  <vuwi-date-picker-header
                     :panel="panel.previous"
                     :calendar="calendar.previous"
-                  ></picker-header>
+                  ></vuwi-date-picker-header>
                   <div class="px-0.5 sm:px-2">
-                    <picker-month
+                    <vuwi-date-picker-month
                       v-show="panel.previous.month"
                       :months="months"
                       @update:month="calendar.previous.setMount"
-                    ></picker-month>
-                    <picker-year
+                    ></vuwi-date-picker-month>
+                    <vuwi-date-picker-year
                       v-show="panel.previous.year"
                       :years="calendar.previous.years()"
                       @update:year="calendar.previous.setYear"
-                    ></picker-year>
+                    ></vuwi-date-picker-year>
                     <!--                Calendar-->
                     <div v-show="panel.previous.calendar">
-                      <picker-week :weeks="weeks"></picker-week>
-                      <picker-calendar
+                      <vuwi-date-picker-week :weeks="weeks"></vuwi-date-picker-week>
+                      <vuwi-date-picker-calendar
                         :calendar="calendar.previous"
                         :weeks="weeks"
                         :as-range="asRange()"
                         @update:date="setDate"
-                      ></picker-calendar>
+                      ></vuwi-date-picker-calendar>
                     </div>
                   </div>
                 </div>
@@ -112,33 +112,33 @@
                   v-if="asRange() && !asSingle"
                   class="relative w-full sm:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
                 >
-                  <picker-header
+                  <vuwi-date-picker-header
                     as-prev-or-next
                     :panel="panel.next"
                     :calendar="calendar.next"
-                  ></picker-header>
+                  ></vuwi-date-picker-header>
                   <div class="px-0.5 sm:px-2">
-                    <picker-month
+                    <vuwi-date-picker-month
                       v-show="panel.next.month"
                       :months="months"
                       @update:month="calendar.next.setMount"
-                    ></picker-month>
-                    <picker-year
+                    ></vuwi-date-picker-month>
+                    <vuwi-date-picker-year
                       v-show="panel.next.year"
                       as-prev-or-next
                       :years="calendar.next.years()"
                       @update:year="calendar.next.setYear"
-                    ></picker-year>
+                    ></vuwi-date-picker-year>
                     <!--                Calendar-->
                     <div v-show="panel.next.calendar">
-                      <picker-week :weeks="weeks"></picker-week>
-                      <picker-calendar
+                      <vuwi-date-picker-week :weeks="weeks"></vuwi-date-picker-week>
+                      <vuwi-date-picker-calendar
                         as-prev-or-next
                         :calendar="calendar.next"
                         :weeks="weeks"
                         :as-range="asRange()"
                         @update:date="setDate"
-                      ></picker-calendar>
+                      ></vuwi-date-picker-calendar>
                     </div>
                   </div>
                 </div>
@@ -208,13 +208,6 @@ import {
   useVisibleViewport,
 } from './helpers/fn'
 
-import PickerHeader from './components/Header.vue'
-import PickerMonth from './components/Month.vue'
-import PickerWeek from './components/Week.vue'
-import PickerYear from './components/Year.vue'
-import PickerCalendar from './components/Calendar.vue'
-import PickerShortcut from './components/Shortcut.vue'
-
 dayjs.extend(localeData)
 dayjs.extend(localizedFormat)
 dayjs.extend(customParseFormat)
@@ -223,14 +216,6 @@ dayjs.extend(isBetween)
 dayjs.extend(duration)
 
 export default /* #__PURE__ */ defineComponent({
-  components: {
-    PickerHeader,
-    PickerMonth,
-    PickerWeek,
-    PickerYear,
-    PickerCalendar,
-    PickerShortcut,
-  },
   directives: {
     vuwi: {
       mounted: (el, binding) => {

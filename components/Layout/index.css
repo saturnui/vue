@@ -1,7 +1,7 @@
-@import "./Center.css";
-@import "./Column.css";
-@import "./Container.css";
-@import "./Content.css";
-@import "./Transitions.css";
-@import "./Main.css";
-@import "./Row.css";
+@import "./VuwiCenter.css";
+@import "./VuwiColumn.css";
+@import "./VuwiContainer.css";
+@import "./VuwiContent.css";
+@import "./VuwiTransitions.css";
+@import "./VuwiMain.css";
+@import "./VuwiRow.css";

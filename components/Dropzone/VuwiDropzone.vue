@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { FileDropEvent } from './FileDropElement'
+import { FileDropEvent } from './VuwiFileDropElement'
 
 export default defineComponent({
   emits: ['change'],
