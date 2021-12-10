@@ -27,7 +27,7 @@
           <button
             v-if="!disableInput"
             type="button"
-            class="px-2 py-1 mr-1 focus:outline-none text-gray-400 dark:text-opacity-70 rounded-md"
+            class="flex justify-center align-center px-2 py-1 mr-1 focus:outline-none text-gray-400 dark:text-opacity-70 rounded-md"
             @click="pickerValue ? clearPicker() : pickerInputRef.focus()"
           >
             <tabler-x v-if="pickerValue" />
