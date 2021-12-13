@@ -1,25 +1,25 @@
 @layer components {
   .vuwi {
     &-border-weakest {
-      @apply border border-black border-opacity-1 dark:border-white dark:border-opacity-5;
+      @apply border-black border-opacity-1 dark:border-white dark:border-opacity-5;
     }
     &-border-weaker {
-      @apply border border-black border-opacity-5 dark:border-white dark:border-opacity-6;
+      @apply border-black border-opacity-5 dark:border-white dark:border-opacity-6;
     }
     &-border-weak {
-      @apply border border-black border-opacity-8 dark:border-white dark:border-opacity-8;
+      @apply border-black border-opacity-8 dark:border-white dark:border-opacity-8;
     }
     &-border {
-      @apply border border-black border-opacity-10 dark:border-white dark:border-opacity-10;
+      @apply border-black border-opacity-10 dark:border-white dark:border-opacity-10;
     }
     &-border-strong {
-      @apply border border-black border-opacity-15 dark:border-white dark:border-opacity-15;
+      @apply border-black border-opacity-15 dark:border-white dark:border-opacity-15;
     }
     &-border-stronger {
-      @apply border border-black border-opacity-20 dark:border-white dark:border-opacity-20;
+      @apply border-black border-opacity-20 dark:border-white dark:border-opacity-20;
     }
     &-border-strongest {
-      @apply border border-black border-opacity-25 dark:border-white dark:border-opacity-25;
+      @apply border-black border-opacity-25 dark:border-white dark:border-opacity-25;
     }
     &-shade-weakest {
       @apply bg-white !bg-opacity-5 dark:bg-black dark:!bg-opacity-1;

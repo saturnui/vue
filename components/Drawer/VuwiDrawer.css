@@ -7,6 +7,9 @@
     &-drawer-autohide {
       @apply hidden lg:block
     }
+    &-drawer-autohide-xl {
+      @apply hidden xl:block
+    }
     &-drawer-responsive {
       @apply min-w-16 max-w-16 xl:min-w-75 xl:max-w-75;
     }
@@ -28,6 +31,9 @@
     /* Right Drawer */
     &-drawer-right  {
       @apply lg:mr-75;
+    }
+    &-drawer-right-xl  {
+      @apply xl:mr-75;
     }
     &-drawer-right ~ &-drawer-resposive {
       @apply min-w-16 max-w-16 xl:min-w-75 xl:max-w-75;
