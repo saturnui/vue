@@ -1,13 +1,10 @@
 @layer components {
   .vuwi {
     &-alert {
-      @apply flex
-        justify-between
-        items-center
-        rounded
-        mb-2;
+      @apply flex justify-between items-center rounded mb-2;
     }
 
+    /* Transition */
     &-alert-enter-active {
       transition: all 0.2s ease-out;
     }

@@ -12,7 +12,7 @@
         focus:ring-offset-1;
     }
     &-btn-xs {
-      @apply px-1 font-medium rounded-md
+      @apply px-2 font-medium rounded-md
         leading-0
         text-xs
         h-5

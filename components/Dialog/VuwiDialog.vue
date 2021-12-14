@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${theme}-dialog ${theme}-light-dark`">
+  <div :class="`${theme}-dialog ${theme}-card`">
     <div class="p-2 flex items-center ">
       <div class="flex-grow">
         <slot name="title"></slot>
