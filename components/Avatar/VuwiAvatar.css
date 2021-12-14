@@ -2,7 +2,7 @@
   .vuwi {
     &-avatar {
       @apply w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 text-xl font-bold;
-      .initial {
+      > * {
         @apply w-full h-full flex justify-center items-center;
       }
     }

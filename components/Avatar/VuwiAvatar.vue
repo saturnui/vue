@@ -1,7 +1,7 @@
 <template>
   <div :class="`${theme}-avatar`">
     <img v-if="photo" :src="photo" :alt="name" />
-    <div v-else-if="name" class="initial">
+    <div v-else-if="name">
       {{ initial }}
     </div>
   </div>
