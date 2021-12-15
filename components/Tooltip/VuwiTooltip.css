@@ -5,7 +5,11 @@
     }
 
     &-tooltip {
-      @apply inline-block bg-black bg-opacity-90 text-white font-bold rounded-lg z-50;
+      @apply relative inline-block z-50;
+    }
+    
+    &-tooltip&-tooltip-card {
+      @apply flex items-center gap-2 px-3 py-2 text-sm bg-black bg-opacity-90 text-white font-semibold rounded-lg;
     }
 
     &-tooltip-arrow,

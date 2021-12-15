@@ -3,5 +3,8 @@
     &-card {
       @apply bg-white dark:bg-dark-800 dark:text-light-800;
     }
+    &-card-inverted {
+      @apply bg-dark-800 text-light-800 dark:bg-white dark:text-dark-600;
+    }
   }
 }

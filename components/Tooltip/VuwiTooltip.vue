@@ -9,7 +9,7 @@ export default defineComponent({
     },
     placement: {
       type: String,
-      default: 'right',
+      default: 'bottom',
     },
     delayShow: {
       type: Number,
@@ -18,6 +18,17 @@ export default defineComponent({
     delayHide: {
       type: Number,
       default: 2000,
+    },
+    tooltipClass: {
+      type: String,
+      default: 'vuwi-tooltip-card',
+    },
+    show: {
+      type: [String, Boolean],
+      validator: (val: 'auto' | true) => {
+        return ['auto', true].includes(val)
+      },
+      default: 'auto',
     },
   },
   setup(props) {
@@ -28,13 +39,15 @@ export default defineComponent({
     let popper: { destroy: any } | null
 
     const hideTooltip = () => {
-      if (popper) {
-        popper.destroy()
-        popper = null
+      if (props.show !== true) {
+        if (popper) {
+          popper.destroy()
+          popper = null
+        }
+        showingTooltip.value = false
+        clearTimeout(timer)
+        document.removeEventListener('mousedown', hideTooltip)
       }
-      showingTooltip.value = false
-      clearTimeout(timer)
-      document.removeEventListener('mousedown', hideTooltip)
     }
 
     const _showTooltip = () => {
@@ -63,6 +76,14 @@ export default defineComponent({
       timer = setTimeout(_showTooltip, props.delayShow)
     }
 
+    watch(() => props.show, (val) => {
+      if (val === true)
+        _showTooltip()
+
+      else
+        hideTooltip()
+    }, { immediate: true })
+
     onBeforeUnmount(hideTooltip)
 
     return {
@@ -76,15 +97,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    ref="component"
-    :class="`${theme}-tooltip-target`"
-    aria-describedby="tooltip"
-    @mouseenter="showTooltip"
-    @mouseleave="hideTooltip"
-  >
-    <slot></slot>
-    <div v-if="showingTooltip" name="tooltip" role="tooltip" :class="`${theme}-tooltip`">
+  <div ref="component" :class="`${theme}-tooltip-target`" aria-describedby="tooltip">
+    <span @mouseenter="showTooltip" @mouseleave="hideTooltip">
+      <slot></slot>
+    </span>
+    <div
+      v-if="showingTooltip"
+      name="tooltip"
+      role="tooltip"
+      :class="`${theme}-tooltip ${tooltipClass}`"
+    >
       <slot name="tooltip"></slot>
       <div :class="`${theme}-tooltip-arrow`" data-popper-arrow></div>
     </div>
