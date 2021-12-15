@@ -7,25 +7,37 @@ export default defineComponent({
       type: String,
       default: 'vuwi',
     },
-    target: {
-      type: String,
-      default: '',
-    },
     placement: {
       type: String,
       default: 'right',
+    },
+    delayShow: {
+      type: Number,
+      default: 300,
+    },
+    delayHide: {
+      type: Number,
+      default: 2000,
     },
   },
   setup(props) {
     const component = ref()
     const showingTooltip = ref(false)
+    let timer: any
 
-    let popper: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      destroy: any
-    } | null
+    let popper: { destroy: any } | null
 
-    const showTooltip = () => {
+    const hideTooltip = () => {
+      if (popper) {
+        popper.destroy()
+        popper = null
+      }
+      showingTooltip.value = false
+      clearTimeout(timer)
+      document.removeEventListener('mousedown', hideTooltip)
+    }
+
+    const _showTooltip = () => {
       showingTooltip.value = true
       nextTick(() => {
         const tooltipEl = component.value.querySelector('[name="tooltip"]')
@@ -41,15 +53,17 @@ export default defineComponent({
           ],
         })
       })
+      setTimeout(() => {
+        document.addEventListener('mousedown', hideTooltip)
+      })
+      timer = setTimeout(hideTooltip, props.delayHide)
     }
 
-    const hideTooltip = () => {
-      if (popper) {
-        popper.destroy()
-        popper = null
-      }
-      showingTooltip.value = false
+    const showTooltip = () => {
+      timer = setTimeout(_showTooltip, props.delayShow)
     }
+
+    onBeforeUnmount(hideTooltip)
 
     return {
       component,
@@ -70,12 +84,7 @@ export default defineComponent({
     @mouseleave="hideTooltip"
   >
     <slot></slot>
-    <div
-      v-if="showingTooltip"
-      name="tooltip"
-      role="tooltip"
-      :class="`${theme}-tooltip`"
-    >
+    <div v-if="showingTooltip" name="tooltip" role="tooltip" :class="`${theme}-tooltip`">
       <slot name="tooltip"></slot>
       <div :class="`${theme}-tooltip-arrow`" data-popper-arrow></div>
     </div>
