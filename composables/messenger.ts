@@ -1,6 +1,6 @@
 import { useEmitter } from './emitter'
 
-export type Message = { text: string; icon?: string }
+export type Message = { type?: string; text: string; icon?: string }
 
 const emitter = useEmitter()
 const ADD_MESSAGE = 'snackbar:add_message'

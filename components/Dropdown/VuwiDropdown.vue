@@ -1,5 +1,5 @@
 <template>
-  <div :class="computedClass">
+  <div class="vuwi-text" :class="computedClass">
     <slot name="prepend"></slot>
     <div class="flex-grow" :class="{ label: label || errorLabel }">
       <div class="absolute top-1 pointer-events-none px-3">
@@ -12,7 +12,7 @@
         <label
           v-else-if="label"
           :for="name"
-          class="block font-medium mb-1 text-gray-500"
+          class="block font-medium mb-1"
           style="font-size: 11px"
         >{{ label }}</label>
       </div>
@@ -32,7 +32,7 @@
     </div>
     <slot></slot>
     <div v-if="loading">
-      <div class="spinner w-5 h-5 text-gray-300" role="status">
+      <div class="spinner w-5 h-5" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
@@ -112,7 +112,7 @@ export default defineComponent({
       const c = `${props.theme}-dropdown`
       // TODO: Move this to .css file
       if (meta.valid || !meta.validated)
-        return `${c} focus-within:border-primary text-primary`
+        return `${c} focus-within:border-primary`
       // TODO: Move this to .css file
       return `${c} border-red-600 text-red-600`
     })

@@ -5,13 +5,9 @@
       flex
       gap-2
       items-center
-      border border-gray-200
-      bg-white
       rounded
       pr-2
-      py-1
-      dark:border-gray-600
-      dark:bg-gray-800;
+      py-1;
 
       select {
         @apply bg-transparent 
@@ -19,8 +15,7 @@
         py-1 
         w-full 
         px-2 
-        text-black 
-      dark:text-white;
+        ;
         &.label {
           @apply pt-4;
         }
