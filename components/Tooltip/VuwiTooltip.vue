@@ -39,13 +39,13 @@ export default defineComponent({
     let popper: { destroy: any } | null
 
     const hideTooltip = () => {
+      clearTimeout(timer)
       if (props.show !== true) {
         if (popper) {
           popper.destroy()
           popper = null
         }
         showingTooltip.value = false
-        clearTimeout(timer)
         document.removeEventListener('mousedown', hideTooltip)
       }
     }
@@ -66,13 +66,11 @@ export default defineComponent({
           ],
         })
       })
-      setTimeout(() => {
-        document.addEventListener('mousedown', hideTooltip)
-      })
       timer = setTimeout(hideTooltip, props.delayHide)
     }
 
     const showTooltip = () => {
+      document.addEventListener('mousedown', hideTooltip)
       timer = setTimeout(_showTooltip, props.delayShow)
     }
 
