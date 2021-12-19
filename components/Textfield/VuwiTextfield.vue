@@ -1,19 +1,8 @@
 <template>
   <div :class="customClass">
-    <slot name="prepend"></slot>
+    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
     <div class="flex-grow">
-      <div class="absolute top-1 pointer-events-none">
-        <label
-          v-if="errorLabel"
-          :for="name"
-          class="textfield-error"
-        >{{ label }} {{ errorLabel }}</label>
-        <label
-          v-else
-          :for="name"
-          class="block text-sm font-medium mb-1 text-black dark:text-white text-opacity-40 dark:text-opacity-40"
-        >{{ label }}</label>
-      </div>
+      <label :for="name" :class="`${theme}-textfield-label`">{{ inputLabel }}</label>
       <input
         v-maska="mask"
         :name="name"
@@ -27,22 +16,7 @@
         @blur="handleBlur"
       />
     </div>
-    <slot></slot>
-    <tabler-check
-      v-if="valid || (rules && meta.valid && meta.validated)"
-      class="textfield-check"
-    />
-    <div
-      v-else-if="loading"
-      :class="`${theme}-spinner`"
-      class="textfield-spinner"
-      role="status"
-    >
-      <span class="sr-only">Busy...</span>
-    </div>
-    <span v-else-if="required" class="text-2xl">
-      <tabler-check class="textfield-required" />
-    </span>
+    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
   </div>
 </template>
 
@@ -58,9 +32,8 @@ export default defineComponent({
     },
     autocomplete: {
       type: String,
-      default: '',
+      default: 'off',
     },
-    loading: Boolean,
     disabled: Boolean,
     error: {
       type: String,
@@ -95,10 +68,6 @@ export default defineComponent({
       type: String,
       default: 'text',
     },
-    valid: {
-      type: Boolean,
-      default: false,
-    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -115,15 +84,20 @@ export default defineComponent({
       () => props.modelValue,
       (val: string | number) => (inputValue.value = val),
     )
+    const hasError = computed(() => {
+      return props.error || errorMessage.value
+    })
     const customClass = computed(() => {
-      let cls = `${props.theme}-textfield border-red-600 text-red-600`
-      if (meta.valid || !meta.validated) cls = `${props.theme}-textfield focus-within:border-primary focus-within:!border-opacity-100 text-primary`
+      let cls = `${props.theme}-textfield`
+      if (meta.valid || !meta.validated) cls = `${props.theme}-textfield`
       if (props.disabled) cls += ' disabled'
-
+      else if (hasError.value) cls += ` ${props.theme}-textfield-error`
       return cls
     })
-    const errorLabel = computed(() => {
-      return props.error || errorMessage.value
+    const inputLabel = computed(() => {
+      let val = props.label
+      if (hasError.value) val += ` ${props.error || errorMessage.value}`
+      return val
     })
     const handleInput = (evt: Event) => {
       const target = evt.target as HTMLInputElement
@@ -131,7 +105,8 @@ export default defineComponent({
     }
     return {
       customClass,
-      errorLabel,
+      inputLabel,
+      hasError,
       handleChange,
       handleBlur,
       handleInput,
