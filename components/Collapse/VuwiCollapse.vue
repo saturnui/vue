@@ -1,6 +1,6 @@
 <template>
   <div :class="`${theme}-collapse`">
-    <div role="button" @click="toggle">
+    <div class="relative" role="button" @click="toggle">
       <slot name="header" :open="open"></slot>
     </div>
     <transition
@@ -10,8 +10,10 @@
       @before-leave="start"
       @after-leave="end"
     >
-      <div v-show="open">
-        <slot></slot>
+      <div v-show="open" class="relative">
+        <div :class="position">
+          <slot></slot>
+        </div>
       </div>
     </transition>
   </div>
@@ -33,6 +35,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    slide: {
+      type: String,
+      default: 'down',
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -44,6 +50,7 @@ export default defineComponent({
 
     const id = useUuid()
     const open = ref(false)
+    const position = ref('')
 
     if (props.group) {
       const handler = (data: { id: string; active: boolean }) => {
@@ -75,11 +82,14 @@ export default defineComponent({
     const start = (element: Element) => {
       const el = element as HTMLElement
       el.style.height = `${el.scrollHeight}px`
+      if (props.slide === 'down') 
+        position.value = 'absolute bottom-0 w-full'
     }
 
     const end = (element: Element) => {
       const el = element as HTMLElement
       el.style.height = ''
+      position.value = ''
     }
 
     watch(
@@ -93,6 +103,7 @@ export default defineComponent({
     return {
       end,
       open,
+      position,
       start,
       toggle,
     }

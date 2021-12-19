@@ -19,14 +19,13 @@
     &-collapse-enter-active,
     &-collapse-leave-active {
       will-change: height, opacity;
-      transition: height 300ms ease, opacity 300ms ease;
+      transition: height 300ms ease;
       overflow: hidden;
     }
 
     &-collapse-enter-from,
     &-collapse-leave-to {
       height: 0 !important;
-      opacity: 0;
     }
   }
 }
