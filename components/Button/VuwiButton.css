@@ -1,7 +1,7 @@
 @layer components {
   .vuwi {
     &-btn {
-      @apply flex items-center justify-center cursor-pointer
+      @apply inline-flex items-center justify-center cursor-pointer
         px-4 font-medium rounded-md
         rounded transform duration-150 active:scale-90
         h-9
