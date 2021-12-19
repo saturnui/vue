@@ -5,7 +5,7 @@
     }
 
     &-tooltip {
-      @apply relative inline-block z-50;
+      @apply relative inline-block z-1;
     }
     
     &-tooltip&-tooltip-card {
