@@ -1,0 +1,44 @@
+@layer components {
+  .vuwi {
+    /* Toast right side / bottom on mobile */
+    /* &-toast { */
+      /* @apply fixed bottom-0 sm:rounded-lg sm:bottom-2 px-4 py-3; */
+    /* } */
+
+    &-toast-right {
+      @apply right-0 sm:right-2;
+    }
+
+    &-toast-left {
+      @apply left-0 sm:left-2;
+    }
+
+    &-toast-full {
+      @apply bottom-0 left-0 w-full rounded-none max-w-none;
+    }
+
+    /* Adjust toast if navbar */
+    &-toast-left&-toast-navbar {
+      @apply left-0 sm:left-2 lg:left-78
+    }
+
+    &-toast-right&-toast-sidenav {
+      @apply right-0 sm:right-2 lg:right-78
+    }
+
+    /* Transition */
+    &-toast-enter-active {
+      transition: all 0.2s ease-out;
+    }
+
+    &-toast-leave-active {
+      transition: all 0.2s ease-in;
+    }
+
+    &-toast-enter-from,
+    &-toast-leave-to {
+      margin-bottom: -20px;
+      opacity: 0;
+    }
+  }
+}

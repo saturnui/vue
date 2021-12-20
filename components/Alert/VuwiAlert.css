@@ -1,0 +1,22 @@
+@layer components {
+  .vuwi {
+    &-alert {
+      @apply flex justify-between items-center rounded mb-2;
+    }
+
+    /* Transition */
+    &-alert-enter-active {
+      transition: all 0.2s ease-out;
+    }
+
+    &-alert-leave-active {
+      transition: all 0.2s ease-in;
+    }
+
+    &-alert-enter-from,
+    &-alert-leave-to {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+  }
+}

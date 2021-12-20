@@ -1,0 +1,35 @@
+@layer components {
+  .vuwi {
+    &-textfield {
+      @apply relative flex gap-2 items-center rounded px-3
+      focus-within:border-primary focus-within:!border-opacity-100;
+
+      label {
+        @apply block text-xs mb-1 pointer-events-none text-black 
+        dark:text-white text-opacity-40 dark:text-opacity-40;
+        margin-bottom: -1px;
+      }
+
+      input {
+        @apply bg-transparent focus:outline-none w-full text-black dark:text-white;
+      }
+    }
+    
+    &-textfield-error {
+      @apply border-red-600 
+      focus-within:border-red-600 focus-within:!border-opacity-100;
+
+      label {
+        @apply text-red-600 dark:text-red-400 text-opacity-100 dark:text-opacity-100;
+      }
+    }
+
+    &-textfield-disabled {
+      @apply opacity-50;
+
+      label {
+        @apply text-black dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
+      }
+    }
+  }
+}

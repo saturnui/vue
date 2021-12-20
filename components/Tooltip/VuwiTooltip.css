@@ -1,0 +1,49 @@
+@layer components {
+  .vuwi {
+    &-tooltip-target {
+      display: inline-block;
+    }
+
+    &-tooltip {
+      @apply relative inline-block z-1;
+    }
+    
+    &-tooltip&-tooltip-card {
+      @apply flex items-center gap-2 px-3 py-2 text-sm bg-black bg-opacity-90 text-white font-semibold rounded-lg;
+    }
+
+    &-tooltip-arrow,
+    &-tooltip-arrow::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: inherit;
+    }
+
+    &-tooltip-arrow {
+      visibility: hidden;
+    }
+
+    &-tooltip-arrow::before {
+      visibility: visible;
+      content: '';
+      transform: rotate(45deg);
+    }
+
+    &-tooltip[data-popper-placement^='top'] > &-tooltip-arrow {
+      bottom: -4px;
+    }
+
+    &-tooltip[data-popper-placement^='bottom'] > &-tooltip-arrow {
+      top: -4px;
+    }
+
+    &-tooltip[data-popper-placement^='left'] > &-tooltip-arrow {
+      right: -4px;
+    }
+
+    &-tooltip[data-popper-placement^='right'] > &-tooltip-arrow {
+      left: -4px;
+    }
+  }
+}
