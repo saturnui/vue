@@ -1,6 +1,6 @@
 <template>
   <transition :name="`${theme}-toast`">
-    <div v-if="modelValue" :class="`${theme}-toast`">
+    <div v-if="show" :class="`${theme}-toast`">
       <slot />
       <slot name="action" />
     </div>
@@ -14,7 +14,7 @@ export default defineComponent({
       type: String,
       default: 'vuwi',
     },
-    modelValue: {
+    show: {
       type: Boolean,
       default: false,
     },

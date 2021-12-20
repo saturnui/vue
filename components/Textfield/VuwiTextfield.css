@@ -1,18 +1,20 @@
 @layer components {
   .vuwi {
     &-textfield {
-      @apply relative flex gap-2 items-center rounded px-3 py-1
+      @apply relative flex gap-2 items-center rounded px-3
       focus-within:border-primary focus-within:!border-opacity-100;
 
       label {
-        @apply block text-sm font-medium mb-1 pointer-events-none text-black 
-        dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
+        @apply block text-xs mb-1 pointer-events-none text-black 
+        dark:text-white text-opacity-40 dark:text-opacity-40;
+        margin-bottom: -1px;
       }
 
       input {
-        @apply bg-transparent focus:outline-none w-full py-1 text-black dark:text-white;
+        @apply bg-transparent focus:outline-none w-full text-black dark:text-white;
       }
     }
+    
     &-textfield-error {
       @apply border-red-600 
       focus-within:border-red-600 focus-within:!border-opacity-100;
@@ -21,22 +23,13 @@
         @apply text-red-600 dark:text-red-400 text-opacity-100 dark:text-opacity-100;
       }
     }
-    /* &-textfield-check {
-      @apply h-5 w-5 fill-current text-green-600 dark:text-green-400;
-    }
-    &-textfield-required {
-      @apply h-5 w-5 fill-current text-gray-200 dark:text-gray-700;
-    } */
+
     &-textfield-disabled {
       @apply opacity-50;
 
       label {
-        @apply block text-sm font-medium mb-1 pointer-events-none text-black 
-        dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
+        @apply text-black dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
       }
     }
-    /* &-textfield-spinner {
-      @apply w-6 h-6 border-3 dark:border-gray-500 dark:border-r-transparent;
-    } */
   }
 }

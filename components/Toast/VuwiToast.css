@@ -1,12 +1,9 @@
 @layer components {
   .vuwi {
     /* Toast right side / bottom on mobile */
-    &-toast {
-      @apply fixed
-        bottom-0
-        sm:rounded-lg sm:bottom-2 
-        px-4 py-3;
-    }
+    /* &-toast { */
+      /* @apply fixed bottom-0 sm:rounded-lg sm:bottom-2 px-4 py-3; */
+    /* } */
 
     &-toast-right {
       @apply right-0 sm:right-2;
@@ -40,7 +37,7 @@
 
     &-toast-enter-from,
     &-toast-leave-to {
-      transform: translateY(20px);
+      margin-bottom: -20px;
       opacity: 0;
     }
   }

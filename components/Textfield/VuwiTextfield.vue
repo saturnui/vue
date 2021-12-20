@@ -2,7 +2,7 @@
   <div :class="customClass">
     <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
     <div class="flex-grow">
-      <label :for="name" :class="`${theme}-textfield-label`">{{ inputLabel }}</label>
+      <label v-if="inputLabel" :for="name" :class="`${theme}-textfield-label`">{{ inputLabel }}</label>
       <input
         v-maska="mask"
         :name="name"
