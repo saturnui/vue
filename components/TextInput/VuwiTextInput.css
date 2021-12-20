@@ -1,6 +1,6 @@
 @layer components {
   .vuwi {
-    &-textfield {
+    &-text-input {
       @apply relative flex gap-2 items-center rounded px-3
       focus-within:border-primary focus-within:!border-opacity-100;
 
@@ -10,12 +10,12 @@
         margin-bottom: -1px;
       }
 
-      input {
-        @apply bg-transparent focus:outline-none w-full text-black dark:text-white;
+      input, textarea {
+        @apply bg-transparent focus:outline-none h-full w-full text-black dark:text-white resize-none py-1;
       }
     }
     
-    &-textfield-error {
+    &-text-input-error {
       @apply border-red-600 
       focus-within:border-red-600 focus-within:!border-opacity-100;
 
@@ -24,7 +24,7 @@
       }
     }
 
-    &-textfield-disabled {
+    &-text-input-disabled {
       @apply opacity-50;
 
       label {

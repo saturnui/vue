@@ -1,9 +1,23 @@
 <template>
   <div :class="customClass">
     <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
-    <div class="flex-grow">
+    <div class="flex flex-col h-full w-full">
       <label v-if="inputLabel" :for="name" :class="`${theme}-textfield-label`">{{ inputLabel }}</label>
+      <textarea
+        v-if="multiline"
+        v-maska="mask"
+        :name="name"
+        :type="type"
+        :placeholder="placeholder"
+        :required="required"
+        :autocomplete="autocomplete"
+        :value="inputValue"
+        :disabled="disabled"
+        @input="handleInput"
+        @blur="handleBlur"
+      />
       <input
+        v-else
         v-maska="mask"
         :name="name"
         :type="type"
@@ -48,8 +62,12 @@ export default defineComponent({
       default: '',
     },
     modelValue: {
-      type: [String, Number],
-      default: () => '',
+      type: String,
+      default: '',
+    },
+    multiline: {
+      type: Boolean,
+      default: false,
     },
     name: {
       type: String,
@@ -82,16 +100,16 @@ export default defineComponent({
     })
     watch(
       () => props.modelValue,
-      (val: string | number) => (inputValue.value = val),
+      (val: string) => (inputValue.value = val),
     )
     const hasError = computed(() => {
       return props.error || errorMessage.value
     })
     const customClass = computed(() => {
-      let cls = `${props.theme}-textfield`
-      if (meta.valid || !meta.validated) cls = `${props.theme}-textfield`
+      let cls = `${props.theme}-text-input`
+      if (meta.valid || !meta.validated) cls = `${props.theme}-text-input`
       if (props.disabled) cls += ' disabled'
-      else if (hasError.value) cls += ` ${props.theme}-textfield-error`
+      else if (hasError.value) cls += ` ${props.theme}-text-input-error`
       return cls
     })
     const inputLabel = computed(() => {
@@ -100,16 +118,16 @@ export default defineComponent({
       return val
     })
     const handleInput = (evt: Event) => {
-      const target = evt.target as HTMLInputElement
+      const target = evt.target as HTMLInputElement | HTMLTextAreaElement
       emit('update:modelValue', target.value)
     }
     return {
       customClass,
-      inputLabel,
       hasError,
       handleChange,
       handleBlur,
       handleInput,
+      inputLabel,
       inputValue,
       meta,
     }

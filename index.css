@@ -18,8 +18,7 @@
 @import './components/Select/VuwiSelect.css';
 @import './components/Spinner/VuwiSpinner.css';
 @import './components/Switch/VuwiSwitch.css';
-@import './components/Textarea/VuwiTextarea.css';
-@import './components/Textfield/VuwiTextfield.css';
+@import './components/TextInput/VuwiTextInput.css';
 @import './components/Toast/VuwiToast.css';
 @import './components/Tooltip/VuwiTooltip.css';
 @import './components/Window/VuwiWindow.css';
