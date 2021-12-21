@@ -15,6 +15,7 @@
 @import './components/Line/VuwiLine.css';
 @import './components/Overlay/VuwiOverlay.css';
 @import './components/Pagination/VuwiPagination.css';
+@import './components/Progress/VuwiProgressCircle.css';
 @import './components/Select/VuwiSelect.css';
 @import './components/Spinner/VuwiSpinner.css';
 @import './components/Switch/VuwiSwitch.css';
