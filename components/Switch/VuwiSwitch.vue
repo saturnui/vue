@@ -14,9 +14,10 @@
       <div class="pill"></div>
       <div class="dot"></div>
     </div>
-    <div class="vuwi-switch-label">
+    <slot></slot>
+    <!-- <div class="vuwi-switch-label">
       <slot></slot>
-    </div>
+    </div> -->
   </label>
 </template>
 
