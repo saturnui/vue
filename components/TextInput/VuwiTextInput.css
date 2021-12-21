@@ -1,7 +1,7 @@
 @layer components {
   .vuwi {
     &-text-input {
-      @apply relative flex gap-2 items-center rounded px-3
+      @apply relative flex gap-2 items-center rounded py-2 px-3
       focus-within:border-primary focus-within:!border-opacity-100;
 
       label {
