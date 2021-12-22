@@ -1,0 +1,55 @@
+@layer components {
+  .vuwi {
+    &-progress-stripe {
+      content: '';
+      position: relative;
+      background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 50px 50px;
+    }
+    &-progress-fastest {
+      animation: vuwi-progress-stripe 0.25s linear infinite;
+    }
+  
+    &-progress-faster {
+      animation: vuwi-progress-stripe 0.5s linear infinite;
+    }
+  
+    &-progress-fast {
+      animation: vuwi-progress-stripe 0.75s linear infinite;
+    }
+  
+    &-progress {
+      animation: vuwi-progress-stripe 1s linear infinite;
+    }
+  
+    &-progress-slow {
+      animation: vuwi-progress-stripe 2s linear infinite;
+    }
+  
+    &-progress-slower {
+      animation: vuwi-progress-stripe 3s linear infinite;
+    }
+  
+    &-progress-slowest {
+      animation: vuwi-progress-stripe 4s linear infinite;
+    }
+  }
+
+  @keyframes vuwi-progress-stripe {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+}
