@@ -15,7 +15,7 @@
           ref="pickerInputRef"
           v-model="pickerValue"
           type="text"
-          class="relative block w-full pl-3 pr-12 py-2 rounded-md overflow-hidden text-sm text-gray-700 placeholder-gray-400 transition-colors bg-white border border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-500 focus:ring-opacity-10 focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-blue-500 dark:focus:ring-opacity-20"
+          class="vuwi-light-dark relative block w-full pl-3 pr-12 py-2 rounded-md overflow-hidden text-sm text-gray-700 placeholder-gray-400 transition-colors border vuwi-border focus:border-blue-300 focus:ring focus:ring-blue-500 focus:ring-opacity-10 focus:outline-none dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-blue-500 dark:focus:ring-opacity-20"
           v-bind="$attrs"
           :placeholder="givenPlaceholder"
           :disabled="disableInput"
@@ -50,11 +50,9 @@
         class="absolute z-50 top-full sm:mt-2.5"
         :class="placement ? 'left-0 right-auto' : 'left-auto right-0'"
       >
-        <div
-          class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-gray-800 sm:rounded-lg shadow-sm"
-        >
+        <div class="vuwi-light-dark fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto sm:rounded-lg shadow-sm">
           <div
-            class="vuwi-datepicker static sm:relative w-full bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black border-opacity-10 px-3 py-3 sm:px-1 sm:py-1.5 dark:bg-gray-800 dark:border-gray-700 dark:border-opacity-100"
+            class="vuwi-datepicker border vuwi-border w-full static sm:relative  sm:rounded-lg sm:shadow-sm px-3 py-3 sm:px-1 sm:py-1.5"
             :class="placement ? 'place-left' : 'place-right'"
           >
             <div class="flex flex-wrap lg:flex-nowrap">
