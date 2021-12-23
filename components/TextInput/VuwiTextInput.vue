@@ -79,8 +79,8 @@ export default defineComponent({
     },
     required: Boolean,
     rules: {
-      type: Function,
-      default: null,
+      type: [Function, String],
+      default: '',
     },
     type: {
       type: String,
@@ -114,7 +114,8 @@ export default defineComponent({
     })
     const inputLabel = computed(() => {
       let val = props.label
-      if (hasError.value) val += ` ${props.error || errorMessage.value}`
+      // if (hasError.value) val += ` ${props.error || errorMessage.value}`
+      if (hasError.value) val = `${props.error || errorMessage.value}`
       return val
     })
     const handleInput = (evt: Event) => {

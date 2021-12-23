@@ -5,12 +5,11 @@
       focus-within:border-primary focus-within:!border-opacity-100;
 
       label {
-        @apply absolute top-2 block text-xs pointer-events-none text-black 
-        dark:text-white text-opacity-40 dark:text-opacity-40;
+        @apply absolute top-2 block text-xs pointer-events-none text-opacity-40 dark:text-opacity-40;
       }
 
       input, textarea {
-        @apply bg-transparent focus:outline-none h-full w-full text-black dark:text-white resize-none py-1;
+        @apply bg-transparent focus:outline-none h-full w-full resize-none py-1;
       }
 
       label ~ input, label ~ textarea {
@@ -31,7 +30,7 @@
       @apply bg-black opacity-20 dark:opacity-30;
 
       label {
-        @apply text-black dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
+        @apply text-opacity-40 dark:text-opacity-40 -mb-1;
       }
     }
   }
