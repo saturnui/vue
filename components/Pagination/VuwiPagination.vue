@@ -1,11 +1,12 @@
-<script lang="ts">
+<script lang="ts">import { forEach } from "cypress/types/lodash"
+
 export default defineComponent({
   props: {
     theme: {
       type: String,
       default: 'vuwi',
     },
-    visible: {
+    totalVisible: {
       type: Number,
       default: 0,
     },
@@ -17,52 +18,57 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
-    more: {
-      type: String,
-      default: '...',
-    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const MINIMAL_PAGE_ITEM_COUNT = 7
-    /**
-     * Generate numeric page items around current page.
-     *   - Always include first and last page
-     *   - Add ellipsis if needed
-     */
-    function generatePageItems(total: number, current: number, width: number) {
-      if (width < MINIMAL_PAGE_ITEM_COUNT) {
-        throw new Error(
-          `Must allow at least ${MINIMAL_PAGE_ITEM_COUNT} page items`,
-        )
-      }
-      if (width % 2 === 0)
-        throw new Error('Must allow odd number of page items')
+    function generatePageItems(length: number, current: number, totalVisible: number) {
+      if (!totalVisible) totalVisible = length
 
-      if (total < width)
-        return [...new Array(total).keys()]
+      if (length < totalVisible) {
+        const vals = []
+        for (let i = 0; i < length; i++)
+          vals[i] = { val: i }
+        return vals
+      }
+
+      if (totalVisible === 1) return [{ val: current }]
+
+      if (totalVisible === 2) return [{ val: Math.min(current, length - 2) }, { val: Math.min(current + 1, length - 1) }]
 
       const left = Math.max(
         0,
-        Math.min(total - width, current - Math.floor(width / 2)),
+        Math.min(length - totalVisible, current - Math.round(totalVisible / 2)),
       )
-      const items = new Array(width)
-      for (let i = 0; i < width; i += 1)
-        items[i] = i + left
+      const items = new Array(totalVisible)
 
-      // replace non-ending items with placeholders
-      if (items[0] > 0) {
-        items[0] = 0
-        items[1] = props.more // prev-more
+      for (let i = 0; i < totalVisible; i += 1)
+        items[i] = { val: i + left }
+
+      if (items[0].val > 0) {
+        items[0] = { val: 0 }
+        items[1] = {
+          more: true,
+          type: 'prev',
+          range: { start: 1, end: items[2].val },
+        }
       }
-      if (items[items.length - 1] < total - 1) {
-        items[items.length - 1] = total - 1
-        items[items.length - 2] = props.more // next-more
+
+      if (items[items.length - 1].val < length - 1) {
+        const start = items[items.length - 1].val - 1
+        items[items.length - 1] = {
+          val: length - 1,
+        }
+        items[items.length - 2] = {
+          more: true,
+          type: 'next',
+          range: { start, end: length - 1 },
+        }
       }
+
       return items
     }
     const values = computed(() => {
-      return generatePageItems(props.length, props.modelValue, props.visible)
+      return generatePageItems(props.length, props.modelValue, props.totalVisible)
     })
     const prev = () => {
       if (props.modelValue)
@@ -73,51 +79,58 @@ export default defineComponent({
         emit('update:modelValue', props.modelValue + 1)
     }
     const value = (val: number) => emit('update:modelValue', val)
+
+    const moreClass = (item: any, modelValue: number) => {
+      return modelValue >= item.range.start && modelValue < item.range.end ? `${props.theme}-pagination-more ${props.theme}-pagination-more-active` : `${props.theme}-pagination-more`
+    }
+
+    const moreActive = (item: any, modelValue: number) => {
+      return modelValue >= item.range.start && modelValue < item.range.end
+    }
+
+    const buttonClass = (item: any, modelValue: number) => {
+      return item.val === modelValue ? `${props.theme}-pagination-link ${props.theme}-pagination-link-active` : `${props.theme}-pagination-link`
+    }
+
+    const disableNavButtons = computed(() => {
+      return props.length === 1
+    })
+
     return {
-      values,
+      buttonClass,
+      disableNavButtons,
+      moreActive,
+      moreClass,
       next,
       prev,
       value,
+      values,
     }
-    // length / visible
-    // range := ceil(15/7) = 3
-    // if modelValue < range
-    // [1],2,3,...,13,14,15
-    // 1,2,[3],4,5,..,15
-    // 1,...,4,[5],6,..,15
-    // 1,...,11,[12],13,14,15
   },
 })
 </script>
 
 <template>
-  <nav
-    :class="`${theme}-pagination`"
-    role="navigation"
-    aria-label="pagination"
-  >
-    <button
-      class="pagination-nav-link left"
-      aria-label="Goto previous page"
-      @click="prev"
-    >
-      <tabler-chevron-left class="icon"></tabler-chevron-left>
+  <nav :class="`${theme}-pagination`" role="navigation">
+    <button :class="`${theme}-pagination-nav-left`" :disabled="disableNavButtons" @click="prev">
+      <slot name="prev-icon">
+        <tabler-chevron-left />
+      </slot>
     </button>
-    <span v-for="(i, index) in values" :key="index">
-      <button v-if="i === '...'" disabled class="pagination-link">
-        {{ i }}
-      </button>
+    <span v-for="(item, index) in values" :key="index">
+      <slot v-if="item.more" name="more-icon" v-bind="{ active: moreActive(item, modelValue) }">
+        <div :class="moreClass(item, modelValue)">...</div>
+      </slot>
       <button
         v-else
-        class="pagination-link w-10"
-        :class="{ 'pagination-link-active': i === modelValue }"
-        @click="value(i)"
-      >
-        {{ i + 1 }}
-      </button>
+        :class="buttonClass(item, modelValue)"
+        @click="value(item.val)"
+      >{{ item.val + 1 }}</button>
     </span>
-    <button class="pagination-nav-link" @click="next">
-      <tabler-chevron-right class="icon"></tabler-chevron-right>
+    <button :class="`${theme}-pagination-nav-right`" :disabled="disableNavButtons" @click="next">
+      <slot name="next-icon">
+        <tabler-chevron-right />
+      </slot>
     </button>
   </nav>
 </template>

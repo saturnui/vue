@@ -2,27 +2,33 @@
   .vuwi {
     &-pagination {
       @apply flex items-center;
-      .pagination-link {
-        @apply font-bold w-10 bg-transparent cursor-default;
-      }
-      .pagination-link-active {
-        @apply bg-primary text-white rounded h-8 w-5;
-      }
-      .pagination-nav-link {
-        @apply rounded mr-2;
-        .icon {
-          @apply h-5 w-5;
-        }
-        &.left {
-          @apply mr-2;
-        }
-        &.right {
-          @apply ml-2;
-          .icon {
-            @apply transform rotate-180;
-          }
-        }
-      }
+    }
+    &-pagination-link {
+      @apply font-bold w-10 min-w-10 bg-transparent cursor-pointer;
+    }
+    &-pagination-link-active {
+      @apply bg-primary hover:bg-primary-dark text-white rounded h-8 w-5;
+    }
+    &-pagination-more {
+      @apply w-10 min-w-10 font-bold text-center;
+    }
+    &-pagination-more-active {
+      @apply border-2 border-primary rounded;
+    }
+    &-pagination-nav-icon {
+      @apply h-5 w-5;
+    }
+    &-pagination-nav-left {
+      @apply flex items-center justify-center rounded h-8 w-6 min-w-6 mr-2;
+    }
+    &-pagination-nav-left[disabled] {
+      @apply opacity-20 pointer-events-none;
+    }
+    &-pagination-nav-right {
+      @apply flex items-center justify-center rounded h-8 w-6 min-w-6 ml-2;
+    }
+     &-pagination-nav-right[disabled] {
+      @apply opacity-20 pointer-events-none;
     }
   }
 }
