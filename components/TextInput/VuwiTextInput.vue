@@ -2,7 +2,7 @@
   <div :class="customClass">
     <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
     <div class="flex flex-col h-full w-full">
-      <label v-if="inputLabel" :for="name" :class="`${theme}-textfield-label`">{{ inputLabel }}</label>
+      <label v-if="inputLabel" :for="name" :class="`${theme}-textinput-label`">{{ inputLabel }}</label>
       <textarea
         v-if="multiline"
         v-maska="mask"
@@ -106,10 +106,10 @@ export default defineComponent({
       return props.error || errorMessage.value
     })
     const customClass = computed(() => {
-      let cls = `${props.theme}-text-input`
-      if (meta.valid || !meta.validated) cls = `${props.theme}-text-input`
-      if (props.disabled) cls += ' disabled'
-      else if (hasError.value) cls += ` ${props.theme}-text-input-error`
+      let cls = `${props.theme}-textinput`
+      if (meta.valid || !meta.validated) cls = `${props.theme}-textinput`
+      if (props.disabled) cls += ` ${props.theme}-textinput-disabled`
+      else if (hasError.value) cls += ` ${props.theme}-textinput-error`
       return cls
     })
     const inputLabel = computed(() => {

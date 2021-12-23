@@ -1,63 +1,27 @@
 <template>
-  <div :class="computedClass">
-    <slot name="prepend">
-    </slot>
-    <div class="flex-grow">
-      <div v-if="label" class="absolute top-1 pointer-events-none px-3">
-        <label
-          v-if="errorLabel"
-          :for="name"
-          class="block font-medium mb-1 text-red-600 text-sm"
-        >
-          {{ label }} {{ errorLabel }}
-        </label>
-        <label
-          v-else
-          :for="name"
-          class="block font-medium mb-1 text-gray-500 text-sm"
-        >
-          {{ label }}
-        </label>
-      </div>
+  <div :class="customClass">
+    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
+    <div class="flex flex-col h-full w-full">
+      <label v-if="inputLabel" :for="name" :class="`${theme}-select-label`">{{ inputLabel }}</label>
       <select
-        v-model="value"
         :name="name"
         :required="required"
-        :autocomplete="autocomplete"
-        class="
-          focus:outline-none
-          w-full
-          pt-6
-          px-2
-          text-black
-          dark:text-white
-          bg-transparent
-        "
+        :value="inputValue"
         :disabled="disabled"
+        @input="handleInput"
         @change="handleChange"
         @blur="handleBlur"
       >
-        <option v-for="item in options" :key="item.value" :value="item.value">
-          {{ item.label }}
-        </option>
+        <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
       </select>
     </div>
-    <slot></slot>
-    <div v-if="loading">
-      <div class="spinner w-5 h-5 text-gray-300" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-    <tabler-check
-      v-else-if="rules && meta.valid"
-      class="text-green-500"
-    ></tabler-check>
-    <span v-else-if="required" class="text-2xl -mb-2">*</span>
+    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
   </div>
 </template>
 
 <script lang="ts">
 import { useField } from 'vee-validate'
+import { useUuid } from '../../composables'
 
 type Option = { label: string; value: string | number }
 
@@ -69,24 +33,14 @@ export default defineComponent({
     },
     name: {
       type: String,
-      required: true,
-      default: '',
+      default: () => useUuid(),
     },
-    autocomplete: {
-      type: String,
-      default: '',
-    },
+    disabled: Boolean,
     error: {
       type: String,
       default: '',
     },
     label: {
-      type: String,
-      default: '',
-    },
-    disabled: Boolean,
-    loading: Boolean,
-    mask: {
       type: String,
       default: '',
     },
@@ -108,47 +62,48 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props) {
-    const { value, errorMessage, handleBlur, handleChange, meta } = useField(
-      props.name,
-      props.rules,
-      {
-        initialValue: props.modelValue,
-      },
-    )
-    const computedClass = computed(() => {
-      let cls = `${props.theme}-select`
-      if (props.disabled)
-        cls += 'disabled'
-
-      if (meta.valid || !meta.validated)
-        return cls += ' focus-within:border-primary text-primary'
-
-      return 'border-red-600 text-red-600'
+  setup(props, { emit }) {
+    const {
+      value: inputValue,
+      errorMessage,
+      handleBlur,
+      handleChange,
+      meta,
+    } = useField(props.name, props.rules, {
+      initialValue: props.modelValue,
     })
-    const errorLabel = computed(() => {
+    watch(
+      () => props.modelValue,
+      (val: string) => (inputValue.value = val),
+    )
+    const hasError = computed(() => {
       return props.error || errorMessage.value
     })
-    // const customStyle = computed(() => {
-    //   if (props.disabled) {
-    //     return {
-    //       appearance: 'none',
-    //       paddingLeft: '12px',
-    //     }
-    //   }
-    //   return {}
-    // })
-    // const handleChange = (evt: Event) => {
-    //   const target = evt.target as HTMLSelectElement
-    //   emit('update:modelValue', target.value)
-    // }
+    const customClass = computed(() => {
+      let cls = `${props.theme}-select`
+      if (meta.valid || !meta.validated) cls = `${props.theme}-select`
+      if (props.disabled) cls += ` ${props.theme}-select-disabled`
+      else if (hasError.value) cls += ` ${props.theme}-select-error`
+      return cls
+    })
+    const inputLabel = computed(() => {
+      let val = props.label
+      if (hasError.value) val += ` ${props.error || errorMessage.value}`
+      return val
+    })
+    const handleInput = (evt: Event) => {
+      const target = evt.target as HTMLInputElement | HTMLTextAreaElement
+      emit('update:modelValue', target.value)
+    }
     return {
+      customClass,
+      hasError,
       handleChange,
       handleBlur,
-      errorLabel,
-      value,
+      handleInput,
+      inputLabel,
+      inputValue,
       meta,
-      computedClass,
     }
   },
 })
