@@ -57,7 +57,7 @@ export default defineComponent({
       default: false,
     },
     rules: {
-      type: String,
+      type: [Function, String],
       default: '',
     },
   },
