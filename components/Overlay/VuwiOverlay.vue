@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div ref="root">
     <transition :name="`${theme}-overlay`">
-      <div v-if="modelValue" :class="`${theme}-overlay`"></div>
+      <div v-if="blocking && modelValue" :class="`${theme}-overlay`">
+        <slot name="backdrop" v-bind="{ position, modal }"></slot>
+      </div>
     </transition>
 
     <transition :name="transitionName">
@@ -13,9 +15,6 @@
 </template>
 
 <script lang="ts">
-import { SwipeDirection } from '@vueuse/core'
-import { ref, nextTick } from 'vue-demi'
-
 export default defineComponent({
   props: {
     theme: {
@@ -34,11 +33,21 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    blocking: {
+      type: Boolean,
+      default: true,
+    },
+    disableScrollTarget: {
+      type: String,
+      default: 'body',
+    },
   },
-  emits: ['update:modelValue', 'swipe:start', 'swipe', 'swipe:end'],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const root = ref()
     const content = ref()
     const overlay = ref()
+    let scrollTarget: HTMLElement | undefined
     let off: any
 
     const transitionName = computed(() => {
@@ -49,38 +58,44 @@ export default defineComponent({
       return `${props.theme}-overlay-${props.position}`
     })
 
+    const enableScroll = () => {
+      if (scrollTarget) scrollTarget.style.overflow = 'auto'
+    }
+
+    const disableScroll = () => {
+      scrollTarget = undefined
+      if (props.disableScrollTarget === 'parent') scrollTarget = root.value as HTMLElement
+      else if (props.disableScrollTarget) scrollTarget = document.querySelector(props.disableScrollTarget) as HTMLElement
+      if (scrollTarget) scrollTarget.style.overflow = 'hidden'
+    }
+
     watch(
       () => props.modelValue,
       (val: Boolean) => {
         if (val) {
-          document.body.style.overflow = 'hidden'
+          disableScroll()
+
           nextTick(() => {
             if (content.value.firstElementChild) {
               off = onClickOutside(content.value.firstElementChild, () => {
                 if (!props.modal) emit('update:modelValue', false)
               })
             }
-
-            useSwipe(content.value, {
-              passive: true,
-              onSwipeStart(e: TouchEvent) {
-                emit('swipe:start', { event: e })
-              },
-              onSwipe(e: TouchEvent) {
-                emit('swipe', { event: e })
-              },
-              onSwipeEnd(e: TouchEvent, direction: SwipeDirection) {
-                emit('swipe:end', { event: e, direction })
-              },
-            })
           })
         }
         else {
           if (off) off()
-          document.body.style.overflow = 'auto'
+          enableScroll()
         }
       },
     )
+
+    watch(() => props.disableScrollTarget, (newVal: string, oldVal: string) => {
+      if (props.modelValue) {
+        enableScroll()
+        disableScroll()
+      }
+    })
 
     onMounted(() => {
       if (content.value) {
@@ -98,6 +113,7 @@ export default defineComponent({
       content,
       overlay,
       positionClass,
+      root,
       transitionName,
     }
   },
