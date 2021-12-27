@@ -1,10 +1,22 @@
 @layer components {
   .vuwi {
-    &-col-2 {
-      @apply grid grid-cols-1 md:grid-cols-2 gap-4;
-    }
     &-col-3 {
-      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+      @apply grid grid-cols-3;
+    }
+    &-col-3-1 {
+      @apply grid grid-cols-1 lg:grid-cols-3;
+    }
+    &-col-3-2-1 {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+    }
+    &-col-2 {
+      @apply grid grid-cols-2;
+    }
+    &-col-2-1 {
+      @apply grid grid-cols-1 md:grid-cols-2;
+    }
+    &-col-1 {
+      @apply grid;
     }
   }
 }
