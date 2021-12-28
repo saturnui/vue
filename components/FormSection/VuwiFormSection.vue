@@ -11,12 +11,10 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <div class="shadow sm:rounded-md sm:overflow-hidden">
-        <div class="vuwi-card px-4 py-5">
-          <div class="grid grid-cols-3 gap-4">
-            <div class="col-span-6 sm:col-span-4">
-              <slot></slot>
-            </div>
+      <div class="vuwi-card">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-6 sm:col-span-4">
+            <slot></slot>
           </div>
         </div>
       </div>
