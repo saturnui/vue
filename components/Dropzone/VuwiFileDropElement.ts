@@ -185,7 +185,7 @@ export class FileDropElement extends HTMLElement {
 
   constructor() {
     super()
-
+    console.log('you are here')
     // Bind
     this._onDragEnter = this._onDragEnter.bind(this)
     this._onDragLeave = this._onDragLeave.bind(this)

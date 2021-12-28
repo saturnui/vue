@@ -1,4 +1,4 @@
-export const useImageToDataUrl = (file: File, width = 48, height = 48) => {
+export const useImageToDataUrl = (file: File, width = 48, height = 48): Promise<string> => {
   const boundBox = [width, height]
   const reader = new FileReader()
   const canvas = document.createElement('canvas')
@@ -14,7 +14,6 @@ export const useImageToDataUrl = (file: File, width = 48, height = 48) => {
         canvas.width = w
         canvas.height = h
         ctx.drawImage(image, 0, 0, w, h)
-        // dataUrl.value = canvas.toDataURL(file.type)
         resolve(canvas.toDataURL(file.type))
       }
       if (event.target) image.src = event.target.result as string

@@ -1,37 +1,32 @@
-<template>
-  <vuwi-file-drop ref="dropzone" class="block">
-    <slot></slot>
-  </vuwi-file-drop>
-</template>
-
 <script lang="ts">
-import { FileDropEvent } from './VuwiFileDropElement'
-
 export default defineComponent({
   emits: ['change'],
-  setup(_, { emit }) {
-    const dropzone = ref()
-    const files = ref<File[]>([])
-    const _selectedFiles: string[] = []
+  setup(props, { emit }) {
+    const active = ref(false)
+    const files = ref<File[]>()
 
-    onMounted(() => {
-      dropzone.value.addEventListener('filedrop', (event: FileDropEvent) => {
-        files.value = []
-        _selectedFiles.length = 0
-        event.files.forEach(async (item) => {
-          if (!_selectedFiles.includes(item.name)) {
-            _selectedFiles.push(item.name)
-            files.value.push(item) // TODO: should not be never
-          }
-          emit('change', files.value)
-        })
-      })
-    })
-
+    const drop = (event: any) => {
+      files.value = [...event.dataTransfer.files]
+      active.value = false
+      emit('change', files.value)
+    }
     return {
-      dropzone,
+      active,
       files,
+      drop,
     }
   },
 })
 </script>
+
+<template>
+  <div
+    class="inline-block"
+    @dragenter.prevent="active = true"
+    @dragleave.prevent="active = false"
+    @dragover.prevent="active = true"
+    @drop.prevent="drop"
+  >
+    <slot v-bind="{ active, files }"></slot>
+  </div>
+</template>
