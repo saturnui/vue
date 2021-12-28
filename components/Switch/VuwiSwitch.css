@@ -17,6 +17,10 @@
       &.disabled {
         @apply cursor-default opacity-30 dark:opacity-40;
       }
+
+      &.disabled input:checked ~ .pill {
+        @apply bg-dark-900 bg-opacity-10 dark:bg-dark-900 dark:bg-opacity-40;
+      }
     }
 
     &-switch-sm {
