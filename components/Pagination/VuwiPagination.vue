@@ -1,4 +1,4 @@
-<script lang="ts">import { forEach } from "cypress/types/lodash"
+<script lang="ts">
 
 export default defineComponent({
   props: {
@@ -118,8 +118,15 @@ export default defineComponent({
       </slot>
     </button>
     <span v-for="(item, index) in values" :key="index">
-      <slot v-if="item.more" name="more-icon" v-bind="{ active: moreActive(item, modelValue) }">
-        <div :class="moreClass(item, modelValue)">...</div>
+      <slot
+        v-if="item.more"
+        name="more-icon"
+        v-bind="{ page: modelValue + 1, active: moreActive(item, modelValue) }"
+      >
+        <div class="flex flex-col" :class="moreClass(item, modelValue)">
+          <span v-if="moreActive(item, modelValue)" class="text-xs leading-tight -mb-2">{{ modelValue + 1 }}</span>
+          <span class="leading-tight">...</span>
+        </div>
       </slot>
       <button
         v-else

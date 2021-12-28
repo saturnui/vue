@@ -6,7 +6,7 @@
         @apply absolute left-1 top-1 w-6 h-6 rounded-full transition bg-white;
       }
       input ~ .pill {
-        @apply transition rounded-full w-14 h-8 bg-black bg-opacity-10 dark:bg-dark-800;
+        @apply transition rounded-full w-14 h-8 bg-dark-900 bg-opacity-10 dark:bg-dark-900 dark:bg-opacity-40;
       }
       input:checked ~ .dot {
         transform: translateX(100%);
@@ -15,16 +15,7 @@
         @apply bg-green-500;
       }
       &.disabled {
-        @apply cursor-default;
-        &-switch-label {
-          @apply opacity-50;
-        }
-        input ~ .dot {
-          @apply bg-white bg-opacity-90 dark:bg-opacity-15;
-        }
-        input:checked ~ .pill {
-          @apply bg-black bg-opacity-5 dark:bg-white dark:bg-opacity-5;
-        }
+        @apply cursor-default opacity-30 dark:opacity-40;
       }
     }
 

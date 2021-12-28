@@ -27,7 +27,7 @@
     }
 
     &-textinput-disabled {
-      @apply bg-black opacity-20 dark:opacity-30;
+      @apply opacity-20 dark:opacity-30;
 
       label {
         @apply text-opacity-40 dark:text-opacity-40 -mb-1;

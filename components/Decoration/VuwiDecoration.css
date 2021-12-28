@@ -1,67 +1,11 @@
 @layer components {
   .vuwi {
-    &-border-weakest {
-      @apply border-black border-opacity-1 dark:border-white dark:border-opacity-5;
-    }
-    &-border-weaker {
-      @apply border-black border-opacity-5 dark:border-white dark:border-opacity-6;
-    }
-    &-border-weak {
-      @apply border-black border-opacity-8 dark:border-white dark:border-opacity-8;
-    }
     &-border {
-      @apply border-black border-opacity-10 dark:border-white dark:border-opacity-10;
+      @apply border-dark-200 dark:border-dark-700;
     }
-    &-border-strong {
-      @apply border-black border-opacity-15 dark:border-white dark:border-opacity-15;
-    }
-    &-border-stronger {
-      @apply border-black border-opacity-20 dark:border-white dark:border-opacity-20;
-    }
-    &-border-strongest {
-      @apply border-black border-opacity-25 dark:border-white dark:border-opacity-25;
-    }
-    &-shade-weakest {
-      @apply bg-white !bg-opacity-5 dark:bg-black dark:!bg-opacity-1;
-    }
-    &-shade-weaker {
-      @apply bg-white !bg-opacity-10 dark:bg-black dark:!bg-opacity-5;
-    }
-    &-shade-weak {
-      @apply bg-white !bg-opacity-15 dark:bg-black dark:!bg-opacity-10;
-    }
-    &-shade {
-      @apply bg-white !bg-opacity-20 dark:bg-black dark:!bg-opacity-15;
-    }
-    &-shade-strong {
-      @apply bg-white !bg-opacity-30 dark:bg-black dark:!bg-opacity-20;
-    }
-    &-shade-stronger {
-      @apply bg-white !bg-opacity-40 dark:bg-black dark:!bg-opacity-25;
-    }
-    &-shade-strongest {
-      @apply bg-white !bg-opacity-50 dark:bg-black dark:!bg-opacity-30;
-    }
-    &-highlight-weakest {
-      @apply bg-black !bg-opacity-1 dark:bg-white dark:!bg-opacity-1;
-    }
-    &-highlight-weaker {
-      @apply bg-black !bg-opacity-2 dark:bg-white dark:!bg-opacity-2;
-    }
-    &-highlight-weak {
-      @apply bg-black !bg-opacity-3 dark:bg-white dark:!bg-opacity-3;
-    }
-    &-highlight {
-      @apply bg-black !bg-opacity-4 dark:bg-white dark:!bg-opacity-4;
-    }
-    &-highlight-strong {
-      @apply bg-black !bg-opacity-5 dark:bg-white dark:!bg-opacity-5;
-    }
-    &-highlight-stronger {
-      @apply bg-black !bg-opacity-8 dark:bg-white dark:!bg-opacity-8;
-    }
-    &-highlight-strongest {
-      @apply bg-black !bg-opacity-10 dark:bg-white dark:!bg-opacity-10;
+
+    &-bg {
+      @apply bg-dark-900 bg-opacity-5 dark:bg-dark-900 dark:bg-opacity-40;
     }
   }
 }

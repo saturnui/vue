@@ -1,0 +1,45 @@
+@layer components {
+  .vuwi {
+    &-tab {
+      @apply flex items-center justify-center gap-2 px-6 py-4;
+    }
+
+    &-tab-container {
+      @apply flex cursor-pointer select-none;
+    }
+
+    &-tab-container-border {
+      @apply border-b-2;
+    }
+
+    &-tab-container-pill {
+      @apply gap-2 px-2;
+    }
+
+    &-tab-container-bar {
+      @apply rounded-l-lg rounded-r-lg overflow-hidden;
+    }
+
+    &-tab-container-bar&-border {
+      @apply border border-dark-200 dark:border-dark-700;
+    }
+
+    &-tab-container-bar-tab {
+      @apply border-r last:border-r-0 border-dark-200 dark:border-dark-700;
+    }
+
+    &-tab-container-w-full {
+      @apply flex-grow;
+    }
+
+    &-tab-border-active {
+      @apply border-b-2 border-b-purple-600 dark:border-b-purple-400 text-purple-600 dark:text-light-200;
+    }
+
+    
+
+    &-tab-border-spacer {
+      @apply flex-grow border-b-2;
+    }
+  }
+}

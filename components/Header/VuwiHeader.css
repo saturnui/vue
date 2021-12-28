@@ -1,7 +1,0 @@
-@layer components {
-  .vuwi {
-    &-header {
-      @apply font-medium text-2xl;
-    }
-  }
-}

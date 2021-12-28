@@ -28,10 +28,10 @@
     }
 
     &-select-disabled {
-      @apply bg-black opacity-20 dark:opacity-30;
+      @apply opacity-50;
 
       label {
-        @apply text-black dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
+        @apply text-dark-900 dark:text-white text-opacity-40 dark:text-opacity-40 -mb-1;
       }
     }
   }
