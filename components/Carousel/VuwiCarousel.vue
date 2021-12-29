@@ -21,10 +21,12 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    let scrollTimer: any
     const slider = ref<HTMLElement>()
 
     const nextSlide = (skip = 1) => {
       if (slider.value) {
+        // clearTimeout(scrollTimer)
         const newIndex = props.modelValue + skip
         emit('update:modelValue', Math.min(newIndex, slider.value.childElementCount - 1))
       }
@@ -32,14 +34,14 @@ export default defineComponent({
 
     const prevSlide = (skip = 1) => {
       if (slider.value) {
+        // clearTimeout(scrollTimer)
         const newIndex = props.modelValue - skip
         emit('update:modelValue', Math.max(newIndex, 0))
       }
     }
 
     const maxPos = 5
-    const timeoutInterval = 200
-    let scrollTimer: any
+    const timeoutInterval = 400
     const handleScroll = () => {
       clearInterval(scrollTimer)
       scrollTimer = setTimeout(() => {
