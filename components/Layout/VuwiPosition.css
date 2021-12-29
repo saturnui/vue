@@ -8,7 +8,7 @@
     &-tc {
       top: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
     }
 
     &-tr {
@@ -18,19 +18,19 @@
 
     &-ml {
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) !important;
       left: 0;
     }
 
     &-mc {
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) !important;
       left: 50%;
     }
 
     &-mr {
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) !important;
       right: 0;
     }
 
@@ -42,7 +42,7 @@
     &-bc {
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
     }
 
     &-br {

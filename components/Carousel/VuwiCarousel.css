@@ -1,0 +1,28 @@
+@layer components {
+  .vuwi {
+    &-carousel {
+      @apply flex overflow-x-scroll;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        @apply hidden;
+      }
+    }
+    &-carousel-vertical {
+      @apply flex-col overflow-x-hidden overflow-y-scroll;
+      scroll-snap-type: y mandatory;
+    }
+    &-carousel-item {
+      @apply flex flex-none box-content;
+      scroll-snap-align: start;
+    }
+    &-carousel-center .carousel-item {
+      scroll-snap-align: center;
+    }
+    &-carousel-end .carousel-item {
+      scroll-snap-align: end;
+    }
+  }
+}
