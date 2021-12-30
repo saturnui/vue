@@ -52,6 +52,15 @@ export default defineComponent({
     const thumbLeftStyle = ref()
     const thumbRightStyle = ref()
 
+    watch(() => props.min, (val: number) => {
+      minValueInput.value = val
+      handleMinInput()
+    })
+    watch(() => props.max, (val: number) => {
+      maxValueInput.value = val
+      handleMaxInput()
+    })
+
     onMounted(() => {
       const thumbLeftWidth = thumbLeft.value?.offsetWidth || 0
       const thumbRightWidth = thumbRight.value?.offsetWidth || 0
@@ -85,51 +94,55 @@ export default defineComponent({
 
 <template>
   <div :class="rootClass">
-    <!-- <div class="absolute vuwi-ml w-full bg-red-500"> -->
-    <input
-      v-model="minValueInput"
-      type="range"
-      :step="step"
-      :min="minVal"
-      :max="maxVal"
-      @input="handleMinInput"
-    />
+    <div class="absolute vuwi-ml w-full">
+      <input
+        v-model="minValueInput"
+        type="range"
+        :step="step"
+        :min="minVal"
+        :max="maxVal"
+        @input="handleMinInput"
+      />
 
-    <input
-      v-model="maxValueInput"
-      type="range"
-      :step="step"
-      :min="minVal"
-      :max="maxVal"
-      @input="handleMaxInput"
-    />
+      <input
+        v-model="maxValueInput"
+        type="range"
+        :step="step"
+        :min="minVal"
+        :max="maxVal"
+        @input="handleMaxInput"
+      />
 
-    <!-- Track -->
-    <div :class="`${rootClass}-track vuwi-ml`" />
+      <!-- Track -->
+      <div :class="`${rootClass}-track vuwi-ml`">
+        <slot name="track" />
+      </div>
 
-    <!-- Highlight -->
-    <div
-      :class="`${rootClass}-highlight vuwi-ml`"
-      :style="`left: ${minThumb}%; right: calc(100% - ${maxThumb}%)`"
-    ></div>
+      <!-- Highlight -->
+      <div
+        :class="`${rootClass}-highlight vuwi-ml`"
+        :style="`left: ${minThumb}%; right: calc(100% - ${maxThumb}%)`"
+      >
+        <slot name="highlight" />
+      </div>
 
-    <!-- Thumb Left -->
-    <div class="absolute vuwi-mc" :style="thumbLeftStyle">
-      <div class="absolute" :style="`left: ${minThumb}%`">
-        <div ref="thumbLeft" :class="`${rootClass}-thumb vuwi-mc`">
-          <slot name="thumb-left" />
+      <!-- Thumb (Left) -->
+      <div class="absolute vuwi-mc" :style="thumbLeftStyle">
+        <div class="absolute" :style="`left: ${minThumb}%`">
+          <div ref="thumbLeft" :class="`${rootClass}-thumb vuwi-mc`">
+            <slot name="thumb-left" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Thumb (Right) -->
+      <div class="absolute vuwi-mc" :style="thumbRightStyle">
+        <div class="absolute" :style="`left: ${maxThumb}%`">
+          <div ref="thumbRight" :class="`${rootClass}-thumb vuwi-mc`">
+            <slot name="thumb-right" />
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Thumb Right -->
-    <div class="absolute vuwi-mc" :style="thumbRightStyle">
-      <div class="absolute" :style="`left: ${maxThumb}%`">
-        <div ref="thumbRight" :class="`${rootClass}-thumb vuwi-mc`">
-          <slot name="thumb-right" />
-        </div>
-      </div>
-    </div>
-    <!-- </div> -->
   </div>
 </template>

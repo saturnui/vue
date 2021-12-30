@@ -1,3 +1,19 @@
+/* Fade Up */
+.fade-up-enter-active {
+  transition: all 200ms ease-out;
+}
+
+.fade-up-leave-active {
+  transition: all 200ms ease-in;
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+
 /* Slide Down */
 .slide-down-enter-active {
   transition: all 200ms ease-out;

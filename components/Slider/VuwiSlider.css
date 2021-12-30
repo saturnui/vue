@@ -1,19 +1,48 @@
 /* https://www.cssportal.com/style-input-range/ */
 @layer components {
-  .vuwi-slider {
-    @apply relative;
+  .vuwi-slider-sm {
+    @apply relative w-full h-3;
 
     input[type='range'] {
-      @apply absolute pointer-events-none appearance-none z-1 w-full h-5 opacity-50 cursor-pointer;
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-3 opacity-0 cursor-pointer;
       transform: translateY(-50%);
     }
 
     input[type='range']::-webkit-slider-runnable-track {
-      @apply w-full h-full cursor-pointer bg-dark-900;
+      @apply w-full h-full cursor-pointer;
     }
 
     input[type='range']::-webkit-slider-thumb {
-      @apply h-5 w-5 pointer-events-auto bg-light-blue-400 appearance-none;
+      @apply h-3 w-3 pointer-events-auto appearance-none;
+    }
+
+    &-track {
+      @apply absolute left-0 w-full h-1 flex items-center rounded-full bg-gray-100 dark:bg-gray-700;
+    }
+
+    &-highlight {
+      @apply absolute h-full h-1 bg-light-blue-400 rounded-full;
+    }
+
+    &-thumb {
+      @apply absolute h-3 w-3 bg-white rounded-full filter drop-shadow;
+    }
+  }
+
+  .vuwi-slider {
+    @apply relative w-full h-5;
+
+    input[type='range'] {
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-5 opacity-0 cursor-pointer;
+      transform: translateY(-50%);
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+      @apply w-full h-full cursor-pointer;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      @apply h-5 w-5 pointer-events-auto appearance-none;
     }
 
     &-track {
@@ -21,40 +50,69 @@
     }
 
     &-highlight {
-      @apply absolute h-full h-2 bg-green-500;
+      @apply absolute h-full h-2 bg-light-blue-400 rounded-full;
     }
 
     &-thumb {
-      @apply absolute h-5 w-5 bg-amber-400 rounded-full;
+      @apply absolute h-5 w-5 bg-white rounded-full filter drop-shadow;
     }
   }
 
   .vuwi-slider-lg {
-    @apply relative;
+    @apply relative h-8;
 
     input[type='range'] {
-      @apply absolute pointer-events-none appearance-none z-1 w-full h-10 opacity-50 cursor-pointer;
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-8 opacity-0 cursor-pointer;
       transform: translateY(-50%);
     }
 
     input[type='range']::-webkit-slider-runnable-track {
-      @apply w-full h-full cursor-pointer bg-dark-900;
+      @apply w-full h-full cursor-pointer;
     }
 
     input[type='range']::-webkit-slider-thumb {
-      @apply h-10 w-10 pointer-events-auto bg-light-blue-400 appearance-none;
+      @apply h-8 w-8 pointer-events-auto appearance-none;
     }
-    
+
+    &-track {
+      @apply absolute left-0 w-full h-4 flex items-center rounded-full bg-gray-100 dark:bg-gray-700;
+    }
+
+    &-highlight {
+      @apply absolute h-full h-4 bg-light-blue-400 rounded-full;
+    }
+
+    &-thumb {
+      @apply absolute h-8 w-8 bg-white rounded-full filter drop-shadow;
+    }
+  }
+
+  .vuwi-slider-xl {
+    @apply relative h-10;
+
+    input[type='range'] {
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-10 opacity-0 cursor-pointer;
+      transform: translateY(-50%);
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+      @apply w-full h-full cursor-pointer;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      @apply h-10 w-10 pointer-events-auto appearance-none;
+    }
+
     &-track {
       @apply absolute left-0 w-full h-5 flex items-center rounded-full bg-gray-100 dark:bg-gray-700;
     }
 
     &-highlight {
-      @apply absolute h-full h-5 bg-green-500 rounded-full;
+      @apply absolute h-full h-5 bg-light-blue-400 rounded-full;
     }
 
     &-thumb {
-      @apply absolute h-10 w-10 bg-amber-400 rounded-full;
+      @apply absolute h-10 w-10 bg-white rounded-full filter drop-shadow;
     }
   }
 }
