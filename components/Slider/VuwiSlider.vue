@@ -41,14 +41,14 @@ export default defineComponent({
 
     const handleMinInput = () => {
       if (props.range) {
-        minValueInput.value = Math.min(minValueInput.value, maxVal.value)
+        minValueInput.value = Math.min(minValueInput.value, maxVal.value, maxValueInput.value)
         minThumb.value = ((minValueInput.value - minVal.value) / (maxVal.value - minVal.value)) * 100
         emit('update:min', minValueInput.value)
       }
     }
 
     const handleMaxInput = () => {
-      maxValueInput.value = Math.max(maxValueInput.value, minVal.value)
+      maxValueInput.value = Math.max(maxValueInput.value, minVal.value, minValueInput.value)
       maxThumb.value = ((maxValueInput.value - minVal.value) / (maxVal.value - minVal.value)) * 100
       emit('update:max', maxValueInput.value)
     }
