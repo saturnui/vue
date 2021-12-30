@@ -1,0 +1,60 @@
+/* https://www.cssportal.com/style-input-range/ */
+@layer components {
+  .vuwi-slider {
+    @apply relative;
+
+    input[type='range'] {
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-5 opacity-50 cursor-pointer;
+      transform: translateY(-50%);
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+      @apply w-full h-full cursor-pointer bg-dark-900;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      @apply h-5 w-5 pointer-events-auto bg-light-blue-400 appearance-none;
+    }
+
+    &-track {
+      @apply absolute left-0 w-full h-2 flex items-center rounded-full bg-gray-100 dark:bg-gray-700;
+    }
+
+    &-highlight {
+      @apply absolute h-full h-2 bg-green-500;
+    }
+
+    &-thumb {
+      @apply absolute h-5 w-5 bg-amber-400 rounded-full;
+    }
+  }
+
+  .vuwi-slider-lg {
+    @apply relative;
+
+    input[type='range'] {
+      @apply absolute pointer-events-none appearance-none z-1 w-full h-10 opacity-50 cursor-pointer;
+      transform: translateY(-50%);
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+      @apply w-full h-full cursor-pointer bg-dark-900;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      @apply h-10 w-10 pointer-events-auto bg-light-blue-400 appearance-none;
+    }
+    
+    &-track {
+      @apply absolute left-0 w-full h-5 flex items-center rounded-full bg-gray-100 dark:bg-gray-700;
+    }
+
+    &-highlight {
+      @apply absolute h-full h-5 bg-green-500 rounded-full;
+    }
+
+    &-thumb {
+      @apply absolute h-10 w-10 bg-amber-400 rounded-full;
+    }
+  }
+}
