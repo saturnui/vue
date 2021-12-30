@@ -5,19 +5,19 @@ export default defineComponent({
       type: String,
       default: 'vuwi-slider',
     },
-    min: {
+    min: { // CURRENT MIN
       type: Number,
       default: 0,
     },
-    max: {
+    max: { // CURRENT MAX
       type: Number,
       default: 100,
     },
-    minVal: {
+    minVal: { // RANGE MIN
       type: Number,
       default: 0,
     },
-    maxVal: {
+    maxVal: { // RANGE MAX
       type: Number,
       default: 100,
     },
@@ -25,24 +25,30 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
+    range: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:min', 'update:max'],
   setup(props, { emit }) {
     const minThumb = ref(0)
     const maxThumb = ref(0)
-    const minValueInput = ref(props.min)
-    const maxValueInput = ref(props.max)
+    const minValueInput = ref(Math.max(props.min, props.minVal))
+    const maxValueInput = ref(Math.min(props.max, props.maxVal))
     const minVal = ref(props.minVal)
     const maxVal = ref(props.maxVal)
 
     const handleMinInput = () => {
-      minValueInput.value = Math.min(minValueInput.value, maxValueInput.value)
-      minThumb.value = ((minValueInput.value - minVal.value) / (maxVal.value - minVal.value)) * 100
-      emit('update:min', minValueInput.value)
+      if (props.range) {
+        minValueInput.value = Math.min(minValueInput.value, maxVal.value)
+        minThumb.value = ((minValueInput.value - minVal.value) / (maxVal.value - minVal.value)) * 100
+        emit('update:min', minValueInput.value)
+      }
     }
 
     const handleMaxInput = () => {
-      maxValueInput.value = Math.max(maxValueInput.value, minValueInput.value)
+      maxValueInput.value = Math.max(maxValueInput.value, minVal.value)
       maxThumb.value = ((maxValueInput.value - minVal.value) / (maxVal.value - minVal.value)) * 100
       emit('update:max', maxValueInput.value)
     }
@@ -53,11 +59,11 @@ export default defineComponent({
     const thumbRightStyle = ref()
 
     watch(() => props.min, (val: number) => {
-      minValueInput.value = val
+      minValueInput.value = Math.max(val, props.minVal)
       handleMinInput()
     })
     watch(() => props.max, (val: number) => {
-      maxValueInput.value = val
+      maxValueInput.value = Math.min(val, props.maxVal)
       handleMaxInput()
     })
 
@@ -96,6 +102,7 @@ export default defineComponent({
   <div :class="rootClass">
     <div class="absolute vuwi-ml w-full">
       <input
+        v-if="range"
         v-model="minValueInput"
         type="range"
         :step="step"
@@ -127,7 +134,7 @@ export default defineComponent({
       </div>
 
       <!-- Thumb (Left) -->
-      <div class="absolute vuwi-mc" :style="thumbLeftStyle">
+      <div v-if="range" class="absolute vuwi-mc" :style="thumbLeftStyle">
         <div class="absolute" :style="`left: ${minThumb}%`">
           <div ref="thumbLeft" :class="`${rootClass}-thumb vuwi-mc`">
             <slot name="thumb-left" />

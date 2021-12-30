@@ -42,7 +42,7 @@
     }
 
     input[type='range']::-webkit-slider-thumb {
-      @apply h-5 w-5 pointer-events-auto appearance-none;
+      @apply h-5 w-5 pointer-events-auto appearance-none bg-red-500;
     }
 
     &-track {
