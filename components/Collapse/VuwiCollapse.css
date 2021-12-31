@@ -18,8 +18,8 @@
 
     &-collapse-enter-active,
     &-collapse-leave-active {
-      will-change: height, opacity;
-      transition: height 300ms ease-out;
+      will-change: height;
+      transition: height 300ms ease;
       overflow: hidden;
     }
 
