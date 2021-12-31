@@ -18,13 +18,14 @@ export default defineComponent({
       default: 1,
     },
     modelValue: {
-      type: Array,
+      type: [Number, Array],
       default: (): number[] => [100],
     },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const range = props.modelValue.length === 2
+    const isArray = props.modelValue instanceof Array
+    const range = isArray && props.modelValue.length === 2
     const minThumb = ref(0)
     const maxThumb = ref(0)
     const rangeVal0 = ref(0)
@@ -33,17 +34,18 @@ export default defineComponent({
     const maxVal = ref(props.max)
 
     if (range) {
-      rangeVal0.value = Math.max(props.modelValue[0] as number, props.min)
-      rangeVal1.value = Math.min(props.modelValue[1] as number, props.max)
+      rangeVal0.value = Math.max(isArray ? props.modelValue[0] as number : Number(props.modelValue), props.min)
+      rangeVal1.value = Math.min(isArray ? props.modelValue[1] as number : Number(props.modelValue), props.max)
     } else {
-      rangeVal1.value = Math.min(props.modelValue[0] as number, props.max)
+      rangeVal1.value = Math.min(isArray ? props.modelValue[0] as number : Number(props.modelValue), props.max)
     }
 
     const handleMinInput = () => {
       if (range) {
         rangeVal0.value = Math.min(rangeVal0.value, maxVal.value, rangeVal1.value)
         minThumb.value = ((rangeVal0.value - minVal.value) / (maxVal.value - minVal.value)) * 100
-        emit('update:modelValue', [rangeVal0.value, rangeVal1.value])
+        if (isArray) emit('update:modelValue', [rangeVal0.value, rangeVal1.value])
+        else emit('update:modelValue', rangeVal1.value)
       }
     }
 
@@ -51,7 +53,8 @@ export default defineComponent({
       rangeVal1.value = Math.max(rangeVal1.value, minVal.value, rangeVal0.value)
       maxThumb.value = ((rangeVal1.value - minVal.value) / (maxVal.value - minVal.value)) * 100
       if (range) emit('update:modelValue', [rangeVal0.value, rangeVal1.value])
-      else emit('update:modelValue', [rangeVal1.value])
+      else if (isArray) emit('update:modelValue', [rangeVal1.value])
+      else emit('update:modelValue', rangeVal1.value)
     }
 
     const thumbLeft = ref<HTMLElement>()
@@ -62,10 +65,10 @@ export default defineComponent({
     watch(() => props.modelValue, (newVal: any, oldVal: any) => {
       if (`${newVal}` !== `${oldVal}`) {
         if (range) {
-          rangeVal0.value = Math.max(newVal[0], props.min)
-          rangeVal1.value = Math.min(newVal[1], props.max)
+          rangeVal0.value = Math.max(isArray ? newVal[0] as number : Number(props.modelValue), props.min)
+          rangeVal1.value = Math.min(isArray ? newVal[1] as number : Number(props.modelValue), props.max)
         } else {
-          rangeVal1.value = Math.min(newVal[0], props.max)
+          rangeVal1.value = Math.min(isArray ? newVal[0] as number : Number(props.modelValue), props.max)
         }
         handleMinInput()
         handleMaxInput()
