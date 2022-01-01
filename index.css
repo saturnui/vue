@@ -1,9 +1,8 @@
-@import './components/Layout/index.css';
+@import './styles/vuwi.css';
 @import './components/Color/VuwiColor.css';
 @import './components/Alert/VuwiAlert.css';
 @import './components/Avatar/VuwiAvatar.css';
 @import './components/Button/VuwiButton.css';
-@import './components/Card/VuwiCard.css';
 @import './components/Carousel/VuwiCarousel.css';
 @import './components/CodeInput/VuwiCodeInput.css';
 @import './components/Collapse/VuwiCollapse.css';
