@@ -1,5 +1,5 @@
 @layer components {
-  .vuwi-window {
+  .vuwi-mock-window {
     @apply relative rounded pt-5 overflow-hidden overflow-y-auto bg-white dark:bg-dark-800;
     &:before {
       content: '';

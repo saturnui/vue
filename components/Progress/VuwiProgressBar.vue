@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const props = defineProps({
+  rootClass: {
+    type: String,
+    default: 'vuwi-progress-bar',
+  },
   percent: {
     type: Number,
     default: 0,
@@ -14,7 +18,7 @@ const meterStyle = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div :class="rootClass">
     <div class="relative" :style="meterStyle">
       <slot></slot>
     </div>
