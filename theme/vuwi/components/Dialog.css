@@ -1,7 +1,0 @@
-@layer components {
-  .vuwi {
-    &-dialog {
-      @apply rounded filter shadow-lg;
-    }
-  }
-}

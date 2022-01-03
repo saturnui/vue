@@ -1,0 +1,8 @@
+@layer components {
+  .wi {
+    &-spinner {
+      @apply inline-block border-2 border-current border-r-transparent rounded-full w-12 h-12 min-w-12 min-h-12 align-middle;
+      animation: wi-rotate 1s linear infinite;
+    }
+  }
+}

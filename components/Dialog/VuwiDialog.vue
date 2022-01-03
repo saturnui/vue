@@ -5,13 +5,13 @@
         <slot name="title"></slot>
       </div>
       <button
-        class="vuwi-btn vuwi-btn-icon"
+        class="wi-btn wi-btn-icon"
         @click="$emit('close')"
       >
         <tabler-x class="h-6 w-6" />
       </button>
     </div>
-    <VuwiLine />
+    <VLine />
     <slot></slot>
     <slot name="actions"></slot>
   </div>
@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     theme: {
       type: String,
-      default: 'vuwi',
+      default: 'wi',
     },
   },
   emits: ['close'],

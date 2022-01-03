@@ -1,0 +1,7 @@
+@layer components {
+  .wi {
+    &-dialog {
+      @apply rounded filter shadow-lg;
+    }
+  }
+}

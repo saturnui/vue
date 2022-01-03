@@ -1,0 +1,79 @@
+@layer components {
+  .wi {
+    /* Position */
+    &-tl {
+      left: 0;
+      top: 0;
+    }
+
+    &-tc {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) !important;
+    }
+
+    &-tr {
+      top: 0;
+      right: 0;
+    }
+
+    &-ml {
+      top: 50%;
+      transform: translateY(-50%) !important;
+      left: 0;
+    }
+
+    &-mc {
+      top: 50%;
+      transform: translate(-50%, -50%) !important;
+      left: 50%;
+    }
+
+    &-mr {
+      top: 50%;
+      transform: translateY(-50%) !important;
+      right: 0;
+    }
+
+    &-bl {
+      bottom: 0;
+      left: 0;
+    }
+
+    &-bc {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) !important;
+    }
+
+    &-br {
+      bottom: 0;
+      right: 0;
+    }
+
+    /* Column */
+    &-col-3 {
+      @apply grid grid-cols-3;
+    }
+    &-col-3-1 {
+      @apply grid grid-cols-1 lg:grid-cols-3;
+    }
+    &-col-3-2-1 {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+    }
+    &-col-2 {
+      @apply grid grid-cols-2;
+    }
+    &-col-2-1 {
+      @apply grid grid-cols-1 md:grid-cols-2;
+    }
+    &-col-1 {
+      @apply grid;
+    }
+
+    /* Row */
+    &-row {
+      @apply flex items-center;
+    }
+  }
+}
