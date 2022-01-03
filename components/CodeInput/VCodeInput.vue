@@ -1,7 +1,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    wi: {
+    className: {
       type: String,
       default: 'wi-code-input',
     },
@@ -106,9 +106,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="root" :class="`${wi}`">
+  <div ref="root" :class="className">
     <div v-for="(k, i) in patternList" :key="i">
-      <div v-if="k === '-'" :class="`${wi}-break`"></div>
+      <div v-if="k === '-'" :class="`${className}-break`"></div>
       <input
         v-else
         v-model="values[i]"

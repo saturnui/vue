@@ -7,9 +7,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-drawer',
     },
     modelValue: {
       type: Boolean,
@@ -23,7 +23,7 @@ export default defineComponent({
     }, 200)
 
     const computedClass = computed(() => {
-      let c = `${props.theme}-drawer`
+      let c = props.className
       if (props.modelValue) c += ' !translate-x-0 show'
       return c
     })

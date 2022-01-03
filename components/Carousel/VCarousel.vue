@@ -2,9 +2,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-carousel',
     },
     modelValue: {
       type: Number,
@@ -87,7 +87,7 @@ export default defineComponent({
     )
 
     const sliderDirection = computed(() => {
-      if (props.vertical) return `${props.theme}-carousel-vertical`
+      if (props.vertical) return `${props.className}-vertical`
       return ''
     })
 
@@ -106,8 +106,8 @@ export default defineComponent({
   <div class="relative">
     <div
       ref="slider"
-      class="relative wi-carousel"
-      :class="`${sliderDirection} ${sliderClass}`"
+      class="relative"
+      :class="`${className} ${sliderDirection} ${sliderClass}`"
       @scroll="handleScroll"
     >
       <slot></slot>

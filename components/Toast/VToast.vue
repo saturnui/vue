@@ -1,6 +1,6 @@
 <template>
-  <transition :name="`${theme}-toast`">
-    <div v-if="show" :class="`${theme}-toast`">
+  <transition :name="className">
+    <div v-if="show" :class="className">
       <slot />
       <slot name="action" />
     </div>
@@ -10,9 +10,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-toast',
     },
     show: {
       type: Boolean,

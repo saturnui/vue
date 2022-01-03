@@ -1,5 +1,6 @@
 <template>
-  <div class="wi-text" :class="computedClass">
+  <!-- <div class="wi-text" :class="computedClass"> -->
+  <div :class="computedClass">
     <slot name="prepend"></slot>
     <div class="flex-grow" :class="{ label: label || errorLabel }">
       <div class="absolute top-1 pointer-events-none px-3">
@@ -52,9 +53,9 @@ type Option = { label: string; value: string | number }
 
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-dropdown',
     },
     name: {
       type: String,
@@ -109,7 +110,7 @@ export default defineComponent({
       initialValue: props.modelValue,
     })
     const computedClass = computed(() => {
-      const c = `${props.theme}-dropdown`
+      const c = props.className
       // TODO: Move this to .css file
       if (meta.valid || !meta.validated)
         return `${c} focus-within:border-primary`

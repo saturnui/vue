@@ -2,9 +2,9 @@
 
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-pagination',
     },
     totalVisible: {
       type: Number,
@@ -81,7 +81,7 @@ export default defineComponent({
     const value = (val: number) => emit('update:modelValue', val)
 
     const moreClass = (item: any, modelValue: number) => {
-      return modelValue >= item.range.start && modelValue < item.range.end ? `${props.theme}-pagination-more ${props.theme}-pagination-more-active` : `${props.theme}-pagination-more`
+      return modelValue >= item.range.start && modelValue < item.range.end ? `${props.className}-more ${props.className}-more-active` : `${props.className}-more`
     }
 
     const moreActive = (item: any, modelValue: number) => {
@@ -89,7 +89,7 @@ export default defineComponent({
     }
 
     const buttonClass = (item: any, modelValue: number) => {
-      return item.val === modelValue ? `${props.theme}-pagination-link ${props.theme}-pagination-link-active` : `${props.theme}-pagination-link`
+      return item.val === modelValue ? `${props.className}-link ${props.className}-link-active` : `${props.className}-link`
     }
 
     const disableNavButtons = computed(() => {
@@ -111,8 +111,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <nav :class="`${theme}-pagination`" role="navigation">
-    <button :class="`${theme}-pagination-nav-left`" :disabled="disableNavButtons" @click="prev">
+  <nav :class="className" role="navigation">
+    <button :class="`${className}-nav-left`" :disabled="disableNavButtons" @click="prev">
       <slot name="prev-icon">
         <tabler-chevron-left />
       </slot>
@@ -134,7 +134,7 @@ export default defineComponent({
         @click="value(item.val)"
       >{{ item.val + 1 }}</button>
     </span>
-    <button :class="`${theme}-pagination-nav-right`" :disabled="disableNavButtons" @click="next">
+    <button :class="`${className}-nav-right`" :disabled="disableNavButtons" @click="next">
       <slot name="next-icon">
         <tabler-chevron-right />
       </slot>

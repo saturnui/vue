@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${wi}`">
+  <div :class="`${className}`">
     <img v-if="photo" :src="photo" :alt="name" />
     <div v-else-if="name">
       {{ initial }}
@@ -10,7 +10,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    wi: {
+    className: {
       type: String,
       default: 'wi-avatar',
     },

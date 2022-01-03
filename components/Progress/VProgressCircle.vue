@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
-  theme: {
+  className: {
     type: String,
-    default: 'wi',
+    default: 'wi-progress-circle',
   },
   size: {
     type: Number,
@@ -59,7 +59,7 @@ const ringStyle = computed(() => {
 })
 
 const ringClass = computed(() => {
-  return `${props.theme}-progress-circle border ${props.color}`
+  return `${props.className} border ${props.color}`
 })
 
 const leftStyle = computed(() => {
@@ -86,11 +86,11 @@ const rightStyle = computed(() => {
     class="relative rounded-full overflow-hidden"
     :style="pieContainerStyle"
   >
-    <div :class="`${theme}-progress-circle`" :style="pieStyle">
+    <div :class="className" :style="pieStyle">
       <div :class="ringClass" :style="leftStyle"></div>
       <div :class="ringClass" :style="rightStyle"></div>
     </div>
-    <div :class="`${theme}-progress-circle-label`">
+    <div :class="`${className}-label`">
       <slot></slot>
     </div>
   </div>

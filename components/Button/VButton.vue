@@ -1,7 +1,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    wi: {
+    className: {
       type: String,
       default: 'wi-btn',
     },
@@ -10,7 +10,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button :class="wi">
+  <button :class="className">
     <slot></slot>
   </button>
 </template>

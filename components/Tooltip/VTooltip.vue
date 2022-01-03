@@ -3,9 +3,9 @@ import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-tooltip',
     },
     placement: {
       type: String,
@@ -95,7 +95,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="component" :class="`${theme}-tooltip-target`" aria-describedby="tooltip">
+  <div ref="component" :class="`${className}-target`" aria-describedby="tooltip">
     <span @mouseenter="showTooltip" @mouseleave="hideTooltip">
       <slot></slot>
     </span>
@@ -103,10 +103,10 @@ export default defineComponent({
       v-if="showingTooltip"
       name="tooltip"
       role="tooltip"
-      :class="`${theme}-tooltip ${tooltipClass}`"
+      :class="`${className} ${tooltipClass}`"
     >
       <slot name="tooltip"></slot>
-      <div :class="`${theme}-tooltip-arrow`" data-popper-arrow></div>
+      <div :class="`${className}-arrow`" data-popper-arrow></div>
     </div>
   </div>
 </template>

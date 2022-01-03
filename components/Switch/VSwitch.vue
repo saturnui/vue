@@ -24,9 +24,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-switch',
     },
     id: {
       type: String,
@@ -44,7 +44,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const computedClass = computed(() => {
-      let c = `${props.theme}-switch`
+      let c = props.className
       if (props.disabled) c += ' disabled'
       return c
     })

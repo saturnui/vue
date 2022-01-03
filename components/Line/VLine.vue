@@ -1,17 +1,17 @@
 <template>
-  <div :class="`${theme}-line`">
-    <div :class="`${theme}-line-left`"></div>
+  <div :class="className">
+    <div :class="`${className}-left`"></div>
     <slot></slot>
-    <div :class="`${theme}-line-right`"></div>
+    <div :class="`${className}-right`"></div>
   </div>
 </template>
 
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-line',
     },
   },
   setup(props, { slots }) {

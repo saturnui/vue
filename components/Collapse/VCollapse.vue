@@ -1,10 +1,10 @@
 <template>
-  <div :class="`${theme}-collapse`">
+  <div :class="className">
     <div class="relative" role="button" @click="toggle">
       <slot name="header" :open="open"></slot>
     </div>
     <transition
-      :name="`${theme}-collapse`"
+      :name="className"
       @enter="start"
       @after-enter="end"
       @before-leave="start"
@@ -23,9 +23,9 @@
 import { useGroupEmitter, useUuid } from '../../composables'
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-collapse',
     },
     group: {
       type: String,

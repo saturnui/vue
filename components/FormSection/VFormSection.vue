@@ -1,12 +1,12 @@
 <template>
-  <div :class="`${wi}`">
+  <div :class="className">
     <div class="md:col-span-1">
       <div class="p-4 sm:px-0">
-        <div :class="`${wi}-title`">
-          <span :class="`${wi}-title`">{{ title }}</span>
+        <div :class="`${className}-title`">
+          <span :class="`${className}-title`">{{ title }}</span>
         </div>
-        <div :class="`${wi}-desc`">
-          <span :class="`${wi}-desc`">{{ desc }}</span>
+        <div :class="`${className}-desc`">
+          <span :class="`${className}-desc`">{{ desc }}</span>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    wi: {
+    className: {
       type: String,
       default: 'wi-form-section',
     },

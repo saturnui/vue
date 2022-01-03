@@ -1,14 +1,14 @@
 <template>
-  <div class="wi-dialog">
-    <div class="wi-dialog-titlebar">
+  <div :class="className">
+    <div :class="`${className}-titlebar`">
       <slot name="title" />
       <div class="flex-grow"></div>
-      <VButton class="wi-btn wi-btn-icon" @click="$emit('close')">
-        <tabler-x class="wi-dialog-close-icon" />
+      <VButton class="wi-btn-icon" @click="$emit('close')">
+        <tabler-x :class="`${className}-close-icon`" />
       </VButton>
     </div>
     <slot />
-    <div class="wi-dialog-actions">
+    <div :class="`${className}-actions`">
       <slot name="actions" />
     </div>
   </div>
@@ -17,7 +17,7 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    wi: {
+    className: {
       type: String,
       default: 'wi-dialog',
     },

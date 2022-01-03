@@ -1,7 +1,7 @@
 <template>
   <div ref="root">
-    <transition :name="`${theme}-overlay`">
-      <div v-if="blocking && modelValue" :class="`${theme}-overlay`">
+    <transition :name="className">
+      <div v-if="blocking && modelValue" :class="className">
         <slot name="backdrop" v-bind="{ position, modal }"></slot>
       </div>
     </transition>
@@ -17,9 +17,9 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    theme: {
+    className: {
       type: String,
-      default: 'wi',
+      default: 'wi-overlay',
     },
     modelValue: {
       type: Boolean,
@@ -51,11 +51,11 @@ export default defineComponent({
     let off: any
 
     const transitionName = computed(() => {
-      return `${props.theme}-overlay-${props.position}`
+      return `${props.className}-${props.position}`
     })
 
     const positionClass = computed(() => {
-      return `${props.theme}-overlay-${props.position}`
+      return `${props.className}-${props.position}`
     })
 
     const enableScroll = () => {
