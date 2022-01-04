@@ -1,5 +1,51 @@
 @layer components {
+  .bg {
+    &-danger {
+      @apply bg-red-500;
+    }
+    &-success {
+      @apply bg-green-500;
+    }
+    &-info {
+      @apply bg-light-blue-500;
+    }
+    &-warning {
+      @apply bg-yellow-500;
+    }
+  }
+
+  .text {
+    &-danger {
+      @apply text-red-500;
+    }
+    &-success {
+      @apply text-green-500;
+    }
+    &-info {
+      @apply text-light-blue-500;
+    }
+    &-warning {
+      @apply text-yellow-500;
+    }
+  }
+  
   .wi {
+    &-danger {
+      @apply bg-red-500 text-white;
+    }
+    
+    &-success {
+      @apply bg-green-500 text-white;
+    }
+    
+    &-info {
+      @apply bg-light-blue-500 text-white;
+    }
+    
+    &-warning {
+      @apply bg-yellow-500 text-white;
+    }
+
     &-bg-primary {
       background-color: #1873e8;
     }

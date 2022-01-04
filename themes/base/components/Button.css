@@ -11,8 +11,8 @@
         focus:ring-opacity-50
         focus:ring-offset-1;
     }
-    &-btn-trans-none {
-      @apply transition-none;
+    &-btn-scale-none {
+      @apply transition-none active:scale-100;
     }
     &-btn-v {
       @apply flex-col;
