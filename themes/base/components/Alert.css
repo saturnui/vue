@@ -1,0 +1,7 @@
+@layer components {
+  .wi {
+    &-alert {
+      @apply flex justify-between items-center rounded mb-2;
+    }
+  }
+}

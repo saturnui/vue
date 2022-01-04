@@ -1,0 +1,44 @@
+@layer components {
+  .wi {
+    &-switch {
+      @apply inline-flex items-center cursor-pointer align-top;
+      input ~ .dot {
+        @apply absolute left-1 top-1 w-6 h-6 rounded-full transition bg-white;
+      }
+      input ~ .pill {
+        @apply transition rounded-full w-14 h-8 bg-dark-900 bg-opacity-10 dark:bg-dark-900 dark:bg-opacity-40;
+      }
+      input:checked ~ .dot {
+        transform: translateX(100%);
+      }
+      input:checked ~ .pill {
+        @apply bg-green-500;
+      }
+      &.disabled {
+        @apply cursor-default opacity-30 dark:opacity-40;
+      }
+
+      &.disabled input:checked ~ .pill {
+        @apply bg-dark-900 bg-opacity-10 dark:bg-dark-900 dark:bg-opacity-40;
+      }
+    }
+
+    &-switch-sm {
+      input ~ .dot {
+        @apply w-4 h-4;
+      }
+      input ~ .pill {
+        @apply w-10 h-6;
+      }
+    }
+
+    &-switch-lg {
+      input ~ .dot {
+        @apply w-8 h-8;
+      }
+      input ~ .pill {
+        @apply w-18 h-10;
+      }
+    }
+  }
+}

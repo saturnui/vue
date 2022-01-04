@@ -1,0 +1,16 @@
+@layer components {
+  .wi {
+    &-fade-enter-active {
+      transition: opacity 200ms ease-out;
+    }
+
+    &-fade-leave-active {
+      transition: opacity 200ms ease-in;
+    }
+
+    &-fade-enter-from,
+    &-fade-leave-to {
+      opacity: 0;
+    }
+  }
+}

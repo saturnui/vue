@@ -75,10 +75,10 @@ export const useDirective = (binding: any) => {
       // disable the picker when input is disabled
       if (instance.pickerInputRef?.disabled)
         return (instance.isShow = false)
-      if (instance.vuwiDateRangePicker) {
+      if (instance.wiDateRangePicker) {
         const { autoApply, previous, next } = instance
         const target = targetElem.classList.contains(
-          'vuwi-datepicker-date',
+          'wi-datepicker-date',
         )
         if (target && autoApply && !previous && !next)
           return (instance.isShow = false)
@@ -94,13 +94,13 @@ export const useDirective = (binding: any) => {
           return (instance.isShow = false)
 
         if (
-          targetElem.classList.contains('vuwi-shortcuts')
+          targetElem.classList.contains('wi-shortcuts')
           && autoApply
         )
           return (instance.isShow = false)
 
         return (instance.isShow
-          = instance.vuwiDateRangePicker.contains(targetElem)
+          = instance.wiDateRangePicker.contains(targetElem)
           || document.getElementById(value) === targetElem
           || value === targetElem)
       }

@@ -1,0 +1,88 @@
+@layer components {
+  .wi {
+    &-btn {
+      @apply inline-flex items-center justify-center cursor-pointer
+        px-4 py-1 font-medium rounded-md
+        transform duration-150 active:scale-90
+        min-h-9
+        focus:outline-none
+        focus:ring-4
+        focus:ring-primary
+        focus:ring-opacity-50
+        focus:ring-offset-1;
+    }
+    &-btn-scale-none {
+      @apply transition-none active:scale-100;
+    }
+    &-btn-v {
+      @apply flex-col;
+    }
+    &-btn-xs {
+      @apply px-2 leading-0 text-xs min-h-5;
+    }
+    &-btn-sm {
+      @apply px-3 leading-0 text-sm min-h-8;
+    }
+    &-btn-lg {
+      @apply px-6 min-h-12 text-lg;
+    }
+    &-btn-xl {
+      @apply px-8 min-h-14 text-xl;
+    }
+    &-btn-tile {
+      @apply rounded-none;
+    }
+    &-btn-pill {
+      @apply rounded-full;
+    }
+    &-btn-icon {
+      @apply p-0 rounded-full;
+    }
+    &-btn&-btn-icon {
+      @apply min-w-9;
+    }
+    &-btn-xs&-btn-icon {
+      @apply min-w-5;
+    }
+    &-btn-sm&-btn-icon {
+      @apply min-w-8;
+    }
+    &-btn-lg&-btn-icon {
+      @apply min-w-12;
+    }
+    &-btn-xl&-btn-icon {
+      @apply min-w-14;
+    }
+    &-btn-primary {
+      @apply bg-primary text-white hover:bg-primary-dark
+      disabled:scale-100 disabled:cursor-default disabled:bg-gray-900 disabled:bg-opacity-10 disabled:text-gray-400 
+      dark:disabled:bg-white dark:disabled:bg-opacity-20 dark:disabled:text-white dark:disabled:text-opacity-30;
+    }
+    &-btn-outline {
+      @apply border dark:border-gray-600 bg-transparent text-gray-600 dark:text-gray-300;
+    }
+    &-btn-outline&-btn-primary {
+      @apply border-primary bg-transparent text-primary hover:bg-primary hover:bg-opacity-10;
+    }
+    &-btn-fill {
+      @apply bg-gray-100 bg-opacity-5 text-gray-800 dark:text-gray-100;
+    }
+    &-btn-link {
+      @apply hover:cursor-pointer hover:underline rounded;
+    }
+    &-btn-link-primary {
+      @apply text-primary dark:text-blue-400;
+    }
+    &-btn-group &-btn {
+      @apply !rounded-none;
+    }
+    &-btn-group > &-btn:first-child,
+    &-btn-group > :first-child &-btn {
+      @apply !rounded-l;
+    }
+    &-btn-group > &-btn:last-child,
+    &-btn-group > :last-child &-btn {
+      @apply !rounded-r;
+    }
+  }
+}

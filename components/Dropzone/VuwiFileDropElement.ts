@@ -171,13 +171,13 @@ export class FileDropEvent extends Event {
 
 /*
   Example Usage.
-  <vuwi-file-drop
+  <wi-file-drop
     accept='image/*'
     multiple | undefined
     class='drop-valid|drop-invalid'
   >
   [everything in here is a drop target.]
-  </vuwi-file-drop>
+  </wi-file-drop>
   dropElement.addEventListener('filedrop', (event) => console.log(event.detail))
 */
 export class FileDropElement extends HTMLElement {
@@ -280,4 +280,4 @@ export class FileDropElement extends HTMLElement {
   }
 }
 
-customElements.define('vuwi-file-drop', FileDropElement)
+customElements.define('wi-file-drop', FileDropElement)
