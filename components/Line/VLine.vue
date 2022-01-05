@@ -14,13 +14,5 @@ export default defineComponent({
       default: 'wi-line',
     },
   },
-  setup(props, { slots }) {
-    const hasSlot = computed(() => {
-      return !!slots.default?.length
-    })
-    return {
-      hasSlot,
-    }
-  },
 })
 </script>
