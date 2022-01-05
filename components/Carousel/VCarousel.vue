@@ -28,7 +28,7 @@ export default defineComponent({
       if (slider.value) {
         // clearTimeout(scrollTimer)
         const newIndex = props.modelValue + skip
-        emit('update:modelValue', Math.min(newIndex, slider.value.childElementCount - 1))
+        emit('update:modelValue', newIndex)
       }
     }
 
@@ -36,7 +36,7 @@ export default defineComponent({
       if (slider.value) {
         // clearTimeout(scrollTimer)
         const newIndex = props.modelValue - skip
-        emit('update:modelValue', Math.max(newIndex, 0))
+        emit('update:modelValue', newIndex)
       }
     }
 
@@ -51,9 +51,9 @@ export default defineComponent({
             const element = slider.value.children[index]
             if (element) {
               let relativePos
-              if (props.vertical) 
+              if (props.vertical)
                 relativePos = element.getBoundingClientRect().y - sliderRect.top
-              else 
+              else
                 relativePos = element.getBoundingClientRect().x - sliderRect.left
 
               if (relativePos >= -maxPos && relativePos <= maxPos) {
@@ -71,20 +71,32 @@ export default defineComponent({
       () => props.modelValue,
       (val) => {
         if (slider.value) {
-          const sliderRect = slider.value.getBoundingClientRect()
-          const el = slider.value.children[val]
-          if (props.vertical) {
-            const scrollTotal = el.getBoundingClientRect().y - sliderRect.top
-            slider.value.scrollTop += scrollTotal
-          }
-          else {
-            const scrollTotal = el.getBoundingClientRect().x - sliderRect.left
-            slider.value.scrollLeft += scrollTotal
+          let index = Math.min(val, slider.value.childElementCount - 1)
+          index = Math.max(0, index)
+          if (val === index) {
+            const sliderRect = slider.value.getBoundingClientRect()
+            const el = slider.value.children[val]
+            if (props.vertical) {
+              const scrollTotal = el.getBoundingClientRect().y - sliderRect.top
+              slider.value.scrollTop += scrollTotal
+            }
+            else {
+              const scrollTotal = el.getBoundingClientRect().x - sliderRect.left
+              slider.value.scrollLeft += scrollTotal
+            }
+          } else {
+            emit('update:modelValue', index)
           }
         }
       },
       { immediate: true },
     )
+
+    let timer: any
+    watch(() => props.auto, (val) => {
+      clearInterval(timer)
+      if (val) timer = setInterval(nextSlide, Number(val))
+    }, { immediate: true })
 
     const sliderDirection = computed(() => {
       if (props.vertical) return `${props.className}-vertical`
