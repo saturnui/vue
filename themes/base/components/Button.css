@@ -11,57 +11,54 @@
         focus:ring-primary
         focus:ring-opacity-50
         focus:ring-offset-1;
-    }
 
-    /* No Scale */
-    &-btn-scale-none {
-      @apply transition-none active:scale-100;
-    }
+      /* Icon */
+      &[icon]:not([icon='false']) {
+        @apply p-0 rounded-full min-w-9;
+      }
 
-    /* Sizes */
-    &-btn-xs {
-      @apply px-2 leading-0 text-xs min-h-5;
-    }
-    &-btn-sm {
-      @apply px-3 leading-0 text-sm min-h-8;
-    }
-    &-btn-lg {
-      @apply px-6 min-h-12 text-lg;
-    }
-    &-btn-xl {
-      @apply px-8 min-h-14 text-xl;
-    }
+      /* Sizes */
+      &[size='xs'] {
+        @apply px-2 leading-0 text-xs min-h-5;
+        &[icon] {
+          @apply min-w-5;
+        }
+      }
+      &[size='sm'] {
+        @apply px-3 leading-0 text-sm min-h-8;
+        &[icon] {
+          @apply min-w-8;
+        }
+      }
+      &[size='lg'] {
+        @apply px-6 min-h-12 text-lg;
+        &[icon] {
+          @apply min-w-12;
+        }
+      }
+      &[size='xl'] {
+        @apply px-8 min-h-14 text-xl;
+        &[icon] {
+          @apply min-w-14;
+        }
+      }
 
-    /* Icon */
-    &-btn-icon {
-      @apply p-0 rounded-full;
-    }
-    &-btn&-btn-icon {
-      @apply min-w-9;
-    }
-    &-btn-xs&-btn-icon {
-      @apply min-w-5;
-    }
-    &-btn-sm&-btn-icon {
-      @apply min-w-8;
-    }
-    &-btn-lg&-btn-icon {
-      @apply min-w-12;
-    }
-    &-btn-xl&-btn-icon {
-      @apply min-w-14;
+      /* No Scale */
+      &[scale='none'] {
+        @apply transition-none active:scale-100;
+      }
+
+      /* Disabled */
+      &[disabled]:not([disabled='false']) {
+        @apply scale-100 cursor-default 
+      !border-dark-900 dark:!border-dark-900
+      !bg-dark-300 !text-dark-600 opacity-20;
+      }
     }
 
     /* Link */
     &-link {
       @apply text-primary dark:text-primary-light hover:cursor-pointer hover:underline rounded;
-    }
-
-    /* Disabled */
-    &-btn-disabled {
-      @apply scale-100 cursor-default 
-      !border-dark-900 dark:!border-dark-900
-      !bg-dark-300 !text-dark-600 opacity-20;
     }
 
     /* Button Group */

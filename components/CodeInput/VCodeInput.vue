@@ -3,7 +3,7 @@ export default defineComponent({
   props: {
     className: {
       type: String,
-      default: 'wi-code-input',
+      default: 'wi-codeinput',
     },
     modelValue: {
       type: String,
@@ -13,7 +13,7 @@ export default defineComponent({
       type: String,
       default: 'XXX-XXX',
     },
-    class: {
+    inputClass: {
       type: String,
       default: '',
     },
@@ -84,16 +84,11 @@ export default defineComponent({
       emit('update:modelValue', newVal)
     })
 
-    const customClass = computed(() => {
-      return props.class
-    })
-
     onMounted(() => {
       formInputs = root.value.querySelectorAll('input')
     })
 
     return {
-      customClass,
       root,
       focusHandler,
       handleKeyDown,
@@ -108,13 +103,13 @@ export default defineComponent({
 <template>
   <div ref="root" :class="className">
     <div v-for="(k, i) in patternList" :key="i">
-      <div v-if="k === '-'" :class="`${className}-break`"></div>
+      <div v-if="k === '-'" name="separator"></div>
       <input
         v-else
         v-model="values[i]"
         type="text"
         :maxlength="1"
-        :class="customClass"
+        :class="inputClass"
         @focus="focusHandler"
         @keydown="handleKeyDown"
       />
