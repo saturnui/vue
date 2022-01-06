@@ -1,4 +1,4 @@
-export const useImageToDataUrl = (file: File, width = 48, height = 48): Promise<string> => {
+export const useImageToDataUrl = (file: File, width = 0, height = 0): Promise<string> => {
   const boundBox = [width, height]
   const reader = new FileReader()
   const canvas = document.createElement('canvas')
@@ -8,9 +8,9 @@ export const useImageToDataUrl = (file: File, width = 48, height = 48): Promise<
     reader.onload = (event: ProgressEvent<FileReader>) => {
       const image = new Image()
       image.onload = () => {
-        const scaleRatio = Math.min(...boundBox) / Math.max(width, height)
-        const w = width * scaleRatio
-        const h = height * scaleRatio
+        const scaleRatio = Math.min(...boundBox) / Math.max(image.width, image.height)
+        const w = (image.width * scaleRatio)
+        const h = (image.height * scaleRatio)
         canvas.width = w
         canvas.height = h
         ctx.drawImage(image, 0, 0, w, h)

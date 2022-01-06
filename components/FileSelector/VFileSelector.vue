@@ -6,6 +6,7 @@
       type="file"
       :multiple="multiple"
       class="hidden"
+      :accept="accept"
       @change="fileSelected"
     />
   </div>
@@ -20,9 +21,13 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    accepts: {
+      type: Array,
+      default: () => [],
+    },
   },
   emits: ['change'],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     const input = ref()
 
     const selectFiles = () => {
@@ -36,7 +41,15 @@ export default defineComponent({
       emit('change', files)
     }
 
+    const accept = computed(() => {
+      const val = props.accepts as string[]
+      if (val instanceof Array)
+        return val.map(v => `.${v}`).join(',')
+      return ''
+    })
+
     return {
+      accept,
       fileSelected,
       input,
       selectFiles,

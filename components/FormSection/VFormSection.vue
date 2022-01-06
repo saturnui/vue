@@ -11,11 +11,9 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <div class="wi-light-dark">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="col-span-6 sm:col-span-4">
-            <slot></slot>
-          </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="col-span-6 sm:col-span-4">
+          <slot></slot>
         </div>
       </div>
     </div>

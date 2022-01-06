@@ -1,5 +1,5 @@
 <template>
-  <img :src="dataUrl" class="bg-cover" />
+  <img :src="dataUrl" class="bg-contain" />
 </template>
 
 <script lang="ts">
@@ -33,6 +33,7 @@ export default defineComponent({
             file.type === 'image/jpeg'
             || file.type === 'image/png'
             || file.type === 'image/gif'
+            || file.type === 'image/svg+xml'
           ) {
             source.value = URL.createObjectURL(file)
             dataUrl.value = await useImageToDataUrl(file, Number(props.width), Number(props.height))
