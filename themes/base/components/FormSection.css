@@ -1,15 +1,15 @@
 @layer components {
   .wi {
-    &-form-section {
+    &-formsection {
       @apply md:grid lg:grid-cols-3 md:gap-6;
     }
-    &-form-section-title {
+    &-formsection-title {
       @apply text-xl font-medium leading-6;
     }
-    &-form-section-desc {
+    &-formsection-desc {
       @apply mt-2 text-gray-800 dark:text-gray-400;
     }
-    &-form-section-content {
+    &-formsection-content {
       @apply p-4 py-5 bg-white space-y-6 sm:p-6 dark:bg-dark-800;
     }
   }

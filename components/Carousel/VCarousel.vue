@@ -26,7 +26,6 @@ export default defineComponent({
 
     const nextSlide = (skip = 1) => {
       if (slider.value) {
-        // clearTimeout(scrollTimer)
         const newIndex = props.modelValue + skip
         emit('update:modelValue', newIndex)
       }
@@ -34,7 +33,6 @@ export default defineComponent({
 
     const prevSlide = (skip = 1) => {
       if (slider.value) {
-        // clearTimeout(scrollTimer)
         const newIndex = props.modelValue - skip
         emit('update:modelValue', newIndex)
       }
@@ -92,12 +90,6 @@ export default defineComponent({
       { immediate: true },
     )
 
-    let timer: any
-    watch(() => props.auto, (val) => {
-      clearInterval(timer)
-      if (val) timer = setInterval(nextSlide, Number(val))
-    }, { immediate: true })
-
     const sliderDirection = computed(() => {
       if (props.vertical) return `${props.className}-vertical`
       return ''
@@ -122,7 +114,7 @@ export default defineComponent({
       :class="`${className} ${sliderDirection} ${sliderClass}`"
       @scroll="handleScroll"
     >
-      <slot></slot>
+      <slot v-bind="{ nextSlide, prevSlide }"></slot>
     </div>
     <slot name="overlay" v-bind="{ nextSlide, prevSlide }"></slot>
   </div>

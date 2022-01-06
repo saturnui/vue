@@ -12,7 +12,7 @@
     >
       <div v-show="open" class="relative">
         <div :class="position">
-          <slot></slot>
+          <slot :open="open"></slot>
         </div>
       </div>
     </transition>

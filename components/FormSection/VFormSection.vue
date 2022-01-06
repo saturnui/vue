@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     className: {
       type: String,
-      default: 'wi-form-section',
+      default: 'wi-formsection',
     },
     title: {
       type: String,
