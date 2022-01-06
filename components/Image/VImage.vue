@@ -16,28 +16,33 @@ export default defineComponent({
       default: 48,
     },
     src: {
-      type: File,
-      default: null,
+      type: [File, String],
+      default: '',
     },
   },
-  setup(props) {
+  emits: ['change'],
+  setup(props, { emit }) {
     const thumbnail = ref()
     const source = ref()
     const dataUrl = ref()
 
     watch(
       () => props.src,
-      async (file) => {
-        if (file) {
+      async (val) => {
+        if (val instanceof File) {
           if (
-            file.type === 'image/jpeg'
-            || file.type === 'image/png'
-            || file.type === 'image/gif'
-            || file.type === 'image/svg+xml'
+            val.type === 'image/jpeg'
+            || val.type === 'image/png'
+            || val.type === 'image/gif'
+            || val.type === 'image/svg+xml'
           ) {
-            source.value = URL.createObjectURL(file)
-            dataUrl.value = await useImageToDataUrl(file, Number(props.width), Number(props.height))
+            source.value = URL.createObjectURL(val)
+            dataUrl.value = await useImageToDataUrl(val, Number(props.width), Number(props.height))
+            emit('change', dataUrl.value)
           }
+        } else {
+          emit('change', val)
+          return val
         }
       },
       { immediate: true },

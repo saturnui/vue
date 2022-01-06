@@ -2,10 +2,9 @@
   .wi {
     &-line {
       @apply flex items-center justify-center;
-    }
-    &-line-left,
-    &-line-right {
-      @apply border-t flex-grow border-black border-opacity-10 dark:border-white dark:border-opacity-20;
+      > div[name='line'] {
+        @apply border-t flex-grow border-black border-opacity-10 dark:border-white dark:border-opacity-20;
+      }
     }
   }
 }

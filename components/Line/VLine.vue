@@ -1,8 +1,8 @@
 <template>
   <div :class="className">
-    <div :class="`${className}-left`"></div>
+    <div name="line"></div>
     <slot></slot>
-    <div :class="`${className}-right`"></div>
+    <div name="line"></div>
   </div>
 </template>
 
