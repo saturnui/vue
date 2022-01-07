@@ -82,16 +82,11 @@ const rightStyle = computed(() => {
 </script>
 
 <template>
-  <div
-    class="relative rounded-full overflow-hidden"
-    :style="pieContainerStyle"
-  >
+  <div class="relative rounded-full overflow-hidden" :style="pieContainerStyle">
     <div :class="className" :style="pieStyle">
       <div :class="ringClass" :style="leftStyle"></div>
       <div :class="ringClass" :style="rightStyle"></div>
     </div>
-    <div :class="`${className}-label`">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
