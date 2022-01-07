@@ -1,6 +1,6 @@
 @layer components {
   .wi {
-    &-fade-enter-active {
+    /* &-fade-enter-active {
       transition: opacity 200ms ease-out;
     }
 
@@ -11,6 +11,45 @@
     &-fade-enter-from,
     &-fade-leave-to {
       opacity: 0;
+    } */
+
+    /* Stripe Animation */
+    &-stripe&-animate {
+      animation: wi-animate-right 1s linear infinite;
+    }
+
+    &-stripe&-animate&-fastest {
+      animation: wi-animate-right 0.25s linear infinite;
+    }
+
+    &-stripe&-animate&-faster {
+      animation: wi-animate-right 0.5s linear infinite;
+    }
+
+    &-stripe&-animate&-fast {
+      animation: wi-animate-right 0.75s linear infinite;
+    }
+
+    &-stripe&-animate&-slow {
+      animation: wi-animate-right 2s linear infinite;
+    }
+
+    &-stripe&-animate&-slower {
+      animation: wi-animate-right 3s linear infinite;
+    }
+
+    &-stripe&-animate&-slowest {
+      animation: wi-animate-right 4s linear infinite;
+    }
+
+  }
+
+  @keyframes wi-animate-right {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
     }
   }
 }

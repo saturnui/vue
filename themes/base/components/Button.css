@@ -13,30 +13,30 @@
         focus:ring-offset-1;
 
       /* Icon */
-      &[icon]:not([icon='false']) {
+      &-icon, &[icon]:not([icon='false']) {
         @apply p-0 rounded-full min-w-9;
       }
 
       /* Sizes */
-      &[size='xs'] {
+      &.wi-xs, &[size='xs'] {
         @apply px-2 leading-0 text-xs min-h-5;
         &[icon] {
           @apply min-w-5;
         }
       }
-      &[size='sm'] {
+      &.wi-sm, &[size='sm'] {
         @apply px-3 leading-0 text-sm min-h-8;
         &[icon] {
           @apply min-w-8;
         }
       }
-      &[size='lg'] {
+      &.wi-lg, &[size='lg'] {
         @apply px-6 min-h-12 text-lg;
         &[icon] {
           @apply min-w-12;
         }
       }
-      &[size='xl'] {
+      &.wi-xl, &[size='xl'] {
         @apply px-8 min-h-14 text-xl;
         &[icon] {
           @apply min-w-14;
@@ -44,12 +44,12 @@
       }
 
       /* No Scale */
-      &[scale='none'] {
+      &&-scale-none, &[scale='none'] {
         @apply transition-none active:scale-100;
       }
 
       /* Disabled */
-      &[disabled]:not([disabled='false']) {
+      &&-disabled, &[disabled]:not([disabled='false']) {
         @apply scale-100 cursor-default 
       !border-dark-900 dark:!border-dark-900
       !bg-dark-300 !text-dark-600 opacity-20;

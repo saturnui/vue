@@ -3,57 +3,5 @@
     &-progress-bar > div {
       transition: width 100ms ease-in;
     }
-
-    &-progress-stripe {
-      content: '';
-      position: relative;
-      background-image: linear-gradient(
-        -45deg,
-        rgba(255, 255, 255, 0.2) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0.2) 75%,
-        transparent 75%,
-        transparent
-      );
-      background-size: 50px 50px;
-    }
-    &-progress-stripe-animate-fastest {
-      animation: wi-progress-stripe 0.25s linear infinite;
-    }
-
-    &-progress-stripe-animate-faster {
-      animation: wi-progress-stripe 0.5s linear infinite;
-    }
-
-    &-progress-stripe-animate-fast {
-      animation: wi-progress-stripe 0.75s linear infinite;
-    }
-
-    &-progress-stripe-animate {
-      animation: wi-progress-stripe 1s linear infinite;
-    }
-
-    &-progress-stripe-animate-slow {
-      animation: wi-progress-stripe 2s linear infinite;
-    }
-
-    &-progress-stripe-animate-slower {
-      animation: wi-progress-stripe 3s linear infinite;
-    }
-
-    &-progress-stripe-animate-slowest {
-      animation: wi-progress-stripe 4s linear infinite;
-    }
-  }
-
-  @keyframes wi-progress-stripe {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 50px 50px;
-    }
   }
 }

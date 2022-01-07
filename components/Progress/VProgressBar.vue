@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  rootClass: {
+  className: {
     type: String,
     default: 'wi-progress-bar',
   },
@@ -18,7 +18,7 @@ const meterStyle = computed(() => {
 </script>
 
 <template>
-  <div :class="rootClass">
+  <div :class="className">
     <div class="relative" :style="meterStyle">
       <slot></slot>
     </div>
