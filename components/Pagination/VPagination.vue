@@ -80,16 +80,12 @@ export default defineComponent({
     }
     const value = (val: number) => emit('update:modelValue', val)
 
-    const moreClass = (item: any, modelValue: number) => {
-      return modelValue >= item.range.start && modelValue < item.range.end ? `${props.className}-more ${props.className}-more-active` : `${props.className}-more`
-    }
-
-    const moreActive = (item: any, modelValue: number) => {
+    const isMoreActive = (item: any, modelValue: number) => {
       return modelValue >= item.range.start && modelValue < item.range.end
     }
 
-    const buttonClass = (item: any, modelValue: number) => {
-      return item.val === modelValue ? `${props.className}-link ${props.className}-link-active` : `${props.className}-link`
+    const isActive = (item: any, modelValue: number) => {
+      return item.val === modelValue
     }
 
     const disableNavButtons = computed(() => {
@@ -97,10 +93,9 @@ export default defineComponent({
     })
 
     return {
-      buttonClass,
+      isActive,
       disableNavButtons,
-      moreActive,
-      moreClass,
+      isMoreActive,
       next,
       prev,
       value,
@@ -112,7 +107,7 @@ export default defineComponent({
 
 <template>
   <nav :class="className" role="navigation">
-    <button :class="`${className}-nav-left`" :disabled="disableNavButtons" @click="prev">
+    <button left :disabled="disableNavButtons" @click="prev">
       <slot name="prev-icon">
         <tabler-chevron-left />
       </slot>
@@ -121,20 +116,21 @@ export default defineComponent({
       <slot
         v-if="item.more"
         name="more-icon"
-        v-bind="{ page: modelValue + 1, active: moreActive(item, modelValue) }"
+        v-bind="{ page: modelValue + 1, active: isMoreActive(item, modelValue) }"
       >
-        <div class="flex flex-col" :class="moreClass(item, modelValue)">
-          <span v-if="moreActive(item, modelValue)" class="text-xs leading-tight -mb-2">{{ modelValue + 1 }}</span>
-          <span class="leading-tight">...</span>
+        <div name="more" :active="isMoreActive(item, modelValue)">
+          <span name="page">{{ modelValue + 1 }}</span>
+          <span name="dots">...</span>
         </div>
       </slot>
       <button
         v-else
-        :class="buttonClass(item, modelValue)"
+        link
+        :active="isActive(item, modelValue)"
         @click="value(item.val)"
       >{{ item.val + 1 }}</button>
     </span>
-    <button :class="`${className}-nav-right`" :disabled="disableNavButtons" @click="next">
+    <button right :disabled="disableNavButtons" @click="next">
       <slot name="next-icon">
         <tabler-chevron-right />
       </slot>
