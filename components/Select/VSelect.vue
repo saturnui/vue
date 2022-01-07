@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { useField } from 'vee-validate'
-import { useUuid } from '../../composables'
 
 type Option = { label: string; value: string | number }
 
@@ -33,7 +32,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      default: () => useUuid(),
+      required: true,
     },
     disabled: Boolean,
     error: {
