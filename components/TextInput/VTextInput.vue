@@ -11,10 +11,10 @@
         :placeholder="placeholder"
         :required="required"
         :autocomplete="autocomplete"
-        :value="inputValue"
+        :value="stringify(inputValue)"
         :disabled="disabled"
-        @input="handleInput"
-        @blur="handleBlur"
+        @input="handleEvent"
+        @blur="handleEvent"
       />
       <input
         v-else
@@ -26,8 +26,11 @@
         :autocomplete="autocomplete"
         :value="inputValue"
         :disabled="disabled"
-        @input="handleInput"
-        @blur="handleBlur"
+        :min="min"
+        :max="max"
+        :step="step"
+        @input="handleEvent"
+        @blur="handleEvent"
       />
     </div>
     <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
@@ -36,7 +39,6 @@
 
 <script lang="ts">
 import { useField } from 'vee-validate'
-import { useUuid } from '../../composables'
 
 export default defineComponent({
   props: {
@@ -62,7 +64,7 @@ export default defineComponent({
       default: '',
     },
     modelValue: {
-      type: String,
+      type: [String, Boolean, Number],
       default: '',
     },
     multiline: {
@@ -71,7 +73,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      default: () => useUuid(),
+      default: '',
     },
     placeholder: {
       type: String,
@@ -86,8 +88,17 @@ export default defineComponent({
       type: String,
       default: 'text',
     },
+    min: {
+      type: [Number, String],
+    },
+    max: {
+      type: [Number, String],
+    },
+    step: {
+      type: [Number, String],
+    },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'input', 'blur'],
   setup(props, { emit }) {
     const {
       value: inputValue,
@@ -100,7 +111,7 @@ export default defineComponent({
     })
     watch(
       () => props.modelValue,
-      (val: string) => (inputValue.value = val),
+      (val: any) => (inputValue.value = `${val}`),
     )
     const hasError = computed(() => {
       return props.error || errorMessage.value
@@ -122,9 +133,27 @@ export default defineComponent({
       const target = evt.target as HTMLInputElement | HTMLTextAreaElement
       emit('update:modelValue', target.value)
     }
+
+    const stringify = (val: any) => {
+      return `${val}`
+    }
+
+    const handleEvent = (v: any) => {
+      switch (v.type) {
+        case 'input':
+          handleInput(v)
+          break
+        case 'blur':
+          handleBlur(v)
+          break
+      }
+      emit(v.type, v)
+    }
     return {
       customClass,
+      stringify,
       hasError,
+      handleEvent,
       handleChange,
       handleBlur,
       handleInput,
