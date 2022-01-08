@@ -1,24 +1,24 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    rootClass: {
+    className: {
       type: String,
       default: 'wi-slider',
     },
     min: { // RANGE MIN
-      type: Number,
+      type: [Number, String],
       default: 0,
     },
     max: { // RANGE MAX
-      type: Number,
+      type: [Number, String],
       default: 100,
     },
     step: {
-      type: Number,
+      type: [Number, String],
       default: 1,
     },
     modelValue: {
-      type: [Number, Array],
+      type: [Number, String, Array],
       default: (): number[] => [100],
     },
   },
@@ -34,24 +34,24 @@ export default defineComponent({
     const maxVal = ref(props.max)
 
     if (range) {
-      rangeVal0.value = Math.max(isArray ? props.modelValue[0] as number : Number(props.modelValue), props.min)
-      rangeVal1.value = Math.min(isArray ? props.modelValue[1] as number : Number(props.modelValue), props.max)
+      rangeVal0.value = Math.max(isArray ? Number(props.modelValue[0]) : Number(props.modelValue), Number(props.min))
+      rangeVal1.value = Math.min(isArray ? Number(props.modelValue[1]) : Number(props.modelValue), Number(props.max))
     } else {
-      rangeVal1.value = Math.min(isArray ? props.modelValue[0] as number : Number(props.modelValue), props.max)
+      rangeVal1.value = Math.min(isArray ? Number(props.modelValue[0]) : Number(props.modelValue), Number(props.max))
     }
 
     const handleMinInput = () => {
       if (range) {
-        rangeVal0.value = Math.min(rangeVal0.value, maxVal.value, rangeVal1.value)
-        minThumb.value = ((rangeVal0.value - minVal.value) / (maxVal.value - minVal.value)) * 100
+        rangeVal0.value = Math.min(rangeVal0.value, Number(maxVal.value), rangeVal1.value)
+        minThumb.value = ((rangeVal0.value - Number(minVal.value)) / (Number(maxVal.value) - Number(minVal.value))) * 100
         if (isArray) emit('update:modelValue', [rangeVal0.value, rangeVal1.value])
         else emit('update:modelValue', rangeVal1.value)
       }
     }
 
     const handleMaxInput = () => {
-      rangeVal1.value = Math.max(rangeVal1.value, minVal.value, rangeVal0.value)
-      maxThumb.value = ((rangeVal1.value - minVal.value) / (maxVal.value - minVal.value)) * 100
+      rangeVal1.value = Math.max(rangeVal1.value, Number(minVal.value), rangeVal0.value)
+      maxThumb.value = ((rangeVal1.value - Number(minVal.value)) / (Number(maxVal.value) - Number(minVal.value))) * 100
       if (range) emit('update:modelValue', [rangeVal0.value, rangeVal1.value])
       else if (isArray) emit('update:modelValue', [rangeVal1.value])
       else emit('update:modelValue', rangeVal1.value)
@@ -65,10 +65,10 @@ export default defineComponent({
     watch(() => props.modelValue, (newVal: any, oldVal: any) => {
       if (`${newVal}` !== `${oldVal}`) {
         if (range) {
-          rangeVal0.value = Math.max(isArray ? newVal[0] as number : Number(props.modelValue), props.min)
-          rangeVal1.value = Math.min(isArray ? newVal[1] as number : Number(props.modelValue), props.max)
+          rangeVal0.value = Math.max(isArray ? Number(newVal[0]) : Number(props.modelValue), Number(props.min))
+          rangeVal1.value = Math.min(isArray ? Number(newVal[1]) : Number(props.modelValue), Number(props.max))
         } else {
-          rangeVal1.value = Math.min(isArray ? newVal[0] as number : Number(props.modelValue), props.max)
+          rangeVal1.value = Math.min(isArray ? Number(newVal[0]) : Number(props.modelValue), Number(props.max))
         }
         handleMinInput()
         handleMaxInput()
@@ -108,7 +108,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="rootClass">
+  <div :class="className">
     <div class="absolute wi-ml w-full">
       <input
         v-if="range"
@@ -130,13 +130,13 @@ export default defineComponent({
       />
 
       <!-- Track -->
-      <div :class="`${rootClass}-track wi-ml`">
+      <div :class="`${className}-track wi-ml`">
         <slot name="track" />
       </div>
 
       <!-- Highlight -->
       <div
-        :class="`${rootClass}-highlight wi-ml`"
+        :class="`${className}-highlight wi-ml`"
         :style="`left: ${minThumb}%; right: calc(100% - ${maxThumb}%)`"
       >
         <slot name="highlight" />
@@ -145,7 +145,7 @@ export default defineComponent({
       <!-- Thumb (Left) -->
       <div v-if="range" class="absolute wi-mc" :style="thumbLeftStyle">
         <div class="absolute" :style="`left: ${minThumb}%`">
-          <div ref="thumbLeft" :class="`${rootClass}-thumb wi-mc`">
+          <div ref="thumbLeft" :class="`${className}-thumb wi-mc`">
             <slot name="thumb-left" />
           </div>
         </div>
@@ -154,7 +154,7 @@ export default defineComponent({
       <!-- Thumb (Right) -->
       <div class="absolute wi-mc" :style="thumbRightStyle">
         <div class="absolute" :style="`left: ${maxThumb}%`">
-          <div ref="thumbRight" :class="`${rootClass}-thumb wi-mc`">
+          <div ref="thumbRight" :class="`${className}-thumb wi-mc`">
             <slot name="thumb-right" />
           </div>
         </div>
