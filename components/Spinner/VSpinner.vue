@@ -1,16 +1,16 @@
 <script lang="ts">
 export default defineComponent({
   props: {
-    rootClass: {
+    className: {
       type: String,
-      default: 'wi-spinner',
+      default: 'wi-spinner animate-spin',
     },
   },
 })
 </script>
 
 <template>
-  <div :class="rootClass">
+  <div :class="className">
     <slot></slot>
   </div>
 </template>
