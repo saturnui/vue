@@ -1,0 +1,38 @@
+@layer components {
+  .wi {
+    &-resizer {
+      @apply relative;
+    }
+
+    &-resizer.width {
+      @apply pr-5;
+    }
+
+    &-resizer.height {
+      @apply pb-5;
+    }
+
+    &-resizer.both {
+      @apply p-0;
+    }
+
+    &-resize-handle {
+      @apply absolute flex items-center justify-center bg-dark-600 text-dark-200;
+
+      &.width {
+        @apply top-0 right-0 w-5 h-full;
+        cursor: ew-resize;
+      }
+
+      &.height {
+        @apply bottom-0 left-0 h-5 w-full;
+        cursor: ns-resize;
+      }
+
+      &.both {
+        @apply bottom-0 right-0 h-5 w-5;
+        cursor: nwse-resize;
+      }
+    }
+  }
+}
