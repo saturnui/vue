@@ -22,6 +22,7 @@
 <script lang="ts">
 import {  defineComponent, onUnmounted, ref, watch } from 'vue-demi'
 import { useGroupEmitter, useUuid } from '../../composables'
+
 export default defineComponent({
   props: {
     className: {
