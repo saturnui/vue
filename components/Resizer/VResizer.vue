@@ -65,6 +65,7 @@ export default defineComponent({
         @mousedown="startDrag"
       >
         <tabler-chevron-down-right v-if="resize === 'both'" />
+        <tabler-grip-horizontal v-else-if="resize === 'height'" />
         <tabler-grip-vertical v-else />
       </div>
     </slot>
