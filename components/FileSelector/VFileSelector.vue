@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, ref } from 'vue-demi'
+
 export type FileEventTarget = EventTarget & { files: FileList }
 
 export default defineComponent({

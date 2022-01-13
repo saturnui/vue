@@ -22,6 +22,8 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent } from "vue-demi"
+
 export default defineComponent({
   props: {
     className: {

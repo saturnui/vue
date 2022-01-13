@@ -7,6 +7,8 @@
 </template>
 
 <script lang="ts">
+import {  defineComponent, ref } from 'vue-demi'
+
 export default defineComponent({
   props: {
     className: {

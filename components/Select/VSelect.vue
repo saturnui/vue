@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 
 type Option = { label: string; value: string | number }

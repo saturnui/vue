@@ -15,13 +15,17 @@
 </template>
 
 <script lang="ts">
+import VButton from '../Button/VButton.vue'
+import {  defineComponent } from 'vue-demi'
+
 export default defineComponent({
-  props: {
-    className: {
-      type: String,
-      default: 'wi-dialog',
+    props: {
+        className: {
+            type: String,
+            default: "wi-dialog",
+        },
     },
-  },
-  emits: ['close'],
+    emits: ["close"],
+    components: { VButton }
 })
 </script>
