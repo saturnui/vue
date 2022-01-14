@@ -1,5 +1,5 @@
 <script lang="ts">
-import {  computed, defineComponent, onMounted, ref, watch } from 'vue-demi'
+import { computed, defineComponent, ref, watch } from 'vue-demi'
 
 export default defineComponent({
   props: {
@@ -19,31 +19,36 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    allowPaste: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const values = ref<string[]>([])
     const root = ref()
-    let formInputs: NodeList
+
+    const value = computed(() => {
+      return values.value.join('')
+    })
+
+    const patternList = computed(() => {
+      return props.pattern.split('')
+    })
 
     const handleKeyDown = (evt: KeyboardEvent) => {
-      formInputs.forEach((item, index) => {
+      const formInputs = root.value.querySelectorAll('input')
+      formInputs.forEach((item: any, index: number) => {
         if (item === evt.target) {
-          if (
-            ['Backspace'].filter(v => new RegExp(v, 'i').test(evt.code))
-              .length > 0
-          ) {
+          if (evt.code === 'Backspace') {
             const prevItem = formInputs.item(index - 1) as HTMLInputElement
             if (prevItem) {
               setTimeout(() => {
                 prevItem.focus()
               })
             }
-          }
-          else if (
-            ['Key', 'Digit'].filter(v => new RegExp(v, 'i').test(evt.code))
-              .length > 0
-          ) {
+          } else if (evt.code.includes('Key') || evt.code.includes('Digit')) {
             const nextItem = formInputs.item(index + 1) as HTMLInputElement
             if (nextItem) {
               setTimeout(() => {
@@ -74,21 +79,20 @@ export default defineComponent({
       { immediate: true },
     )
 
-    const value = computed(() => {
-      return values.value.join('')
-    })
-
-    const patternList = computed(() => {
-      return props.pattern.split('')
-    })
-
     watch(value, (newVal) => {
       emit('update:modelValue', newVal)
     })
 
-    onMounted(() => {
-      formInputs = root.value.querySelectorAll('input')
-    })
+    document.onpaste = (evt: ClipboardEvent) => {
+      const formInputs = root.value.querySelectorAll('input')
+      if (props.allowPaste && formInputs) {
+        const data = evt.clipboardData
+        if (data) {
+          const text = data.getData('text')
+          emit('update:modelValue', text.substring(0, formInputs.length))
+        }
+      }
+    }
 
     return {
       root,
