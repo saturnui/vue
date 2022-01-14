@@ -1,14 +1,10 @@
 <template>
   <slot v-bind="{ activeEl, setActive }"></slot>
-
-  <!-- <VGroup v-bind="{active, setActive }" v-model="selectedIndex">
-    <button class="{active}" @click="setActive"></button>
-    <button class="{active}" @click="setActive"></button>
-    <button class="{active}" @click="setActive"></button>
-  </VGroup>-->
 </template>
 
 <script lang="ts">
+import {  defineComponent } from 'vue-demi'
+
 export default defineComponent({
   props: {
     modelValue: {

@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts">
+import {  defineComponent, ref, watch } from 'vue-demi'
 import { useImageToDataUrl } from '../../composables/image'
 
 export default defineComponent({

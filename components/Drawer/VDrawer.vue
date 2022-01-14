@@ -5,6 +5,9 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, onBeforeUnmount, onMounted } from 'vue-demi'
+import { useDebounceFn } from '@vueuse/core'
+
 export default defineComponent({
   props: {
     className: {

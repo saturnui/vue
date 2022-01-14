@@ -1,18 +1,26 @@
-<script setup lang="ts">
-const props = defineProps({
-  className: {
-    type: String,
-    default: 'wi-progress-bar',
-  },
-  percent: {
-    type: Number,
-    default: 0,
-  },
-})
+<script lang="ts">
+import { computed, defineComponent } from 'vue-demi'
 
-const meterStyle = computed(() => {
-  return {
-    width: `${props.percent}%`,
+export default defineComponent({
+  props: {
+    className: {
+      type: String,
+      default: 'wi-progress-bar',
+    },
+    percent: {
+      type: Number,
+      default: 0,
+    },
+  },
+  setup(props) {
+    const meterStyle = computed(() => {
+      return {
+        width: `${props.percent}%`,
+      }
+    })
+    return {
+      meterStyle
+    }
   }
 })
 </script>

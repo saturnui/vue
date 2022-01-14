@@ -1,4 +1,5 @@
 <script lang="ts">
+import { defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue-demi'
 import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({

@@ -15,6 +15,9 @@
 </template>
 
 <script lang="ts">
+import {  computed, defineComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue-demi'
+import { onClickOutside } from '@vueuse/core'
+
 export default defineComponent({
   props: {
     className: {

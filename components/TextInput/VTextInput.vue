@@ -38,6 +38,7 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 
 export default defineComponent({
