@@ -36,6 +36,7 @@ export default defineComponent({
             || val.type === 'image/png'
             || val.type === 'image/gif'
             || val.type === 'image/svg+xml'
+            || val.type === 'image/webp'
           ) {
             source.value = URL.createObjectURL(val)
             dataUrl.value = await useImageToDataUrl(val, Number(props.width), Number(props.height))
