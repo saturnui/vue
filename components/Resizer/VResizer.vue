@@ -30,12 +30,14 @@ export default defineComponent({
     }
 
     const stopDrag = (e: any) => {
+      root.value.classList.remove('pointer-events-none')
       document.body.classList.remove('select-none')
       document.documentElement.removeEventListener('mousemove', drag, false)
       document.documentElement.removeEventListener('mouseup', stopDrag, false)
     }
 
     const startDrag = (e: MouseEvent) => {
+      root.value.classList.add('pointer-events-none')
       document.body.classList.add('select-none')
       startX = e.clientX
       startY = e.clientY
