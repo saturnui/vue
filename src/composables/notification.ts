@@ -1,5 +1,5 @@
 import { useEmitter } from './emitter'
-import { useUuid } from '.'
+import { useUuid } from './uuid'
 
 const emitter = useEmitter()
 const NOTIFICATION_CHANGED = 'notification:changed'

@@ -1,3 +1,9 @@
+<script lang="ts">
+import { defineComponent } from 'vue-demi'
+
+export default defineComponent({})
+</script>
+
 <template>
   <div class="flex space-x-4">
     <div class="rounded-full wi-highlight-stronger h-10 w-10"></div>

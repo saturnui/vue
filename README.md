@@ -71,3 +71,24 @@ And finally, import `virtual:windi.css` in your Vite entries:
 ```
 import 'virtual:windi.css'
 ```
+
+## Local Build and Test
+
+### References
+
+* https://medium.com/@vcarl/problems-with-npm-link-and-an-alternative-4dbdd3e66811
+* https://jivancic.com/posts/build-a-component-library.html#package-json-config
+
+
+```
+pnpm build:local
+```
+
+### Which performs the following commands:
+
+```
+rm -f vuwijs-vuwi-$npm_package_version.tgz
+pnpm build && npm pack && mkdir -p ~/local_modules
+rm ~/local_modules/vuwi.tgz
+cp vuwijs-vuwi-$npm_package_version.tgz ~/local_modules/vuwi.tgz"
+```

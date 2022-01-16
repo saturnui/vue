@@ -3,35 +3,17 @@
     <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
     <div class="flex flex-col h-full w-full">
       <label v-if="inputLabel" :for="name" :class="`${className}-label`">{{ inputLabel }}</label>
-      <textarea
-        v-if="multiline"
-        v-maska="mask"
+      <select
         :name="name"
-        :type="type"
-        :placeholder="placeholder"
         :required="required"
-        :autocomplete="autocomplete"
-        :value="stringify(inputValue)"
-        :disabled="disabled"
-        @input="handleEvent"
-        @blur="handleEvent"
-      />
-      <input
-        v-else
-        v-maska="mask"
-        :name="name"
-        :type="type"
-        :placeholder="placeholder"
-        :required="required"
-        :autocomplete="autocomplete"
         :value="inputValue"
         :disabled="disabled"
-        :min="min"
-        :max="max"
-        :step="step"
-        @input="handleEvent"
-        @blur="handleEvent"
-      />
+        @input="handleInput"
+        @change="handleChange"
+        @blur="handleBlur"
+      >
+        <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
+      </select>
     </div>
     <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
   </div>
@@ -41,15 +23,17 @@
 import { computed, defineComponent, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 
+type Option = { label: string; value: string | number }
+
 export default defineComponent({
   props: {
     className: {
       type: String,
-      default: 'wi-textinput',
+      default: 'wi-select',
     },
-    autocomplete: {
+    name: {
       type: String,
-      default: 'off',
+      required: true,
     },
     disabled: Boolean,
     error: {
@@ -60,46 +44,24 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    mask: {
-      type: String,
-      default: '',
-    },
     modelValue: {
-      type: [String, Boolean, Number],
+      type: [String, Number],
       default: '',
     },
-    multiline: {
+    options: {
+      type: null,
+      default: (): Option[] => [],
+    },
+    required: {
       type: Boolean,
       default: false,
     },
-    name: {
-      type: String,
-      default: '',
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    required: Boolean,
     rules: {
-      type: [Function, String],
-      default: '',
-    },
-    type: {
       type: String,
-      default: 'text',
-    },
-    min: {
-      type: [Number, String],
-    },
-    max: {
-      type: [Number, String],
-    },
-    step: {
-      type: [Number, String],
+      default: '',
     },
   },
-  emits: ['update:modelValue', 'input', 'blur'],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const {
       value: inputValue,
@@ -112,7 +74,7 @@ export default defineComponent({
     })
     watch(
       () => props.modelValue,
-      (val: any) => (inputValue.value = `${val}`),
+      (val: any) => (inputValue.value = val),
     )
     const hasError = computed(() => {
       return props.error || errorMessage.value
@@ -126,35 +88,16 @@ export default defineComponent({
     })
     const inputLabel = computed(() => {
       let val = props.label
-      // if (hasError.value) val += ` ${props.error || errorMessage.value}`
-      if (hasError.value) val = `${props.error || errorMessage.value}`
+      if (hasError.value) val += ` ${props.error || errorMessage.value}`
       return val
     })
     const handleInput = (evt: Event) => {
       const target = evt.target as HTMLInputElement | HTMLTextAreaElement
       emit('update:modelValue', target.value)
     }
-
-    const stringify = (val: any) => {
-      return `${val}`
-    }
-
-    const handleEvent = (v: any) => {
-      switch (v.type) {
-        case 'input':
-          handleInput(v)
-          break
-        case 'blur':
-          handleBlur(v)
-          break
-      }
-      emit(v.type, v)
-    }
     return {
       customClass,
-      stringify,
       hasError,
-      handleEvent,
       handleChange,
       handleBlur,
       handleInput,
