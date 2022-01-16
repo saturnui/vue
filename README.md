@@ -1,5 +1,7 @@
 # Vuwi
 
+> v0.0.0 - This project is in development and is not ready for production
+
 [TailwindCSS](https://tailwindcss.com/) components supported by a Headless Vue UI Library
 
 > Style your components using TailwindCSS, not verbose APIs
