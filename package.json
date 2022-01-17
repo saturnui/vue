@@ -1,12 +1,12 @@
 {
-  "name": "@vuwijs/vuwi",
+  "name": "@vuwijs/vue",
   "version": "0.0.0",
-  "types": "dist/vuwi.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "build:local": "rm -f vuwijs-vuwi-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm ~/local_modules/vuwi.tgz && cp vuwijs-vuwi-$npm_package_version.tgz ~/local_modules/vuwi.tgz"
+    "build:local": "rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm ~/local_modules/vuwi.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi.tgz"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.2",
@@ -33,13 +33,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/vuwi.umd.js",
-  "module": "./dist/vuwi.es.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vuwi.es.js",
-      "require": "./dist/vuwi.umd.js",
-      "types": "./dist/vuwi.d.ts"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
     }
   }
 }

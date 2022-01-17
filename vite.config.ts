@@ -14,7 +14,7 @@ export default defineConfig({
       insertTypesEntry: false,
       beforeWriteFile(filePath: string, content: string) {
         return {
-          filePath: filePath.replace('src/', '').replace('index', 'vuwi'),
+          filePath: filePath.replace('src/', ''),//.replace('index', 'vue'),
           content
         }
       }
@@ -23,19 +23,21 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'Vuwi',
-      fileName: (format) => `vuwi.${format}.js`,
-      formats: ['es'],
+      name: 'vuwi',
+      fileName: (format) => `index.${format}.js`,
+      formats: ['es', 'umd', 'iife'],
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['vue'],
+      external: ['vue', 'vee-validate', 'maska', '@popperjs/core', 'mitt', 'yup'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           vue: 'Vue',
+          'vee-validate': "veeValidate",
+          '@popperjs/core': 'core',
         }
       }
     }
