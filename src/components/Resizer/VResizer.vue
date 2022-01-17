@@ -60,15 +60,65 @@ export default defineComponent({
   <div ref="root" :class="`${className} ${resize}`">
     <slot />
     <slot name="handle" v-bind="{ startDrag, resize }">
-      <div
-        ref="handle"
-        class="wi-resize-handle"
-        :class="resize"
-        @mousedown="startDrag"
-      >
-        <tabler-chevron-down-right v-if="resize === 'both'" />
-        <tabler-grip-horizontal v-else-if="resize === 'height'" />
-        <tabler-grip-vertical v-else />
+      <div ref="handle" class="wi-resize-handle" :class="resize" @mousedown="startDrag">
+        <!-- tabler-chevron-down-right  -->
+        <svg
+          v-if="resize === 'both'"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M16 8v8h-8" />
+        </svg>
+        <!-- tabler-grip-horizontal  -->
+        <svg
+          v-else-if="resize === 'height'"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="5" cy="9" r="1" />
+          <circle cx="5" cy="15" r="1" />
+          <circle cx="12" cy="9" r="1" />
+          <circle cx="12" cy="15" r="1" />
+          <circle cx="19" cy="9" r="1" />
+          <circle cx="19" cy="15" r="1" />
+        </svg>
+        <!-- tabler-grip-vertical -->
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="9" cy="5" r="1" />
+          <circle cx="9" cy="12" r="1" />
+          <circle cx="9" cy="19" r="1" />
+          <circle cx="15" cy="5" r="1" />
+          <circle cx="15" cy="12" r="1" />
+          <circle cx="15" cy="19" r="1" />
+        </svg>
       </div>
     </slot>
   </div>

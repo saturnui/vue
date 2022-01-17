@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="wi-text" :class="computedClass"> -->
   <div :class="computedClass">
-    <slot name="prepend"></slot>
+    <slot name="prepend" />
     <div class="flex-grow" :class="{ label: label || errorLabel }">
       <div class="absolute top-1 pointer-events-none px-3">
         <label
@@ -26,27 +26,37 @@
         @change="handleChange"
         @blur="handleBlur"
       >
-        <option v-for="item in options" :key="item.value" :value="item.value">
-          {{ item.label }}
-        </option>
+        <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
       </select>
     </div>
-    <slot></slot>
+    <slot />
     <div v-if="loading">
       <div class="spinner w-5 h-5" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <tabler-check
+    <!-- tabler-check -->
+    <svg
       v-else-if="rules && meta.valid && meta.validated"
-      class="svg:fill-green-500"
-    />
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="fill-green-500"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M5 12l5 5l10 -10" />
+    </svg>
     <span v-else-if="required" class="text-2xl -mb-2">*</span>
   </div>
 </template>
 
 <script lang="ts">
-import {  computed, defineComponent, watch } from 'vue-demi'
+import { computed, defineComponent, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 import { useUuid } from '../../composables/uuid'
 
