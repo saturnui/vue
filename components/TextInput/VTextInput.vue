@@ -41,6 +41,12 @@
 import { computed, defineComponent, watch } from 'vue-demi'
 import { useField } from 'vee-validate'
 
+const randomInt = (min = 0, max = 99999) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min) + min) // The maximum is exclusive and the minimum is inclusive
+}
+
 export default defineComponent({
   props: {
     className: {
@@ -74,7 +80,7 @@ export default defineComponent({
     },
     name: {
       type: String,
-      default: '',
+      default: () => `input_${randomInt()}`,
     },
     placeholder: {
       type: String,
@@ -112,7 +118,7 @@ export default defineComponent({
     })
     watch(
       () => props.modelValue,
-      (val: any) => (inputValue.value = `${val}`),
+      (val: any) => inputValue.value = `${val}`,
     )
     const hasError = computed(() => {
       return props.error || errorMessage.value
