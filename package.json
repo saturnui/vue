@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "build:local": "rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm ~/local_modules/vuwi.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi.tgz"
+    "build:local": "rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/vuwi-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi-vue.tgz"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.2",
