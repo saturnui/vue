@@ -38,6 +38,7 @@ export default defineConfig({
           vue: 'Vue',
           'vee-validate': "veeValidate",
           '@popperjs/core': 'core',
+          'mitt': 'mitt',
         }
       }
     }
