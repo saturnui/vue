@@ -1,8 +1,8 @@
 <template>
   <div :class="customClass">
-    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
+    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }" />
     <div class="flex flex-col h-full w-full">
-      <label v-if="inputLabel" :for="name" :class="`${className}-label`">{{ inputLabel }}</label>
+      <label v-if="inputLabel" :for="name">{{ inputLabel }}</label>
       <textarea
         v-if="multiline"
         v-maska="mask"
@@ -31,9 +31,9 @@
         :step="step"
         @input="handleEvent"
         @blur="handleEvent"
-      />
+      >
     </div>
-    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
+    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }" />
   </div>
 </template>
 
@@ -91,12 +91,15 @@ export default defineComponent({
     },
     min: {
       type: [Number, String],
+      default: 1,
     },
     max: {
       type: [Number, String],
+      default: 100,
     },
     step: {
       type: [Number, String],
+      default: 1,
     },
   },
   emits: ['update:modelValue', 'input', 'blur'],
@@ -120,8 +123,7 @@ export default defineComponent({
     const customClass = computed(() => {
       let cls = props.className
       if (meta.valid || !meta.validated) cls = props.className
-      if (props.disabled) cls += ` ${props.className}-disabled`
-      else if (hasError.value) cls += ` ${props.className}-error`
+      if (!props.disabled && hasError.value) cls += ' has-error'
       return cls
     })
     const inputLabel = computed(() => {
