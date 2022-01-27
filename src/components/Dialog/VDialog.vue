@@ -5,25 +5,7 @@
       <div class="flex-grow" />
       <VButton class="wi-btn-icon" @click="$emit('close')">
         <!-- tabler-x -->
-        <svg
-          :class="`${className}-close-icon`"
-          width="1.2em"
-          height="1.2em"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 24 24"
-          class="wi-dialog-close-icon"
-        >
-          <g
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M18 6L6 18" />
-            <path d="M6 6l12 12" />
-          </g>
-        </svg>
+        <CloseIcon name="close-icon" />
       </VButton>
     </div>
     <slot />
@@ -36,9 +18,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue-demi'
 import VButton from '../Button/VButton.vue'
+import CloseIcon from '../Icon/CloseIcon.vue'
 
 export default defineComponent({
-  components: { VButton },
+  components: { VButton, CloseIcon },
   props: {
     className: {
       type: String,
