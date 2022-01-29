@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "space-before-function-paren": "off",
+    "no-trailing-spaces": "off",
+    "brace-style": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended"
+  ]
+}
