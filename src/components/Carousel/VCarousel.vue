@@ -1,10 +1,10 @@
 
 <script lang="ts">
-import {  computed, defineComponent, ref, watch } from 'vue-demi'
+import { computed, defineComponent, ref, watch } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-carousel',
     },
@@ -93,8 +93,7 @@ export default defineComponent({
     )
 
     const sliderDirection = computed(() => {
-      if (props.vertical) return `${props.className}-vertical`
-      return ''
+      return props.vertical ? 'vertical' : 'horizontal'
     })
 
     return {
@@ -112,12 +111,13 @@ export default defineComponent({
   <div class="relative">
     <div
       ref="slider"
+      :direction="sliderDirection"
       class="relative"
-      :class="`${className} ${sliderDirection} ${sliderClass}`"
+      :class="`${component} ${sliderClass}`"
       @scroll="handleScroll"
     >
-      <slot v-bind="{ nextSlide, prevSlide }"></slot>
+      <slot v-bind="{ nextSlide, prevSlide }" />
     </div>
-    <slot name="overlay" v-bind="{ nextSlide, prevSlide }"></slot>
+    <slot name="overlay" v-bind="{ nextSlide, prevSlide }" />
   </div>
 </template>

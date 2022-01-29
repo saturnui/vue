@@ -3,7 +3,7 @@ import { computed, defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-progress-circle',
     },
@@ -62,7 +62,7 @@ export default defineComponent({
     })
 
     const ringClass = computed(() => {
-      return `${props.className} border ${props.color}`
+      return `${props.component} border ${props.color}`
     })
 
     const leftStyle = computed(() => {
@@ -96,7 +96,7 @@ export default defineComponent({
 
 <template>
   <div class="relative rounded-full overflow-hidden" :style="pieContainerStyle">
-    <div :class="className" :style="pieStyle">
+    <div :class="component" :style="pieStyle">
       <div :class="ringClass" :style="leftStyle"></div>
       <div :class="ringClass" :style="rightStyle"></div>
     </div>

@@ -3,7 +3,7 @@ import { computed, defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-progress-bar',
     },
@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="className">
+  <div :class="component">
     <div class="relative" :style="meterStyle">
       <slot></slot>
     </div>

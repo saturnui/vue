@@ -26,7 +26,7 @@ import { computed, defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-switch',
     },
@@ -46,7 +46,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const computedClass = computed(() => {
-      let c = props.className
+      let c = props.component
       if (props.disabled) c += ' disabled'
       return c
     })

@@ -1,15 +1,14 @@
 <template>
-  <div :class="className">
-    <div :class="`${className}-titlebar`">
+  <div :class="component">
+    <div name="titlebar">
       <slot name="title" />
       <div class="flex-grow" />
-      <VButton class="wi-btn-icon" @click="$emit('close')">
-        <!-- tabler-x -->
-        <CloseIcon name="close-icon" />
+      <VButton icon @click="$emit('close')">
+        <VCloseIcon name="close-icon" />
       </VButton>
     </div>
     <slot />
-    <div :class="`${className}-actions`">
+    <div name="actions">
       <slot name="actions" />
     </div>
   </div>
@@ -18,12 +17,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue-demi'
 import VButton from '../Button/VButton.vue'
-import CloseIcon from '../Icon/CloseIcon.vue'
+import VCloseIcon from '../Icon/VCloseIcon.vue'
 
 export default defineComponent({
-  components: { VButton, CloseIcon },
+  components: { VButton, VCloseIcon },
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-dialog',
     },

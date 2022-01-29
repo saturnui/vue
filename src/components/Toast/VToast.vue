@@ -1,6 +1,6 @@
 <template>
-  <transition :name="className">
-    <div v-if="show" :class="className">
+  <transition :name="component">
+    <div v-if="show" :class="component">
       <slot />
       <slot name="action" />
     </div>
@@ -12,7 +12,7 @@ import { defineComponent } from 'vue-demi';
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-toast',
     },

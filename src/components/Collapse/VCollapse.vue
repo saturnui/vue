@@ -1,10 +1,10 @@
 <template>
-  <div :class="className">
+  <div :class="component" data-transition="wi-collapse-enter-active wi-collapse-leave-active wi-collapse-enter-from wi-collapse-leave-to">
     <div class="relative" role="button" @click="toggle">
-      <slot name="header" :open="open"></slot>
+      <slot name="header" :open="open" />
     </div>
     <transition
-      :name="className"
+      :name="component"
       @enter="start"
       @after-enter="end"
       @before-leave="start"
@@ -12,7 +12,7 @@
     >
       <div v-show="open" class="relative">
         <div :class="position">
-          <slot :open="open"></slot>
+          <slot :open="open" />
         </div>
       </div>
     </transition>
@@ -20,13 +20,13 @@
 </template>
 
 <script lang="ts">
-import {  defineComponent, onUnmounted, ref, watch } from 'vue-demi'
+import { defineComponent, onUnmounted, ref, watch } from 'vue-demi'
 import { useGroupEmitter } from '../../composables/emitter'
 import { useUuid } from '../../composables/uuid'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-collapse',
     },
@@ -85,14 +85,13 @@ export default defineComponent({
     const start = (element: Element) => {
       const el = element as HTMLElement
       el.style.height = `${el.scrollHeight}px`
-      if (props.slide === 'down') 
-        position.value = 'absolute bottom-0 w-full'
+      position.value = props.slide
     }
 
     const end = (element: Element) => {
       const el = element as HTMLElement
       el.style.height = ''
-      position.value = ''
+      position.value = 'up'
     }
 
     watch(

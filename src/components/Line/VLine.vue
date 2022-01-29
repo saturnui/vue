@@ -1,17 +1,17 @@
 <template>
-  <div :class="className">
-    <div name="line"></div>
-    <slot></slot>
-    <div name="line"></div>
+  <div :class="component">
+    <div name="line" />
+    <slot />
+    <div name="line" />
   </div>
 </template>
 
 <script lang="ts">
-import {  defineComponent } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-line',
     },

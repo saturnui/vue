@@ -1,9 +1,9 @@
 <script lang="ts">
-import {  defineComponent } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-btn',
     },
@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button :class="className">
-    <slot></slot>
+  <button :class="component">
+    <slot />
   </button>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div @click="selectFiles">
-    <slot></slot>
+    <slot />
     <input
       ref="input"
       type="file"
@@ -8,7 +8,7 @@
       class="hidden"
       :accept="accept"
       @change="fileSelected"
-    />
+    >
   </div>
 </template>
 

@@ -3,7 +3,7 @@ import { defineComponent, onMounted, ref, watch } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-slider',
     },
@@ -110,7 +110,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="className">
+  <div :class="component">
     <div class="absolute wi-ml w-full">
       <input
         v-if="range"
@@ -132,13 +132,13 @@ export default defineComponent({
       />
 
       <!-- Track -->
-      <div :class="`${className}-track wi-ml`">
+      <div :class="`${component}-track wi-ml`">
         <slot name="track" />
       </div>
 
       <!-- Highlight -->
       <div
-        :class="`${className}-highlight wi-ml`"
+        :class="`${component}-highlight wi-ml`"
         :style="`left: ${minThumb}%; right: calc(100% - ${maxThumb}%)`"
       >
         <slot name="highlight" />
@@ -147,7 +147,7 @@ export default defineComponent({
       <!-- Thumb (Left) -->
       <div v-if="range" class="absolute wi-mc" :style="thumbLeftStyle">
         <div class="absolute" :style="`left: ${minThumb}%`">
-          <div ref="thumbLeft" :class="`${className}-thumb wi-mc`">
+          <div ref="thumbLeft" :class="`${component}-thumb wi-mc`">
             <slot name="thumb-left" />
           </div>
         </div>
@@ -156,7 +156,7 @@ export default defineComponent({
       <!-- Thumb (Right) -->
       <div class="absolute wi-mc" :style="thumbRightStyle">
         <div class="absolute" :style="`left: ${maxThumb}%`">
-          <div ref="thumbRight" :class="`${className}-thumb wi-mc`">
+          <div ref="thumbRight" :class="`${component}-thumb wi-mc`">
             <slot name="thumb-right" />
           </div>
         </div>

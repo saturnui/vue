@@ -1,9 +1,9 @@
 <template>
-  <img :src="dataUrl" class="bg-contain" />
+  <img :src="dataUrl" class="bg-contain">
 </template>
 
 <script lang="ts">
-import {  defineComponent, ref, watch } from 'vue-demi'
+import { defineComponent, ref, watch } from 'vue-demi'
 import { useImageToDataUrl } from '../../composables/image'
 
 export default defineComponent({

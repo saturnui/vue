@@ -3,7 +3,7 @@ import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-alert',
     },
@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="className">
-    <slot></slot>
+  <div :class="component">
+    <slot />
   </div>
 </template>

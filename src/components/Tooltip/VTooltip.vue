@@ -4,7 +4,7 @@ import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-tooltip',
     },
@@ -20,10 +20,6 @@ export default defineComponent({
       type: Number,
       default: 2000,
     },
-    tooltipClass: {
-      type: String,
-      default: 'wi-tooltip-card',
-    },
     show: {
       type: [String, Boolean],
       validator: (val: 'auto' | true) => {
@@ -33,7 +29,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const component = ref()
+    const root = ref()
     const showingTooltip = ref(false)
     let timer: any
 
@@ -54,8 +50,8 @@ export default defineComponent({
     const _showTooltip = () => {
       showingTooltip.value = true
       nextTick(() => {
-        const tooltipEl = component.value.querySelector('[name="tooltip"]')
-        popper = createPopper(component.value, tooltipEl, {
+        const tooltipEl = root.value.querySelector('[name="tooltip"]')
+        popper = createPopper(root.value, tooltipEl, {
           placement: props.placement as Placement,
           modifiers: [
             {
@@ -86,7 +82,7 @@ export default defineComponent({
     onBeforeUnmount(hideTooltip)
 
     return {
-      component,
+      root,
       hideTooltip,
       showTooltip,
       showingTooltip,
@@ -96,18 +92,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="component" :class="`${className}-target`" aria-describedby="tooltip">
+  <div ref="root" :class="component" aria-describedby="tooltip">
     <span @mouseenter="showTooltip" @mouseleave="hideTooltip">
-      <slot></slot>
+      <slot />
     </span>
     <div
       v-if="showingTooltip"
       name="tooltip"
       role="tooltip"
-      :class="`${className} ${tooltipClass}`"
     >
-      <slot name="tooltip"></slot>
-      <div :class="`${className}-arrow`" data-popper-arrow></div>
+      <slot name="tooltip" />
+      <div name="arrow" data-popper-arrow />
     </div>
   </div>
 </template>

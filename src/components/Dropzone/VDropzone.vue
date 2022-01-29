@@ -1,5 +1,5 @@
 <script lang="ts">
-import {  defineComponent, ref } from 'vue-demi'
+import { defineComponent, ref } from 'vue-demi'
 
 export default defineComponent({
   emits: ['change'],
@@ -29,6 +29,6 @@ export default defineComponent({
     @dragover.prevent="active = true"
     @drop.prevent="drop"
   >
-    <slot v-bind="{ active, files }"></slot>
+    <slot v-bind="{ active, files }" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div :class="`${className}`">
-    <img v-if="photo" :src="photo" :alt="name" />
+  <div :class="`${component}`">
+    <img v-if="photo" :src="photo" :alt="name">
     <div v-else-if="name">
       {{ initial }}
     </div>
@@ -12,7 +12,7 @@ import { computed, defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-avatar',
     },

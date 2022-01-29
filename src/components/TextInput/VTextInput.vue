@@ -1,5 +1,5 @@
 <template>
-  <div :class="customClass">
+  <div :class="computedClass">
     <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }" />
     <div class="flex flex-col h-full w-full">
       <label v-if="inputLabel" :for="name">{{ inputLabel }}</label>
@@ -43,7 +43,7 @@ import { useField } from 'vee-validate'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-textinput',
     },
@@ -120,11 +120,8 @@ export default defineComponent({
     const hasError = computed(() => {
       return props.error || errorMessage.value
     })
-    const customClass = computed(() => {
-      let cls = props.className
-      if (meta.valid || !meta.validated) cls = props.className
-      if (!props.disabled && hasError.value) cls += ' has-error'
-      return cls
+    const computedClass = computed(() => {
+      return (!props.disabled && hasError.value) ? `${props.component} has-error` : props.component
     })
     const inputLabel = computed(() => {
       let val = props.label
@@ -153,7 +150,7 @@ export default defineComponent({
       emit(v.type, v)
     }
     return {
-      customClass,
+      computedClass,
       stringify,
       hasError,
       handleEvent,

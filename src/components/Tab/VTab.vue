@@ -3,7 +3,7 @@ import { defineComponent } from 'vue-demi';
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-tab-container',
     },
@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button :class="className">
+  <button :class="component">
     <slot></slot>
   </button>
 </template>

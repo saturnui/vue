@@ -1,8 +1,8 @@
 <template>
-  <div :class="customClass">
-    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
+  <div :class="computedClass">
+    <slot name="prepend" v-bind="{ valid: rules && meta.valid && meta.validated }" />
     <div class="flex flex-col h-full w-full">
-      <label v-if="inputLabel" :for="name" :class="`${className}-label`">{{ inputLabel }}</label>
+      <label v-if="inputLabel" :for="name" :class="`${component}-label`">{{ inputLabel }}</label>
       <select
         :name="name"
         :required="required"
@@ -15,7 +15,7 @@
         <option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}</option>
       </select>
     </div>
-    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }"></slot>
+    <slot name="append" v-bind="{ valid: rules && meta.valid && meta.validated }" />
   </div>
 </template>
 
@@ -27,13 +27,13 @@ type Option = { label: string; value: string | number }
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-select',
     },
     name: {
       type: String,
-      required: true,
+      default: '',
     },
     disabled: Boolean,
     error: {
@@ -79,11 +79,11 @@ export default defineComponent({
     const hasError = computed(() => {
       return props.error || errorMessage.value
     })
-    const customClass = computed(() => {
-      let cls = props.className
-      if (meta.valid || !meta.validated) cls = props.className
-      if (props.disabled) cls += ` ${props.className}-disabled`
-      else if (hasError.value) cls += ` ${props.className}-error`
+    const computedClass = computed(() => {
+      let cls = props.component
+      if (meta.valid || !meta.validated) cls = props.component
+      if (props.disabled) cls += ` ${props.component}-disabled`
+      else if (hasError.value) cls += ` ${props.component}-error`
       return cls
     })
     const inputLabel = computed(() => {
@@ -96,7 +96,7 @@ export default defineComponent({
       emit('update:modelValue', target.value)
     }
     return {
-      customClass,
+      computedClass,
       hasError,
       handleChange,
       handleBlur,

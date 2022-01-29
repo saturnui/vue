@@ -1,47 +1,18 @@
 <template>
-  <div :class="computedClass">
-    <slot></slot>
+  <div :class="component">
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, onMounted } from 'vue-demi'
-import { useDebounceFn } from '@vueuse/core'
+import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-drawer',
     },
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const resizeHandler = useDebounceFn(() => {
-      emit('update:modelValue', false)
-    }, 200)
-
-    const computedClass = computed(() => {
-      let c = props.className
-      if (props.modelValue) c += ' !translate-x-0 show'
-      return c
-    })
-
-    onMounted(() => {
-      globalThis.addEventListener('resize', resizeHandler, false)
-    })
-
-    onBeforeUnmount(() => {
-      globalThis.removeEventListener('resize', resizeHandler)
-    })
-
-    return {
-      computedClass,
-    }
   },
 })
 </script>

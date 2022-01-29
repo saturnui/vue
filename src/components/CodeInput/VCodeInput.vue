@@ -3,7 +3,7 @@ import { computed, defineComponent, ref, watch } from 'vue-demi'
 
 export default defineComponent({
   props: {
-    className: {
+    component: {
       type: String,
       default: 'wi-codeinput',
     },
@@ -107,9 +107,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="root" :class="className">
+  <div ref="root" :class="component">
     <div v-for="(k, i) in patternList" :key="i">
-      <div v-if="k === '-'" name="separator"></div>
+      <div v-if="k === '-'" name="separator" />
       <input
         v-else
         v-model="values[i]"
@@ -118,7 +118,7 @@ export default defineComponent({
         :class="inputClass"
         @focus="focusHandler"
         @keydown="handleKeyDown"
-      />
+      >
     </div>
   </div>
 </template>
