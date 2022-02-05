@@ -51,7 +51,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-textinput',
+      default: 'sa-textinput',
     },
     autocomplete: {
       type: String,

@@ -6,7 +6,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-dropdown',
+      default: 'sa-dropdown',
     },
     modelValue: {
       type: Boolean,

@@ -29,7 +29,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-select',
+      default: 'sa-select',
     },
     name: {
       type: String,

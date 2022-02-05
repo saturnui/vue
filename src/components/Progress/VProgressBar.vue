@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-progress-bar',
+      default: 'sa-progress-bar',
     },
     percent: {
       type: Number,

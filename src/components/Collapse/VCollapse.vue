@@ -1,5 +1,5 @@
 <template>
-  <div :class="component" data-transition="wi-collapse-enter-active wi-collapse-leave-active wi-collapse-enter-from wi-collapse-leave-to">
+  <div :class="component" data-transition="sa-collapse-enter-active sa-collapse-leave-active sa-collapse-enter-from sa-collapse-leave-to">
     <div class="relative" role="button" @click="toggle">
       <slot name="header" :open="open" />
     </div>
@@ -28,7 +28,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-collapse',
+      default: 'sa-collapse',
     },
     group: {
       type: String,

@@ -11,7 +11,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-drawer',
+      default: 'sa-drawer',
     },
   },
 })

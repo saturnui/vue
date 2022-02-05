@@ -8,7 +8,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-pagination',
+      default: 'sa-pagination',
     },
     totalVisible: {
       type: Number,

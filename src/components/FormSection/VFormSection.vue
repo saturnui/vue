@@ -27,7 +27,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-formsection',
+      default: 'sa-formsection',
     },
     title: {
       type: String,

@@ -9,7 +9,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-resizer',
+      default: 'sa-resizer',
     },
     resize: {
       type: String,
@@ -60,7 +60,7 @@ export default defineComponent({
   <div ref="root" :class="`${component} ${resize}`">
     <slot />
     <slot name="handle" v-bind="{ startDrag, resize }">
-      <div ref="handle" class="wi-resize-handle" :class="resize" @mousedown="startDrag">
+      <div ref="handle" class="sa-resize-handle" :class="resize" @mousedown="startDrag">
         <VResizeIcon v-if="resize === 'both'" />
         <VResizeHorizontalIcon v-else-if="resize === 'height'" />
         <VResizeVerticalIcon v-else />

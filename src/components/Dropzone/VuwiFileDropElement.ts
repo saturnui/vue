@@ -171,13 +171,13 @@ export class FileDropEvent extends Event {
 
 /*
   Example Usage.
-  <wi-file-drop
+  <sa-file-drop
     accept='image/*'
     multiple | undefined
     class='drop-valid|drop-invalid'
   >
   [everything in here is a drop target.]
-  </wi-file-drop>
+  </sa-file-drop>
   dropElement.addEventListener('filedrop', (event) => console.log(event.detail))
 */
 export class FileDropElement extends HTMLElement {
@@ -280,4 +280,4 @@ export class FileDropElement extends HTMLElement {
   }
 }
 
-customElements.define('wi-file-drop', FileDropElement)
+customElements.define('sa-file-drop', FileDropElement)

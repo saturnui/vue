@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-btn',
+      default: 'sa-btn',
     },
   },
 })
