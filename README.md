@@ -1,6 +1,10 @@
-# Vuwi
+# Saturn - Headless Vue Components
 
-> v0.0.0 - This project is in development and is not ready for production
+Effortlessly build high-performance user interfaces with Saturn's headless Vue 3 components. These components were designed to provide common functionality needed to build powerful applications with a minimalistic API. The styling and behavior
+of most components can be driven by CSS instead of complex component APIs. 
+
+
+
 
 [TailwindCSS](https://tailwindcss.com/) components supported by a Headless Vue UI Library
 
