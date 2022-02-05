@@ -14,7 +14,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-toast',
+      default: 'sa-toast',
     },
     show: {
       type: Boolean,

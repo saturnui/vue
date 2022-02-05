@@ -6,7 +6,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-tooltip',
+      default: 'sa-tooltip',
     },
     placement: {
       type: String,

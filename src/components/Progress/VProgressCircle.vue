@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-progress-circle',
+      default: 'sa-progress-circle',
     },
     size: {
       type: Number,

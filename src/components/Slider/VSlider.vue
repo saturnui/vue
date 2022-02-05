@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-slider',
+      default: 'sa-slider',
     },
     min: { // RANGE MIN
       type: [Number, String],
@@ -111,7 +111,7 @@ export default defineComponent({
 
 <template>
   <div :class="component">
-    <div class="absolute wi-ml w-full">
+    <div class="absolute sa-ml w-full">
       <input
         v-if="range"
         v-model="rangeVal0"
@@ -132,31 +132,31 @@ export default defineComponent({
       />
 
       <!-- Track -->
-      <div :class="`${component}-track wi-ml`">
+      <div :class="`${component}-track sa-ml`">
         <slot name="track" />
       </div>
 
       <!-- Highlight -->
       <div
-        :class="`${component}-highlight wi-ml`"
+        :class="`${component}-highlight sa-ml`"
         :style="`left: ${minThumb}%; right: calc(100% - ${maxThumb}%)`"
       >
         <slot name="highlight" />
       </div>
 
       <!-- Thumb (Left) -->
-      <div v-if="range" class="absolute wi-mc" :style="thumbLeftStyle">
+      <div v-if="range" class="absolute sa-mc" :style="thumbLeftStyle">
         <div class="absolute" :style="`left: ${minThumb}%`">
-          <div ref="thumbLeft" :class="`${component}-thumb wi-mc`">
+          <div ref="thumbLeft" :class="`${component}-thumb sa-mc`">
             <slot name="thumb-left" />
           </div>
         </div>
       </div>
 
       <!-- Thumb (Right) -->
-      <div class="absolute wi-mc" :style="thumbRightStyle">
+      <div class="absolute sa-mc" :style="thumbRightStyle">
         <div class="absolute" :style="`left: ${maxThumb}%`">
-          <div ref="thumbRight" :class="`${component}-thumb wi-mc`">
+          <div ref="thumbRight" :class="`${component}-thumb sa-mc`">
             <slot name="thumb-right" />
           </div>
         </div>

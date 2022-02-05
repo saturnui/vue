@@ -13,7 +13,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-line',
+      default: 'sa-line',
     },
   },
 })

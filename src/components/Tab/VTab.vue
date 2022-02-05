@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-tab-container',
+      default: 'sa-tab-container',
     },
   },
 })

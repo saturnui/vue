@@ -4,7 +4,7 @@
     height="1.2em"
     preserveAspectRatio="xMidYMid meet"
     viewBox="0 0 24 24"
-    class="wi-dialog-close-icon"
+    class="sa-dialog-close-icon"
   >
     <g
       fill="none"

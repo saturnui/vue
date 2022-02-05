@@ -23,7 +23,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'vuwi',
+      name: 'saturn',
       fileName: (format) => `index.${format}.js`,
       formats: ['es', 'umd', 'iife'],
     },

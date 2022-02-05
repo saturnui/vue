@@ -15,7 +15,7 @@
       <div class="dot"></div>
     </div>
     <slot></slot>
-    <!-- <div class="wi-switch-label">
+    <!-- <div class="sa-switch-label">
       <slot></slot>
     </div> -->
   </label>
@@ -28,7 +28,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-switch',
+      default: 'sa-switch',
     },
     id: {
       type: String,

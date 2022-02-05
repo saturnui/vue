@@ -1,13 +1,13 @@
 <template>
   <div
     ref="root"
-    data-css="wi-overlay-shade"
-    data-transitions="wi-overlay-enter-active wi-overlay-leave-active wi-overlay-enter-from wi-overlay-leave-to"
-    data-transitions-center="wi-overlay-center wi-overlay-center-enter-active wi-overlay-center-leave-active wi-overlay-center-enter-from wi-overlay-center-leave-to"
-    data-transitions-top="wi-overlay-top wi-overlay-top-enter-active wi-overlay-top-leave-active wi-overlay-top-enter-from wi-overlay-top-leave-to"
-    data-transitions-bottom="wi-overlay-bottom wi-overlay-bottom-enter-active wi-overlay-bottom-leave-active wi-overlay-bottom-enter-from wi-overlay-bottom-leave-to"
-    data-transitions-left="wi-overlay-left wi-overlay-left-enter-active wi-overlay-left-leave-active wi-overlay-left-enter-from wi-overlay-left-leave-to"
-    data-transitions-right="wi-overlay-right wi-overlay-right-enter-active wi-overlay-right-leave-active wi-overlay-right-enter-from wi-overlay-right-leave-to"
+    data-css="sa-overlay-shade"
+    data-transitions="sa-overlay-enter-active sa-overlay-leave-active sa-overlay-enter-from sa-overlay-leave-to"
+    data-transitions-center="sa-overlay-center sa-overlay-center-enter-active sa-overlay-center-leave-active sa-overlay-center-enter-from sa-overlay-center-leave-to"
+    data-transitions-top="sa-overlay-top sa-overlay-top-enter-active sa-overlay-top-leave-active sa-overlay-top-enter-from sa-overlay-top-leave-to"
+    data-transitions-bottom="sa-overlay-bottom sa-overlay-bottom-enter-active sa-overlay-bottom-leave-active sa-overlay-bottom-enter-from sa-overlay-bottom-leave-to"
+    data-transitions-left="sa-overlay-left sa-overlay-left-enter-active sa-overlay-left-leave-active sa-overlay-left-enter-from sa-overlay-left-leave-to"
+    data-transitions-right="sa-overlay-right sa-overlay-right-enter-active sa-overlay-right-leave-active sa-overlay-right-enter-from sa-overlay-right-leave-to"
   >
     <transition :name="component">
       <div v-if="blocking && modelValue" :class="component">
@@ -31,7 +31,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-overlay',
+      default: 'sa-overlay',
     },
     modelValue: {
       type: Boolean,

@@ -14,7 +14,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'wi-avatar',
+      default: 'sa-avatar',
     },
     photo: {
       type: String,
