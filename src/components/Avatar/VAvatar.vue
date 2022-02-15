@@ -1,6 +1,6 @@
 <template>
   <div :class="`${component}`">
-    <img v-if="photo" :src="photo" :alt="name">
+    <img v-if="image" :src="image" :alt="name">
     <div v-else-if="name">
       {{ initial }}
     </div>
@@ -16,7 +16,7 @@ export default defineComponent({
       type: String,
       default: 'sa-avatar',
     },
-    photo: {
+    image: {
       type: String,
       default: '',
     },

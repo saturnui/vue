@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue-demi'
+import { defineComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue-demi'
 import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
@@ -12,63 +12,112 @@ export default defineComponent({
       type: String,
       default: 'bottom',
     },
-    delayShow: {
-      type: Number,
-      default: 300,
-    },
-    delayHide: {
-      type: Number,
-      default: 2000,
-    },
     show: {
       type: [String, Boolean],
-      validator: (val: 'auto' | true) => {
-        return ['auto', true].includes(val)
+      validator: (val: 'hover' | true) => {
+        return ['hover', 'focus', true, false].includes(val)
       },
-      default: 'auto',
+      default: 'hover',
+    },
+    target: {
+      type: String,
+      default: '',
     },
   },
   setup(props) {
     const root = ref()
+    const container = ref()
     const showingTooltip = ref(false)
+    let cancel = false
     let timer: any
 
     let popper: { destroy: any } | null
 
-    const hideTooltip = () => {
-      clearTimeout(timer)
-      if (props.show !== true) {
-        if (popper) {
-          popper.destroy()
-          popper = null
-        }
-        showingTooltip.value = false
-        document.removeEventListener('mousedown', hideTooltip)
-      }
+    const getValue = (className: string, defaulValue: number) => {
+      const regExp = new RegExp(`${className}-(\\d+)`, 'gi')
+      const classes = root.value.classList.toString()
+      const result = classes.match(regExp)
+      return result ? Number(result[0].replace(`${className}-`, '')) : defaulValue
     }
 
     const _showTooltip = () => {
-      showingTooltip.value = true
-      nextTick(() => {
-        const tooltipEl = root.value.querySelector('[name="tooltip"]')
-        popper = createPopper(root.value, tooltipEl, {
-          placement: props.placement as Placement,
-          modifiers: [
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 8],
+      if (!showingTooltip.value) {
+        showingTooltip.value = true
+        nextTick(() => {
+          const tooltipEl = root.value.querySelector('[name="tooltip"]')
+          popper = createPopper(root.value, tooltipEl, {
+            placement: props.placement as Placement,
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 8],
+                },
               },
-            },
-          ],
+            ],
+          })
         })
-      })
-      timer = setTimeout(hideTooltip, props.delayHide)
+      }
     }
 
-    const showTooltip = () => {
-      document.addEventListener('mousedown', hideTooltip)
-      timer = setTimeout(_showTooltip, props.delayShow)
+    const _hideTooltip = () => {
+      try {
+        if (cancel) {
+          if (props.show === 'focus') {
+            if (props.target) {
+              // test
+              conosle.log('you are here:', container.value.querySelector(props.target))
+              container.value.querySelector(props.target).focus()
+            } else {
+              // test
+              container.value.firstElementChild.focus()
+            }
+          }
+        } else {
+          clearTimeout(timer)
+          if (popper) {
+            popper.destroy()
+            popper = null
+          }
+          showingTooltip.value = false
+        }
+      } catch (e: any) {
+        console.warn(e.message)
+      }
+    }
+
+    const _handleMouseEnter = () => {
+      if (props.show === 'hover') {
+        _showTooltip()
+        const duration = getValue('duration', 2000)
+        timer = setTimeout(_hideTooltip, duration)
+      }
+    }
+
+    const handleMouseDown = () => {
+      if (props.show === 'focus') {
+        cancel = true
+        setTimeout(() => cancel = false)
+      }
+    }
+
+    const handleMouseEnter = () => {
+      document.addEventListener('mousedown', _hideTooltip)
+      const delay = getValue('delay', 1000)
+      timer = setTimeout(_handleMouseEnter, delay)
+    }
+
+    const handleMouseLeave = () => {
+      if (props.show === 'hover' || props.show === false) _hideTooltip()
+    }
+
+    const handleFocus = () => {
+      console.log('handleFocus: show tooltip')
+      _showTooltip()
+    }
+
+    const handleBlur = () => {
+      _hideTooltip()
     }
 
     watch(() => props.show, (val) => {
@@ -76,15 +125,43 @@ export default defineComponent({
         _showTooltip()
 
       else
-        hideTooltip()
+        _hideTooltip()
     }, { immediate: true })
 
-    onBeforeUnmount(hideTooltip)
+    onBeforeUnmount(_hideTooltip)
+
+    onMounted(() => {
+      try {
+        if (props.show === 'focus') {
+          if (props.target) {
+            const targets = container.value.querySelectorAll(props.target)
+            if (targets) [...targets].forEach((el: any) => el.addEventListener('focus', handleFocus))
+            if (targets) [...targets].forEach((el: any) => el.addEventListener('blur', handleBlur))
+          } else {
+            container.value.firstElementChild.addEventListener('focus', handleFocus)
+            container.value.firstElementChild.addEventListener('blur', handleBlur)
+          }
+        }
+      } catch (e) {
+        console.log('Tooltip error: target does not exist')
+      }
+    })
+
+    onBeforeUnmount(() => {
+      clearTimeout(timer)
+      document.removeEventListener('mousedown', _hideTooltip)
+      container.value.firstElementChild.removeEventListener('focus', handleFocus)
+      container.value.firstElementChild.removeEventListener('blur', handleBlur)
+    })
 
     return {
+      container,
       root,
-      hideTooltip,
-      showTooltip,
+      handleBlur,
+      handleFocus,
+      handleMouseDown,
+      handleMouseEnter,
+      handleMouseLeave,
       showingTooltip,
     }
   },
@@ -93,14 +170,10 @@ export default defineComponent({
 
 <template>
   <div ref="root" :class="component" aria-describedby="tooltip">
-    <span @mouseenter="showTooltip" @mouseleave="hideTooltip">
+    <span ref="container" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <slot />
     </span>
-    <div
-      v-if="showingTooltip"
-      name="tooltip"
-      role="tooltip"
-    >
+    <div v-if="showingTooltip" name="tooltip" role="tooltip" @mousedown="handleMouseDown">
       <slot name="tooltip" />
       <div name="arrow" data-popper-arrow />
     </div>

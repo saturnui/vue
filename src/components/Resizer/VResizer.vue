@@ -19,7 +19,6 @@ export default defineComponent({
   emits: ['change'],
   setup(props, { emit }) {
     const root = ref()
-    const handle = ref()
     let startX = 0
     let startY = 0
     let startWidth = 0
@@ -48,7 +47,6 @@ export default defineComponent({
       document.documentElement.addEventListener('mouseup', stopDrag, false)
     }
     return {
-      handle,
       root,
       startDrag,
     }
@@ -60,10 +58,10 @@ export default defineComponent({
   <div ref="root" :class="`${component} ${resize}`">
     <slot />
     <slot name="handle" v-bind="{ startDrag, resize }">
-      <div ref="handle" class="sa-resize-handle" :class="resize" @mousedown="startDrag">
+      <div class="resizer-handle" @mousedown="startDrag">
         <VResizeIcon v-if="resize === 'both'" />
         <VResizeHorizontalIcon v-else-if="resize === 'height'" />
-        <VResizeVerticalIcon v-else />
+        <VResizeVerticalIcon v-else-if="resize === 'width'" />
       </div>
     </slot>
   </div>

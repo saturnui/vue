@@ -90,16 +90,16 @@ export default defineComponent({
       leftStyle,
       rightStyle,
     }
-  }
+  },
 })
 </script>
 
 <template>
   <div class="relative rounded-full overflow-hidden" :style="pieContainerStyle">
     <div :class="component" :style="pieStyle">
-      <div :class="ringClass" :style="leftStyle"></div>
-      <div :class="ringClass" :style="rightStyle"></div>
+      <div :class="ringClass" :style="leftStyle" />
+      <div :class="ringClass" :style="rightStyle" />
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </template>

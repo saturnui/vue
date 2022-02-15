@@ -7,13 +7,13 @@
     "code": "ELIFECYCLE",
     "pkgid": "@vuwijs/vue@0.0.0",
     "stage": "build:local",
-    "script": "rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/vuwi-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi-vue.tgz",
+    "script": "rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/saturn-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/saturn-vue.tgz",
     "pkgname": "@vuwijs/vue",
     "err": {
       "name": "pnpm",
-      "message": "@vuwijs/vue@0.0.0 build:local: `rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/vuwi-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi-vue.tgz`\nExit status 1",
+      "message": "@vuwijs/vue@0.0.0 build:local: `rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/saturn-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/saturn-vue.tgz`\nExit status 1",
       "code": "ELIFECYCLE",
-      "stack": "pnpm: @vuwijs/vue@0.0.0 build:local: `rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/vuwi-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/vuwi-vue.tgz`\nExit status 1\n    at EventEmitter.<anonymous> (/Users/rob/.nvm/versions/node/v14.17.6/pnpm-global/5/node_modules/.pnpm/pnpm@6.23.6/node_modules/pnpm/dist/pnpm.cjs:103540:20)\n    at EventEmitter.emit (events.js:400:28)\n    at ChildProcess.<anonymous> (/Users/rob/.nvm/versions/node/v14.17.6/pnpm-global/5/node_modules/.pnpm/pnpm@6.23.6/node_modules/pnpm/dist/pnpm.cjs:91469:18)\n    at ChildProcess.emit (events.js:400:28)\n    at maybeClose (internal/child_process.js:1055:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)"
+      "stack": "pnpm: @vuwijs/vue@0.0.0 build:local: `rm -f vuwijs-vue-$npm_package_version.tgz && pnpm build && npm pack && mkdir -p ~/local_modules && rm -rf ~/local_modules/saturn-vue.tgz && cp vuwijs-vue-$npm_package_version.tgz ~/local_modules/saturn-vue.tgz`\nExit status 1\n    at EventEmitter.<anonymous> (/Users/rob/.nvm/versions/node/v14.17.6/pnpm-global/5/node_modules/.pnpm/pnpm@6.23.6/node_modules/pnpm/dist/pnpm.cjs:103540:20)\n    at EventEmitter.emit (events.js:400:28)\n    at ChildProcess.<anonymous> (/Users/rob/.nvm/versions/node/v14.17.6/pnpm-global/5/node_modules/.pnpm/pnpm@6.23.6/node_modules/pnpm/dist/pnpm.cjs:91469:18)\n    at ChildProcess.emit (events.js:400:28)\n    at maybeClose (internal/child_process.js:1055:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)"
     }
   }
 }

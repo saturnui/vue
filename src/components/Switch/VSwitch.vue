@@ -1,7 +1,7 @@
 <template>
   <!-- https://codepen.io/lhermann/pen/EBGZRZ -->
   <label :for="id" :class="computedClass">
-    <slot name="left"></slot>
+    <slot name="left" />
     <div class="relative">
       <input
         :id="id"
@@ -10,11 +10,11 @@
         :checked="modelValue"
         :disabled="disabled"
         @input="handleInput($event)"
-      />
-      <div class="pill"></div>
-      <div class="dot"></div>
+      >
+      <div class="pill" />
+      <div class="dot" />
     </div>
-    <slot></slot>
+    <slot />
     <!-- <div class="sa-switch-label">
       <slot></slot>
     </div> -->
