@@ -64,14 +64,10 @@ export default defineComponent({
       try {
         if (cancel) {
           if (props.show === 'focus') {
-            if (props.target) {
-              // test
-              conosle.log('you are here:', container.value.querySelector(props.target))
+            if (props.target) 
               container.value.querySelector(props.target).focus()
-            } else {
-              // test
+            else 
               container.value.firstElementChild.focus()
-            }
           }
         } else {
           clearTimeout(timer)
