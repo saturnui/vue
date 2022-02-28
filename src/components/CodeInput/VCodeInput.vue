@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-codeinput',
+      default: 'codeinput',
     },
     modelValue: {
       type: String,
@@ -80,7 +80,7 @@ export default defineComponent({
     )
 
     watch(value, (newVal) => {
-      emit('update:modelValue', newVal)
+      emit('update:modelValue', newVal.toUpperCase())
     })
 
     document.onpaste = (evt: ClipboardEvent) => {
@@ -89,7 +89,7 @@ export default defineComponent({
         const data = evt.clipboardData
         if (data) {
           const text = data.getData('text')
-          emit('update:modelValue', text.substring(0, formInputs.length))
+          emit('update:modelValue', text.substring(0, formInputs.length).toUpperCase())
         }
       }
     }

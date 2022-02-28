@@ -11,13 +11,13 @@
         :disabled="disabled"
         @input="handleInput($event)"
       >
-      <div class="pill" />
-      <div class="dot" />
+      <div class="pill" :class="modelValue ? trueClass : falseClass" />
+      <div class="dot" :class="dot" />
     </div>
     <slot />
     <!-- <div class="sa-switch-label">
       <slot></slot>
-    </div> -->
+    </div>-->
   </label>
 </template>
 
@@ -28,7 +28,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-switch',
+      default: 'switch',
     },
     id: {
       type: String,
@@ -41,6 +41,18 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    dot: {
+      type: String,
+      default: 'bg-white',
+    },
+    falseClass: {
+      type: String,
+      default: 'bg-base-200',
+    },
+    trueClass: {
+      type: String,
+      default: 'bg-neutral',
     },
   },
   emits: ['update:modelValue'],

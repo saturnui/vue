@@ -1,15 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue-demi'
-import VResizeIcon from '../Icon/VResizeIcon.vue'
-import VResizeHorizontalIcon from '../Icon/VResizeHorizontalIcon.vue'
-import VResizeVerticalIcon from '../Icon/VResizeVerticalIcon.vue'
 
 export default defineComponent({
-  components: { VResizeIcon, VResizeHorizontalIcon, VResizeVerticalIcon },
   props: {
     component: {
       type: String,
-      default: 'sa-resizer',
+      default: 'resizer',
     },
     resize: {
       type: String,
@@ -59,9 +55,7 @@ export default defineComponent({
     <slot />
     <slot name="handle" v-bind="{ startDrag, resize }">
       <div class="resizer-handle" @mousedown="startDrag">
-        <VResizeIcon v-if="resize === 'both'" />
-        <VResizeHorizontalIcon v-else-if="resize === 'height'" />
-        <VResizeVerticalIcon v-else-if="resize === 'width'" />
+        <div class="resizer-grip" />
       </div>
     </slot>
   </div>

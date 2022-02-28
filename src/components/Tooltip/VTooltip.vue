@@ -78,7 +78,7 @@ export default defineComponent({
           showingTooltip.value = false
         }
       } catch (e: any) {
-        console.warn(e.message)
+        console.warning(e.message)
       }
     }
 

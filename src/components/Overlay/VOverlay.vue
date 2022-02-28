@@ -1,13 +1,13 @@
 <template>
   <div
     ref="root"
-    data-css="sa-overlay-shade"
-    data-transitions="sa-overlay-enter-active sa-overlay-leave-active sa-overlay-enter-from sa-overlay-leave-to"
-    data-transitions-center="sa-overlay-center sa-overlay-center-enter-active sa-overlay-center-leave-active sa-overlay-center-enter-from sa-overlay-center-leave-to"
-    data-transitions-top="sa-overlay-top sa-overlay-top-enter-active sa-overlay-top-leave-active sa-overlay-top-enter-from sa-overlay-top-leave-to"
-    data-transitions-bottom="sa-overlay-bottom sa-overlay-bottom-enter-active sa-overlay-bottom-leave-active sa-overlay-bottom-enter-from sa-overlay-bottom-leave-to"
-    data-transitions-left="sa-overlay-left sa-overlay-left-enter-active sa-overlay-left-leave-active sa-overlay-left-enter-from sa-overlay-left-leave-to"
-    data-transitions-right="sa-overlay-right sa-overlay-right-enter-active sa-overlay-right-leave-active sa-overlay-right-enter-from sa-overlay-right-leave-to"
+    data-css="overlay-shade"
+    data-transitions="overlay-enter-active overlay-leave-active overlay-enter-from overlay-leave-to"
+    data-transitions-center="overlay-center overlay-center-enter-active overlay-center-leave-active overlay-center-enter-from overlay-center-leave-to"
+    data-transitions-top="overlay-top overlay-top-enter-active overlay-top-leave-active overlay-top-enter-from overlay-top-leave-to"
+    data-transitions-bottom="overlay-bottom overlay-bottom-enter-active overlay-bottom-leave-active overlay-bottom-enter-from overlay-bottom-leave-to"
+    data-transitions-left="overlay-left overlay-left-enter-active overlay-left-leave-active overlay-left-enter-from overlay-left-leave-to"
+    data-transitions-right="overlay-right overlay-right-enter-active overlay-right-leave-active overlay-right-enter-from overlay-right-leave-to"
   >
     <transition :name="component">
       <div v-if="blocking && modelValue" :class="component">
@@ -31,7 +31,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-overlay',
+      default: 'overlay',
     },
     modelValue: {
       type: Boolean,

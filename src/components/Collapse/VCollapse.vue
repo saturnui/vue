@@ -28,7 +28,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-collapse',
+      default: 'collapse',
     },
     group: {
       type: String,

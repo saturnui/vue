@@ -1,11 +1,11 @@
 <script lang="ts">
-import { defineComponent } from 'vue-demi';
+import { defineComponent } from 'vue-demi'
 
 export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-spinner',
+      default: 'spinner',
     },
   },
 })
@@ -13,6 +13,6 @@ export default defineComponent({
 
 <template>
   <div class="animate-spin" :class="component">
-    <slot></slot>
+    <slot />
   </div>
 </template>

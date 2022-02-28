@@ -24,7 +24,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-dialog',
+      default: 'dialog',
     },
   },
   emits: ['close'],

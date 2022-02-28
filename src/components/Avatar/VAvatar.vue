@@ -1,7 +1,7 @@
 <template>
   <div :class="`${component}`">
-    <img v-if="image" :src="image" :alt="name">
-    <div v-else-if="name">
+    <img v-if="src" :src="src" :alt="placeholder">
+    <div v-else-if="placeholder">
       {{ initial }}
     </div>
   </div>
@@ -14,21 +14,21 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-avatar',
+      default: 'avatar',
     },
-    image: {
+    src: {
       type: String,
       default: '',
     },
-    name: {
+    placeholder: {
       type: String,
       default: '',
     },
   },
   setup(props) {
     const initial = computed(() => {
-      if (props.name)
-        return props.name[0]
+      if (props.placeholder)
+        return props.placeholder[0]
     })
 
     return {

@@ -6,7 +6,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-carousel',
+      default: 'carousel',
     },
     modelValue: {
       type: Number,

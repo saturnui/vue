@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-progress-bar',
+      default: 'progress-bar',
     },
     percent: {
       type: Number,
@@ -19,16 +19,16 @@ export default defineComponent({
       }
     })
     return {
-      meterStyle
+      meterStyle,
     }
-  }
+  },
 })
 </script>
 
 <template>
-  <div :class="component">
+  <div :class="component" data-transitions="animate-right">
     <div class="relative" :style="meterStyle">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

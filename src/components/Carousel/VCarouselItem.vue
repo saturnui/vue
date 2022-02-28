@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-carousel-item',
+      default: 'carousel-item',
     },
   },
 })

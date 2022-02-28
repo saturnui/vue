@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     component: {
       type: String,
-      default: 'sa-slider',
+      default: 'slider',
     },
     min: { // RANGE MIN
       type: [Number, String],
